@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Page Concept 1: Classic Sanctuary | Kizmet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /*
+      CONCEPT 1: CLASSIC SANCTUARY
+      =============================
+      Design Direction: Within existing design system
+
+      This concept uses the exact sage/cream/terracotta palette
+      and Cormorant Garamond + Inter typography already established.
+      Clean, spa-like aesthetic with generous whitespace.
+
+      Key Design Decisions:
+      - Asymmetric two-column layout creates visual interest while remaining balanced
+      - Large portrait photo with subtle rounded corners maintains warmth
+      - Quote block with terracotta accent creates a focal point
+      - Approach section uses cards to organize philosophy points
+    */
+
+    :root {
+      /* Existing Kizmet Design System Colors */
+      --sage-50: hsl(145, 30%, 96%);
+      --sage-100: hsl(145, 25%, 90%);
+      --sage-200: hsl(145, 22%, 80%);
+      --sage-500: hsl(145, 25%, 36%);
+      --sage-600: hsl(145, 28%, 28%);
+
+      --cream-50: hsl(40, 40%, 98%);
+      --cream-100: hsl(40, 35%, 95%);
+      --cream-200: hsl(40, 30%, 90%);
+
+      --terracotta-400: hsl(18, 45%, 60%);
+      --terracotta-500: hsl(18, 50%, 55%);
+      --terracotta-600: hsl(18, 55%, 45%);
+
+      --background: hsl(40, 30%, 97%);
+      --foreground: hsl(30, 20%, 15%);
+      --muted: hsl(30, 15%, 45%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    /* Navigation placeholder */
+    .nav-placeholder {
+      height: 80px;
+      background: var(--cream-50);
+      border-bottom: 1px solid var(--cream-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 40px;
+      background: linear-gradient(180deg, var(--cream-50) 0%, var(--background) 100%);
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-text {
+      padding-right: 40px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--sage-500);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: 56px;
+      color: var(--foreground);
+      margin-bottom: 24px;
+    }
+
+    .hero-intro {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    /* Photo Container */
+    .photo-container {
+      position: relative;
+    }
+
+    .photo-frame {
+      /*
+        Design note: Photo uses subtle rounded corners (12px)
+        to match the soft, welcoming aesthetic of the brand.
+        The slight shadow adds depth without being heavy.
+      */
+      background: var(--cream-200);
+      border-radius: 12px;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .photo-accent {
+      /*
+        Design note: Decorative element using brand sage color
+        Creates visual interest and frames the photo
+      */
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: var(--sage-100);
+      border-radius: 50%;
+      z-index: -1;
+      top: -30px;
+      right: -30px;
+    }
+
+    /* Quote Section */
+    .quote-section {
+      background: var(--sage-50);
+      padding: 80px 40px;
+    }
+
+    .quote-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quote-mark {
+      /*
+        Design note: Terracotta accent color used sparingly
+        for high-impact moments like this decorative quote mark
+      */
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 120px;
+      color: var(--terracotta-400);
+      line-height: 0.5;
+      opacity: 0.5;
+    }
+
+    blockquote {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 32px;
+      font-style: italic;
+      color: var(--foreground);
+      margin: 20px 0 24px;
+    }
+
+    .quote-attribution {
+      color: var(--sage-600);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    /* Bio Section */
+    .bio-section {
+      padding: 100px 40px;
+      background: var(--background);
+    }
+
+    .bio-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+    }
+
+    .bio-sidebar h2 {
+      font-size: 40px;
+      color: var(--foreground);
+      margin-bottom: 16px;
+    }
+
+    .bio-sidebar .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--terracotta-500);
+      margin-bottom: 24px;
+    }
+
+    .credentials {
+      list-style: none;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .credentials li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--cream-200);
+    }
+
+    .bio-main p {
+      font-size: 17px;
+      color: var(--foreground);
+      margin-bottom: 24px;
+    }
+
+    .bio-main p:first-child::first-letter {
+      /*
+        Design note: Drop cap creates editorial elegance,
+        using the heading font for consistency
+      */
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 72px;
+      float: left;
+      line-height: 0.8;
+      padding-right: 12px;
+      color: var(--sage-600);
+    }
+
+    /* Approach Section */
+    .approach-section {
+      padding: 100px 40px;
+      background: var(--cream-50);
+    }
+
+    .approach-header {
+      max-width: 600px;
+      margin: 0 auto 60px;
+      text-align: center;
+    }
+
+    .approach-header h2 {
+      font-size: 44px;
+      color: var(--foreground);
+      margin-bottom: 16px;
+    }
+
+    .approach-header p {
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .approach-cards {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .approach-card {
+      /*
+        Design note: Cards use cream background with subtle
+        hover state to indicate interactivity. The top border
+        accent uses sage to tie back to brand primary.
+      */
+      background: var(--cream-100);
+      padding: 40px;
+      border-radius: 12px;
+      border-top: 3px solid var(--sage-500);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .approach-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+    }
+
+    .approach-card h3 {
+      font-size: 24px;
+      color: var(--foreground);
+      margin-bottom: 16px;
+    }
+
+    .approach-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 40px;
+      background: var(--sage-600);
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 36px;
+      color: var(--cream-50);
+      margin-bottom: 24px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--terracotta-500);
+      color: white;
+      padding: 16px 40px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .cta-button:hover {
+      background: var(--terracotta-600);
+      transform: translateY(-2px);
+    }
+
+    /* Footer placeholder */
+    .footer-placeholder {
+      height: 200px;
+      background: var(--foreground);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cream-200);
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-text {
+        padding-right: 0;
+        text-align: center;
+      }
+
+      .photo-container {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .bio-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .approach-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-placeholder">[Navigation Component]</nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <p class="eyebrow">About Destiny</p>
+        <h1>Healing Hands, Open Heart</h1>
+        <p class="hero-intro">
+          With over a decade of experience in therapeutic massage, I've dedicated my practice
+          to helping people reconnect with their bodies and find lasting relief from pain
+          and tension.
+        </p>
+      </div>
+      <div class="photo-container">
+        <div class="photo-frame">[Portrait Photo: Professional headshot or environmental portrait]</div>
+        <div class="photo-accent"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote-section">
+    <div class="quote-content">
+      <span class="quote-mark">"</span>
+      <blockquote>
+        The body holds our stories. My role is to listen with my hands
+        and help release what no longer serves you.
+      </blockquote>
+      <p class="quote-attribution">- Destiny, Founder of Kizmet</p>
+    </div>
+  </section>
+
+  <section class="bio-section">
+    <div class="bio-content">
+      <div class="bio-sidebar">
+        <h2>My Journey</h2>
+        <div class="divider"></div>
+        <ul class="credentials">
+          <li>Licensed Massage Therapist</li>
+          <li>10+ Years Experience</li>
+          <li>Deep Tissue Certified</li>
+          <li>Swedish Massage Specialist</li>
+          <li>Prenatal Massage Certified</li>
+        </ul>
+      </div>
+      <div class="bio-main">
+        <p>
+          My path to massage therapy began after experiencing firsthand the
+          transformative power of healing touch during my own recovery from a
+          sports injury. That experience ignited a passion that has guided my
+          career ever since.
+        </p>
+        <p>
+          I trained at the Pacific Northwest School of Massage, where I developed
+          a deep understanding of anatomy, physiology, and the art of therapeutic
+          touch. Since then, I've continued to expand my skills through advanced
+          certifications and workshops.
+        </p>
+        <p>
+          Every client who walks through my door brings a unique story. Some seek
+          relief from chronic pain, others need recovery support after an injury,
+          and many simply crave a moment of peace in their busy lives. I consider
+          it a privilege to be part of each person's wellness journey.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach-section">
+    <div class="approach-header">
+      <h2>My Approach</h2>
+      <p>Every session is tailored to your unique needs, drawing from multiple modalities to create your ideal treatment.</p>
+    </div>
+    <div class="approach-cards">
+      <div class="approach-card">
+        <h3>Listen First</h3>
+        <p>
+          Before any session, we'll discuss your goals, concerns, and any areas
+          that need special attention. Your feedback guides every aspect of our
+          work together.
+        </p>
+      </div>
+      <div class="approach-card">
+        <h3>Holistic View</h3>
+        <p>
+          I treat the whole person, not just symptoms. Understanding how stress,
+          posture, and lifestyle affect your body helps me address root causes,
+          not just surface tension.
+        </p>
+      </div>
+      <div class="approach-card">
+        <h3>Lasting Results</h3>
+        <p>
+          My goal is to provide relief that extends beyond our session. I'll share
+          stretches, self-care techniques, and lifestyle suggestions to support
+          your ongoing wellness.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2>Ready to Begin Your Journey?</h2>
+    <a href="#" class="cta-button">Book Your Session</a>
+  </section>
+
+  <footer class="footer-placeholder">[Footer Component]</footer>
+</body>
+</html>

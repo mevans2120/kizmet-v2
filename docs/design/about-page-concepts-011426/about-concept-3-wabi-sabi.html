@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Page Concept 3: Wabi-Sabi | Kizmet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /*
+      CONCEPT 3: WABI-SABI (WILDCARD)
+      =================================
+      Design Direction: Japanese Minimalism + Imperfect Beauty
+
+      A completely different aesthetic direction inspired by:
+      - Wabi-sabi: Finding beauty in imperfection
+      - Japanese minimalism: Generous negative space, asymmetry
+      - Zen aesthetics: Calm, contemplative, intentional
+
+      This wildcard concept replaces the warm spa aesthetic with
+      a more contemplative, artistic direction that still aligns
+      with the healing/wellness theme through its emphasis on
+      mindfulness and intentionality.
+
+      Key Design Decisions:
+      - Near-monochrome palette with strategic warm accent
+      - Fraunces for distinctive, slightly quirky headings
+      - Generous whitespace as a design element
+      - Asymmetric layouts with intentional imbalance
+      - Vertical text elements inspired by Japanese typography
+      - Single powerful photo rather than multiple images
+    */
+
+    :root {
+      /* Wabi-Sabi Palette: Muted, earthy, contemplative */
+      --ink: hsl(20, 10%, 8%);
+      --charcoal: hsl(25, 8%, 18%);
+      --stone: hsl(30, 6%, 35%);
+      --sand: hsl(35, 15%, 75%);
+      --rice: hsl(40, 20%, 94%);
+      --paper: hsl(42, 25%, 97%);
+
+      /* Single warm accent - like sunlight through paper */
+      --warmth: hsl(25, 70%, 55%);
+      --warmth-soft: hsl(25, 50%, 85%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Manrope', -apple-system, sans-serif;
+      background: var(--paper);
+      color: var(--charcoal);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 400;
+      line-height: 1.1;
+    }
+
+    /* Navigation placeholder */
+    .nav-placeholder {
+      height: 80px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--stone);
+      font-size: 13px;
+    }
+
+    /* Opening Statement - Centered, Contemplative */
+    .opening {
+      padding: 120px 40px 80px;
+      text-align: center;
+    }
+
+    .opening-content {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .opening h1 {
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.35em;
+      color: var(--stone);
+      font-family: 'Manrope', sans-serif;
+      font-weight: 500;
+      margin-bottom: 40px;
+    }
+
+    .opening-statement {
+      /*
+        Design note: Large contemplative statement
+        sets the tone. Fraunces adds subtle personality
+        without being aggressive.
+      */
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 42px;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .opening-statement em {
+      font-style: italic;
+      color: var(--warmth);
+    }
+
+    /* Hero - Asymmetric Split */
+    .hero {
+      padding: 0 40px 120px;
+    }
+
+    .hero-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: end;
+    }
+
+    .hero-photo {
+      /*
+        Design note: Photo container uses a tall aspect ratio
+        and subtle warm tone overlay. The imperfect crop
+        (not perfectly centered) embraces wabi-sabi principles.
+      */
+      aspect-ratio: 3/4;
+      background: var(--sand);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--stone);
+      font-size: 13px;
+    }
+
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        transparent 60%,
+        var(--warmth-soft) 100%
+      );
+      opacity: 0.4;
+      mix-blend-mode: multiply;
+    }
+
+    .hero-text {
+      padding-bottom: 40px;
+    }
+
+    .hero-text h2 {
+      font-size: 64px;
+      color: var(--ink);
+      margin-bottom: 32px;
+      max-width: 500px;
+    }
+
+    .hero-intro {
+      font-size: 17px;
+      color: var(--stone);
+      max-width: 400px;
+      line-height: 1.9;
+    }
+
+    /* Vertical Accent */
+    .vertical-accent {
+      /*
+        Design note: Vertical text element inspired by
+        Japanese typography. Adds visual interest and
+        cultural reference without being heavy-handed.
+      */
+      position: fixed;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%) rotate(180deg);
+      writing-mode: vertical-rl;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--sand);
+      font-weight: 500;
+    }
+
+    /* Story Section - Full Width with Offset Text */
+    .story-section {
+      background: var(--rice);
+      padding: 120px 40px;
+    }
+
+    .story-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 80px;
+    }
+
+    .story-label {
+      /*
+        Design note: Large vertical label acts as
+        section marker. Light color keeps it subtle.
+      */
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 120px;
+      color: var(--sand);
+      line-height: 0.9;
+      opacity: 0.5;
+    }
+
+    .story-text {
+      max-width: 600px;
+    }
+
+    .story-text h3 {
+      font-size: 32px;
+      color: var(--ink);
+      margin-bottom: 32px;
+    }
+
+    .story-text p {
+      font-size: 16px;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+    }
+
+    .story-text p.lead {
+      font-size: 19px;
+      color: var(--ink);
+    }
+
+    /* Credentials - Minimal List */
+    .credentials-section {
+      padding: 80px 40px;
+      background: var(--paper);
+    }
+
+    .credentials-content {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .credentials-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--stone);
+    }
+
+    .credentials-list {
+      list-style: none;
+      text-align: right;
+    }
+
+    .credentials-list li {
+      padding: 12px 0;
+      font-size: 15px;
+      color: var(--charcoal);
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .credentials-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* Approach - Numbered Philosophy */
+    .approach-section {
+      padding: 120px 40px;
+      background: var(--ink);
+      color: var(--rice);
+    }
+
+    .approach-header {
+      max-width: 1200px;
+      margin: 0 auto 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .approach-header h2 {
+      font-size: 48px;
+      color: var(--paper);
+    }
+
+    .approach-header p {
+      font-size: 14px;
+      color: var(--sand);
+      max-width: 300px;
+      text-align: right;
+    }
+
+    .approach-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--charcoal);
+    }
+
+    .approach-item {
+      /*
+        Design note: Grid items separated by thin lines
+        create a structured, contemplative feel.
+        Large numbers provide visual anchor.
+      */
+      background: var(--ink);
+      padding: 48px;
+    }
+
+    .approach-number {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 72px;
+      color: var(--charcoal);
+      margin-bottom: 24px;
+      line-height: 1;
+    }
+
+    .approach-item h3 {
+      font-size: 22px;
+      color: var(--paper);
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .approach-item p {
+      font-size: 14px;
+      color: var(--sand);
+      line-height: 1.8;
+    }
+
+    /* Photo Break - Environmental */
+    .photo-break {
+      height: 60vh;
+      min-height: 400px;
+      background: var(--sand);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--stone);
+      font-size: 13px;
+    }
+
+    /* Quote - Large, Centered */
+    .quote-section {
+      padding: 160px 40px;
+      text-align: center;
+      background: var(--paper);
+    }
+
+    .quote-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .quote-mark {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 200px;
+      color: var(--warmth-soft);
+      line-height: 0.4;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    blockquote {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 36px;
+      color: var(--ink);
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    .quote-attribution {
+      margin-top: 40px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--stone);
+    }
+
+    /* CTA - Minimal */
+    .cta-section {
+      padding: 80px 40px;
+      background: var(--rice);
+    }
+
+    .cta-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cta-text h2 {
+      font-size: 36px;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .cta-text p {
+      font-size: 15px;
+      color: var(--stone);
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 20px 48px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: var(--warmth);
+      transform: translateX(8px);
+    }
+
+    /* Footer placeholder */
+    .footer-placeholder {
+      height: 200px;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--stone);
+      font-size: 13px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1000px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-photo {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .hero-text h2 {
+        font-size: 44px;
+      }
+
+      .story-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .story-label {
+        font-size: 80px;
+      }
+
+      .approach-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .approach-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+      }
+
+      .approach-header p {
+        text-align: left;
+      }
+
+      .credentials-content {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .credentials-list {
+        text-align: left;
+      }
+
+      .cta-content {
+        flex-direction: column;
+        gap: 32px;
+        text-align: center;
+      }
+
+      .vertical-accent {
+        display: none;
+      }
+
+      .opening-statement {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-placeholder">[Navigation Component]</nav>
+
+  <div class="vertical-accent">Kizmet Massage & Wellness</div>
+
+  <section class="opening">
+    <div class="opening-content">
+      <h1>About</h1>
+      <p class="opening-statement">
+        In the space between tension and release,
+        there is <em>presence</em>. That is where healing lives.
+      </p>
+    </div>
+  </section>
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-photo">[Portrait: Contemplative, natural light, off-center composition]</div>
+      <div class="hero-text">
+        <h2>I am Destiny</h2>
+        <p class="hero-intro">
+          A massage therapist who believes that the body carries wisdom.
+          My work is to create space for that wisdom to speak, and to
+          guide the release of what no longer serves.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="story-section">
+    <div class="story-content">
+      <div class="story-label">01</div>
+      <div class="story-text">
+        <h3>The Path Here</h3>
+        <p class="lead">
+          I came to massage therapy through my own experience of pain.
+          A climbing accident left me searching for relief that traditional
+          medicine couldn't provide.
+        </p>
+        <p>
+          What I found instead was something deeper: a practice that connects
+          body to mind, practitioner to client, suffering to ease. The
+          transformation was so complete that I knew I had to share it.
+        </p>
+        <p>
+          Ten years later, I've worked with hundreds of bodies. Each one
+          has taught me something. I continue to learn, to study, to refine
+          my understanding of what healing truly means.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="credentials-section">
+    <div class="credentials-content">
+      <span class="credentials-label">Training & Credentials</span>
+      <ul class="credentials-list">
+        <li>Licensed Massage Therapist, Washington State</li>
+        <li>Pacific Northwest School of Massage, 2015</li>
+        <li>Advanced Deep Tissue Certification</li>
+        <li>Prenatal & Postnatal Massage Specialist</li>
+        <li>Continuing Education: Craniosacral Therapy</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="approach-section">
+    <div class="approach-header">
+      <h2>My Approach</h2>
+      <p>
+        Three principles guide every session. They are simple,
+        but their practice is a lifetime's work.
+      </p>
+    </div>
+    <div class="approach-grid">
+      <div class="approach-item">
+        <div class="approach-number">01</div>
+        <h3>Presence</h3>
+        <p>
+          Before technique, before knowledge, there is presence.
+          I bring my full attention to each session, each moment,
+          each response your body offers.
+        </p>
+      </div>
+      <div class="approach-item">
+        <div class="approach-number">02</div>
+        <h3>Listening</h3>
+        <p>
+          Your body speaks in tension patterns, in breath, in
+          subtle movements. My hands have learned to listen.
+          Together, we discover what you need.
+        </p>
+      </div>
+      <div class="approach-item">
+        <div class="approach-number">03</div>
+        <h3>Space</h3>
+        <p>
+          Healing requires space: physical space for tissues to
+          release, mental space to process, emotional space to
+          let go. I hold that space for you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="photo-break">[Environmental Photo: Treatment space, minimal, light-filled]</div>
+
+  <section class="quote-section">
+    <div class="quote-content">
+      <span class="quote-mark">"</span>
+      <blockquote>
+        The body knows how to heal itself.
+        My role is simply to remove the obstacles.
+      </blockquote>
+      <p class="quote-attribution">Destiny, Kizmet Massage & Wellness</p>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-content">
+      <div class="cta-text">
+        <h2>Begin</h2>
+        <p>Your first session is waiting</p>
+      </div>
+      <a href="#" class="cta-button">Book Now</a>
+    </div>
+  </section>
+
+  <footer class="footer-placeholder">[Footer Component]</footer>
+</body>
+</html>

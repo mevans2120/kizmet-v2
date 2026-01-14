@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Page Concept 2: Botanical Extension | Kizmet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /*
+      CONCEPT 2: BOTANICAL EXTENSION
+      ================================
+      Design Direction: Extended design system
+
+      This concept builds on the existing palette by adding:
+      - Deeper forest greens and golden honey tones
+      - Organic, flowing shapes inspired by botanicals
+      - Newsreader as an elegant alternative serif
+      - DM Sans as a warmer body font
+      - Multi-photo gallery with organic arrangement
+      - Layered textures and decorative botanical elements
+
+      The extension feels like a natural evolution of the brand,
+      adding richness while maintaining the calm, healing aesthetic.
+    */
+
+    :root {
+      /* Base Kizmet Colors (preserved) */
+      --sage-50: hsl(145, 30%, 96%);
+      --sage-100: hsl(145, 25%, 90%);
+      --sage-500: hsl(145, 25%, 36%);
+      --sage-600: hsl(145, 28%, 28%);
+
+      --cream-50: hsl(40, 40%, 98%);
+      --cream-100: hsl(40, 35%, 95%);
+      --cream-200: hsl(40, 30%, 90%);
+
+      --terracotta-400: hsl(18, 45%, 60%);
+      --terracotta-500: hsl(18, 50%, 55%);
+
+      /* EXTENDED PALETTE */
+      --forest-700: hsl(152, 35%, 22%);
+      --forest-800: hsl(155, 40%, 15%);
+      --honey-300: hsl(38, 65%, 70%);
+      --honey-400: hsl(36, 60%, 55%);
+      --honey-500: hsl(34, 55%, 45%);
+      --stone-100: hsl(35, 15%, 92%);
+      --stone-200: hsl(32, 12%, 85%);
+
+      --background: hsl(38, 25%, 96%);
+      --foreground: hsl(155, 30%, 12%);
+      --muted: hsl(30, 12%, 45%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.75;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Newsreader', Georgia, serif;
+      font-weight: 500;
+      line-height: 1.15;
+    }
+
+    /* Navigation placeholder */
+    .nav-placeholder {
+      height: 80px;
+      background: var(--cream-50);
+      border-bottom: 1px solid var(--cream-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Hero Section with Organic Layout */
+    .hero {
+      position: relative;
+      padding: 60px 40px 100px;
+      background: linear-gradient(180deg, var(--cream-50) 0%, var(--background) 100%);
+      overflow: hidden;
+    }
+
+    .hero-bg-shape {
+      /*
+        Design note: Large organic shape in background
+        adds visual interest without overwhelming content.
+        Uses extended forest green at low opacity.
+      */
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      background: var(--forest-700);
+      opacity: 0.03;
+      border-radius: 60% 40% 50% 50% / 40% 50% 50% 60%;
+      top: -200px;
+      right: -200px;
+    }
+
+    .hero-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* Photo Gallery - Organic Arrangement */
+    .photo-gallery {
+      /*
+        Design note: Overlapping photos create depth
+        and visual storytelling. Three photos allow
+        showing different aspects: portrait, workspace, hands at work.
+      */
+      position: relative;
+      height: 600px;
+    }
+
+    .photo-main {
+      position: absolute;
+      width: 70%;
+      aspect-ratio: 3/4;
+      background: var(--stone-200);
+      border-radius: 200px 200px 20px 20px;
+      left: 0;
+      top: 0;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 13px;
+      overflow: hidden;
+    }
+
+    .photo-secondary {
+      position: absolute;
+      width: 45%;
+      aspect-ratio: 4/5;
+      background: var(--honey-300);
+      border-radius: 20px;
+      right: 0;
+      top: 120px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--foreground);
+      font-size: 13px;
+    }
+
+    .photo-accent-circle {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: var(--terracotta-400);
+      border-radius: 50%;
+      right: 60px;
+      bottom: 40px;
+      opacity: 0.6;
+    }
+
+    .hero-text {
+      padding-top: 60px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--forest-700);
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--honey-500);
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      color: var(--foreground);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 span {
+      /*
+        Design note: Highlighted word uses honey accent
+        to draw attention and add warmth
+      */
+      color: var(--honey-500);
+      font-style: italic;
+    }
+
+    .hero-intro {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 480px;
+    }
+
+    /* Bio Section with Botanical Border */
+    .bio-section {
+      padding: 100px 40px;
+      background: var(--forest-800);
+      color: var(--cream-50);
+      position: relative;
+    }
+
+    .bio-botanical {
+      /*
+        Design note: Decorative botanical pattern border
+        reinforces the organic, natural theme
+      */
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--honey-400) 0px,
+        var(--honey-400) 20px,
+        var(--sage-500) 20px,
+        var(--sage-500) 40px,
+        var(--terracotta-400) 40px,
+        var(--terracotta-400) 60px
+      );
+    }
+
+    .bio-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .bio-heading {
+      position: sticky;
+      top: 100px;
+    }
+
+    .bio-heading h2 {
+      font-size: 48px;
+      color: var(--cream-50);
+      margin-bottom: 20px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    .bio-heading .credentials {
+      list-style: none;
+      font-size: 14px;
+      color: var(--sage-100);
+      margin-top: 32px;
+    }
+
+    .bio-heading .credentials li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bio-heading .credentials li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--honey-400);
+      border-radius: 50%;
+    }
+
+    .bio-text p {
+      font-size: 17px;
+      line-height: 1.9;
+      margin-bottom: 28px;
+      color: var(--stone-100);
+    }
+
+    .bio-text p:first-child {
+      font-size: 20px;
+      color: var(--cream-50);
+    }
+
+    /* Philosophy/Approach Section */
+    .approach-section {
+      padding: 100px 40px;
+      background: var(--background);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .approach-bg-circle {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: var(--sage-50);
+      border-radius: 50%;
+      left: -200px;
+      bottom: -200px;
+    }
+
+    .approach-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .approach-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .approach-header h2 {
+      font-size: 44px;
+      color: var(--foreground);
+      margin-bottom: 16px;
+    }
+
+    .approach-header p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .approach-card {
+      /*
+        Design note: Cards use organic border-radius
+        and layered backgrounds for depth. Hover reveals
+        accent color.
+      */
+      background: var(--cream-50);
+      padding: 48px;
+      border-radius: 24px 24px 80px 24px;
+      position: relative;
+      transition: all 0.4s ease;
+      border: 1px solid var(--cream-200);
+    }
+
+    .approach-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 60px;
+      background: var(--honey-400);
+      border-radius: 4px;
+      transition: height 0.3s ease;
+    }
+
+    .approach-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+    }
+
+    .approach-card:hover::before {
+      height: 100px;
+    }
+
+    .approach-number {
+      font-family: 'Newsreader', Georgia, serif;
+      font-size: 48px;
+      color: var(--sage-100);
+      margin-bottom: 16px;
+    }
+
+    .approach-card h3 {
+      font-size: 26px;
+      color: var(--foreground);
+      margin-bottom: 16px;
+    }
+
+    .approach-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* Photo Break */
+    .photo-break {
+      /*
+        Design note: Full-width environmental photo
+        showing the massage space creates connection
+        and invites visitors to imagine themselves there
+      */
+      height: 400px;
+      background: var(--stone-200);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 14px;
+      position: relative;
+    }
+
+    .photo-break::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(transparent, var(--background));
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 100px 40px;
+      background: var(--background);
+      text-align: center;
+    }
+
+    .cta-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-section h2 {
+      font-size: 40px;
+      color: var(--foreground);
+      margin-bottom: 20px;
+    }
+
+    .cta-section p {
+      color: var(--muted);
+      font-size: 17px;
+      margin-bottom: 32px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--forest-700);
+      color: var(--cream-50);
+      padding: 18px 48px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: var(--forest-800);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Footer placeholder */
+    .footer-placeholder {
+      height: 200px;
+      background: var(--forest-800);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sage-100);
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1000px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .photo-gallery {
+        height: 450px;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .hero-text {
+        padding-top: 0;
+        text-align: center;
+      }
+
+      .hero-intro {
+        margin: 0 auto;
+      }
+
+      .eyebrow::before {
+        display: none;
+      }
+
+      .bio-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .bio-heading {
+        position: static;
+      }
+
+      .approach-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-placeholder">[Navigation Component]</nav>
+
+  <section class="hero">
+    <div class="hero-bg-shape"></div>
+    <div class="hero-content">
+      <div class="photo-gallery">
+        <div class="photo-main">[Portrait Photo: Full body or 3/4 shot in natural light]</div>
+        <div class="photo-secondary">[Secondary Photo: Hands performing massage or studio detail]</div>
+        <div class="photo-accent-circle"></div>
+      </div>
+      <div class="hero-text">
+        <p class="eyebrow">Meet Your Therapist</p>
+        <h1>Where Healing Meets <span>Intention</span></h1>
+        <p class="hero-intro">
+          I'm Destiny, and I've spent the last decade learning to listen to what
+          bodies need. Every session at Kizmet is a collaboration between your
+          goals and my expertise.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bio-section">
+    <div class="bio-botanical"></div>
+    <div class="bio-content">
+      <div class="bio-heading">
+        <h2>My Story</h2>
+        <ul class="credentials">
+          <li>Licensed Massage Therapist, WA State</li>
+          <li>Pacific NW School of Massage Graduate</li>
+          <li>Advanced Deep Tissue Certification</li>
+          <li>Prenatal Massage Specialist</li>
+          <li>10+ Years Clinical Experience</li>
+        </ul>
+      </div>
+      <div class="bio-text">
+        <p>
+          The body never lies. It holds our joy, our stress, our trauma, and our
+          triumphs in its tissues. Learning to read those stories has been my
+          life's work.
+        </p>
+        <p>
+          My journey began unexpectedly, following a rock climbing accident that left
+          me with chronic back pain. Traditional medicine offered limited relief, but
+          massage therapy opened a door I didn't know existed. That transformation
+          was so profound that I knew I had to share it with others.
+        </p>
+        <p>
+          After graduating from the Pacific Northwest School of Massage, I apprenticed
+          with practitioners across multiple modalities. Each teacher added new tools
+          to my practice: the precision of deep tissue work, the gentleness of Swedish
+          techniques, the intuition of craniosacral therapy.
+        </p>
+        <p>
+          Today, I draw from all of these influences to create sessions that are
+          uniquely tailored to each person who walks through my door. No two bodies
+          are alike, and no two sessions should be either.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach-section">
+    <div class="approach-bg-circle"></div>
+    <div class="approach-content">
+      <div class="approach-header">
+        <h2>My Approach</h2>
+        <p>Four principles guide every session at Kizmet</p>
+      </div>
+      <div class="approach-grid">
+        <div class="approach-card">
+          <div class="approach-number">01</div>
+          <h3>Deep Listening</h3>
+          <p>
+            Every session begins with conversation. Understanding your goals, your
+            history, and your current state allows me to tailor each treatment to
+            exactly what you need today.
+          </p>
+        </div>
+        <div class="approach-card">
+          <div class="approach-number">02</div>
+          <h3>Intuitive Touch</h3>
+          <p>
+            Beyond technique, I've developed an intuitive sense for what each body
+            needs. Sometimes that means deep pressure; sometimes it means gentle holds.
+            I let your tissues guide me.
+          </p>
+        </div>
+        <div class="approach-card">
+          <div class="approach-number">03</div>
+          <h3>Whole Person Care</h3>
+          <p>
+            I treat the whole person, not just isolated symptoms. Tension in your
+            shoulders might stem from stress at work, poor sleep, or an old injury.
+            Understanding the full picture leads to lasting relief.
+          </p>
+        </div>
+        <div class="approach-card">
+          <div class="approach-number">04</div>
+          <h3>Empowered Healing</h3>
+          <p>
+            My goal is to help you understand your own body better. I share stretches,
+            self-massage techniques, and lifestyle insights so you can continue your
+            healing journey between sessions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="photo-break">[Environmental Photo: Treatment room, massage table, serene space]</div>
+
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Your Healing Journey Awaits</h2>
+      <p>
+        Ready to experience therapeutic massage that truly listens to your body?
+        Book your first session and discover the Kizmet difference.
+      </p>
+      <a href="#" class="cta-button">Book Your Session</a>
+    </div>
+  </section>
+
+  <footer class="footer-placeholder">[Footer Component]</footer>
+</body>
+</html>
