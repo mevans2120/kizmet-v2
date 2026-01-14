@@ -249,15 +249,15 @@
       color: var(--sage-600);
     }
 
-    /* Approach Section */
+    /* Approach Section - Journey Timeline */
     .approach-section {
       padding: 100px 40px;
       background: var(--cream-50);
     }
 
     .approach-header {
-      max-width: 600px;
-      margin: 0 auto 60px;
+      max-width: 700px;
+      margin: 0 auto 80px;
       text-align: center;
     }
 
@@ -272,41 +272,75 @@
       font-size: 17px;
     }
 
-    .approach-cards {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-    }
-
-    .approach-card {
+    .journey-timeline {
       /*
-        Design note: Cards use cream background with subtle
-        hover state to indicate interactivity. The top border
-        accent uses sage to tie back to brand primary.
+        Design note: Horizontal journey replaces generic cards.
+        Shows the actual experience flow, helping visitors
+        visualize what working with Destiny looks like.
       */
-      background: var(--cream-100);
-      padding: 40px;
-      border-radius: 12px;
-      border-top: 3px solid var(--sage-500);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
     }
 
-    .approach-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+    .journey-timeline::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--sage-200);
     }
 
-    .approach-card h3 {
+    .journey-steps {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .journey-step {
+      flex: 1;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .step-marker {
+      width: 56px;
+      height: 56px;
+      background: var(--sage-500);
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 24px;
-      color: var(--foreground);
-      margin-bottom: 16px;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
     }
 
-    .approach-card p {
+    .journey-step:nth-child(2) .step-marker {
+      background: var(--terracotta-500);
+    }
+
+    .journey-step:nth-child(3) .step-marker {
+      background: var(--sage-600);
+    }
+
+    .step-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 22px;
+      color: var(--foreground);
+      margin-bottom: 12px;
+    }
+
+    .step-description {
       color: var(--muted);
-      font-size: 15px;
+      font-size: 14px;
+      line-height: 1.6;
     }
 
     /* CTA Section */
@@ -371,8 +405,26 @@
         gap: 40px;
       }
 
-      .approach-cards {
-        grid-template-columns: 1fr;
+      .journey-steps {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .journey-timeline::before {
+        display: none;
+      }
+
+      .journey-step {
+        text-align: left;
+        padding: 0;
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+      }
+
+      .step-marker {
+        margin: 0;
+        flex-shrink: 0;
       }
 
       .hero h1 {
@@ -390,9 +442,9 @@
         <p class="eyebrow">About Destiny</p>
         <h1>Healing Hands, Open Heart</h1>
         <p class="hero-intro">
-          With over a decade of experience in therapeutic massage, I've dedicated my practice
-          to helping people reconnect with their bodies and find lasting relief from pain
-          and tension.
+          I grew up watching my grandmother's hands work magic on aching muscles and
+          tired spirits. Now I'm carrying that tradition forward, blending generations
+          of natural healing wisdom with modern therapeutic techniques.
         </p>
       </div>
       <div class="photo-container">
@@ -406,8 +458,8 @@
     <div class="quote-content">
       <span class="quote-mark">"</span>
       <blockquote>
-        The body holds our stories. My role is to listen with my hands
-        and help release what no longer serves you.
+        In my family, healing was never something you learned from a textbook.
+        It was passed down through touch, through presence, through care.
       </blockquote>
       <p class="quote-attribution">- Destiny, Founder of Kizmet</p>
     </div>
@@ -416,34 +468,35 @@
   <section class="bio-section">
     <div class="bio-content">
       <div class="bio-sidebar">
-        <h2>My Journey</h2>
+        <h2>My Roots</h2>
         <div class="divider"></div>
         <ul class="credentials">
           <li>Licensed Massage Therapist</li>
-          <li>10+ Years Experience</li>
+          <li>Third-Generation Healer</li>
           <li>Deep Tissue Certified</li>
-          <li>Swedish Massage Specialist</li>
+          <li>Swedish Massage Trained</li>
           <li>Prenatal Massage Certified</li>
         </ul>
       </div>
       <div class="bio-main">
         <p>
-          My path to massage therapy began after experiencing firsthand the
-          transformative power of healing touch during my own recovery from a
-          sports injury. That experience ignited a passion that has guided my
-          career ever since.
+          Healing has always been the family business. My grandmother was the
+          person everyone in our community called when their backs went out or
+          their shoulders seized up. My mother inherited those same intuitive
+          hands. I spent my childhood learning by watching—absorbing techniques
+          that no school could teach.
         </p>
         <p>
-          I trained at the Pacific Northwest School of Massage, where I developed
-          a deep understanding of anatomy, physiology, and the art of therapeutic
-          touch. Since then, I've continued to expand my skills through advanced
-          certifications and workshops.
+          When I decided to make this my profession, formal training gave me the
+          language and anatomy to understand what my hands already knew. The
+          Pacific Northwest School of Massage helped me bridge generations of
+          folk wisdom with evidence-based practice.
         </p>
         <p>
-          Every client who walks through my door brings a unique story. Some seek
-          relief from chronic pain, others need recovery support after an injury,
-          and many simply crave a moment of peace in their busy lives. I consider
-          it a privilege to be part of each person's wellness journey.
+          Kizmet is the culmination of that journey—a place where heritage meets
+          technique, where the old ways inform the new. Every session carries
+          the weight of my grandmother's knowledge and the precision of modern
+          therapeutic methods.
         </p>
       </div>
     </div>
@@ -451,33 +504,32 @@
 
   <section class="approach-section">
     <div class="approach-header">
-      <h2>My Approach</h2>
-      <p>Every session is tailored to your unique needs, drawing from multiple modalities to create your ideal treatment.</p>
+      <h2>What a Session Looks Like</h2>
+      <p>No two bodies are the same, but every session follows a rhythm that honors both tradition and your individual needs.</p>
     </div>
-    <div class="approach-cards">
-      <div class="approach-card">
-        <h3>Listen First</h3>
-        <p>
-          Before any session, we'll discuss your goals, concerns, and any areas
-          that need special attention. Your feedback guides every aspect of our
-          work together.
-        </p>
-      </div>
-      <div class="approach-card">
-        <h3>Holistic View</h3>
-        <p>
-          I treat the whole person, not just symptoms. Understanding how stress,
-          posture, and lifestyle affect your body helps me address root causes,
-          not just surface tension.
-        </p>
-      </div>
-      <div class="approach-card">
-        <h3>Lasting Results</h3>
-        <p>
-          My goal is to provide relief that extends beyond our session. I'll share
-          stretches, self-care techniques, and lifestyle suggestions to support
-          your ongoing wellness.
-        </p>
+    <div class="journey-timeline">
+      <div class="journey-steps">
+        <div class="journey-step">
+          <div class="step-marker">1</div>
+          <div>
+            <h4 class="step-title">We Connect</h4>
+            <p class="step-description">I want to hear what brought you in—not just the pain, but the life around it. Then my hands find what words sometimes can't.</p>
+          </div>
+        </div>
+        <div class="journey-step">
+          <div class="step-marker">2</div>
+          <div>
+            <h4 class="step-title">We Work</h4>
+            <p class="step-description">Drawing from deep tissue, Swedish, and techniques passed down through my family—whatever serves you best.</p>
+          </div>
+        </div>
+        <div class="journey-step">
+          <div class="step-marker">3</div>
+          <div>
+            <h4 class="step-title">You Leave Transformed</h4>
+            <p class="step-description">Not just relaxed. More aware of your body, with tools to continue the work at home.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
