@@ -18,8 +18,8 @@ const Hero = () => {
         <div className="max-w-3xl mx-auto">
           <div className="animate-slide-up mb-6">
             <h1
-              className="font-heading text-5xl md:text-6xl text-foreground leading-tight"
-              style={{ fontVariationSettings: "'opsz' 80", fontWeight: 450, letterSpacing: "-0.02em" }}
+              className="font-heading text-7xl md:text-8xl text-foreground leading-none"
+              style={{ fontVariationSettings: "'opsz' 80", fontWeight: 450, letterSpacing: "-0.03em" }}
             >
               Kizmet
             </h1>
