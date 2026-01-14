@@ -6,9 +6,19 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const Navigation = () => {
+interface NavigationProps {
+  siteSettings?: {
+    brandName?: string;
+    tagline?: string;
+  };
+}
+
+const Navigation = ({ siteSettings }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+
+  const brandName = siteSettings?.brandName || "Kizmet";
+  const tagline = siteSettings?.tagline || "Massage and Wellness";
 
   const navLinks = [
     { path: "/about", label: "About" },
@@ -25,10 +35,12 @@ const Navigation = () => {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex flex-col">
             <span
-                className="font-heading text-3xl text-foreground leading-tight"
-                style={{ fontVariationSettings: "'opsz' 80", fontWeight: 450, letterSpacing: "-0.01em" }}
-              >Kizmet</span>
-            <span className="font-body text-sm text-primary tracking-wide">Massage and Wellness</span>
+              className="font-heading text-3xl text-foreground leading-tight"
+              style={{ fontVariationSettings: "'opsz' 80", fontWeight: 450, letterSpacing: "-0.01em" }}
+            >
+              {brandName}
+            </span>
+            <span className="font-body text-sm text-primary tracking-wide">{tagline}</span>
           </Link>
 
           {/* Desktop Navigation */}

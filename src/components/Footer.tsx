@@ -1,17 +1,39 @@
 import Link from "next/link";
 
-const Footer = () => {
+interface FooterProps {
+  siteSettings?: {
+    brandName?: string;
+    tagline?: string;
+    address?: {
+      street?: string;
+      city?: string;
+      state?: string;
+      zip?: string;
+    };
+  };
+  footerSettings?: {
+    brandDescription?: string;
+    therapistName?: string;
+  };
+}
+
+const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
+  const brandName = siteSettings?.brandName || "Kizmet";
+  const brandDescription = footerSettings?.brandDescription || "Nurturing your body and mind through the healing power of touch.";
+  const therapistName = footerSettings?.therapistName || "Destiny";
+  const address = siteSettings?.address;
+
   return (
     <footer className="bg-card border-t border-border py-12">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="font-heading text-3xl font-medium text-foreground mb-4">
-              Kizmet
+              {brandName}
             </h3>
             <p className="font-body text-muted-foreground text-base leading-relaxed">
               Massage & Wellness<br />
-              Nurturing your body and mind through the healing power of touch.
+              {brandDescription}
             </p>
           </div>
 
@@ -40,8 +62,8 @@ const Footer = () => {
               Location
             </h4>
             <div className="font-body text-base text-muted-foreground space-y-2">
-              <p>105 1/2 E 1st St</p>
-              <p>Port Angeles, WA</p>
+              <p>{address?.street || "105 1/2 E 1st St"}</p>
+              <p>{address?.city || "Port Angeles"}, {address?.state || "WA"}</p>
             </div>
           </div>
 
@@ -50,14 +72,14 @@ const Footer = () => {
               Your Therapist
             </h4>
             <p className="font-body text-base text-muted-foreground">
-              Destiny
+              {therapistName}
             </p>
           </div>
         </div>
 
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="font-body text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Kizmet Massage & Wellness. All rights reserved.
+            © {new Date().getFullYear()} {brandName} Massage & Wellness. All rights reserved.
           </p>
         </div>
       </div>

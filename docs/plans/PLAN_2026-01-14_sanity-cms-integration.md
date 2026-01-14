@@ -285,57 +285,238 @@ The Opal Creek v2 project provides a proven reference implementation.
 ### Phase 5: Content Migration
 **Estimated time: 1-2 hours**
 
-#### 5.1 Create Singleton Documents
-- [ ] In Studio, create Site Settings document
-  - Enter brand name: "Kizmet"
-  - Enter tagline: "Massage and Wellness"
-  - Enter contact info from Footer.tsx
-  - Enter address from Footer.tsx
+#### 5.1 Create Migration Script
+- [ ] Create `scripts/` directory in project root
+- [ ] Create `scripts/migrate-content.ts`
+  ```typescript
+  /**
+   * Migration script to populate Sanity with existing hardcoded content.
+   * Run with: npx tsx scripts/migrate-content.ts
+   *
+   * Prerequisites:
+   * - Sanity project created and schemas deployed
+   * - SANITY_API_TOKEN env var set (needs write permissions)
+   */
+  import { createClient } from '@sanity/client'
 
-- [ ] Create Homepage Settings document
-  - Copy hero content from Hero.tsx
-  - Copy CTA content from CTASection.tsx
-  - Upload hero image to Sanity
+  const client = createClient({
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+    apiVersion: '2024-01-01',
+    token: process.env.SANITY_API_TOKEN, // Needs write access
+    useCdn: false,
+  })
 
-- [ ] Create About Page document
-  - Copy all fields from `aboutContent` object in About.tsx
-  - Upload about image (when available)
+  // Content extracted from current components
+  const siteSettings = {
+    _type: 'siteSettings',
+    _id: 'siteSettings', // Singleton ID
+    brandName: 'Kizmet',
+    tagline: 'Massage and Wellness',
+    phone: '(360) 123-4567', // Update with real number
+    email: 'destiny@kizmetwellness.com', // Update with real email
+    address: {
+      street: '123 Main Street', // Update with real address
+      city: 'Port Angeles',
+      state: 'WA',
+      zip: '98362',
+    },
+    bookingUrl: '/book',
+  }
 
-- [ ] Create Policies Page document
-  - Copy all policies from `policies` array in Policies.tsx
+  const homepageSettings = {
+    _type: 'homepageSettings',
+    _id: 'homepageSettings',
+    heroHeadline: 'Kizmet',
+    heroSubheadline: 'Destiny Pugh offers therapeutic massage in Port Angeles. Reconnect with your body and find your balance.',
+    heroCta: 'Book Your Session',
+    servicesHeading: 'Our Services',
+    servicesDescription: 'Therapeutic massage tailored to your needs',
+    ctaHeadline: "It's Time to Feel Good",
+    ctaDescription: 'Book your first session today and experience the transformative power of therapeutic massage.',
+    ctaButtonText: 'Book Your Appointment',
+  }
 
-- [ ] Create Book Page document
-  - Copy header content from Book.tsx
+  const aboutPage = {
+    _type: 'aboutPage',
+    _id: 'aboutPage',
+    eyebrow: 'About',
+    headline: 'Destiny Pugh',
+    intro: 'Licensed Massage Therapist dedicated to helping you feel your best.',
+    quoteText: 'Touch is the first sense we develop and the last one we lose.',
+    quoteAttribution: 'Tiffany Field',
+    bioTitle: 'Your Therapist',
+    credentials: [
+      'Licensed Massage Therapist (WA License #MA12345)',
+      'Graduate of Port Angeles School of Massage',
+      'Specialized training in Deep Tissue and Swedish Massage',
+    ],
+    bioParagraphs: [
+      'With over 5 years of experience, I bring a holistic approach to massage therapy that addresses both physical tension and overall wellness.',
+      'My practice focuses on creating a calm, healing environment where you can truly relax and let go of stress.',
+    ],
+    journeyTitle: 'Your Session Journey',
+    journeyIntro: 'What to expect during your visit',
+    journeySteps: [
+      { title: 'Consultation', description: 'We discuss your needs and any areas of concern.' },
+      { title: 'Treatment', description: 'Customized massage focused on your specific goals.' },
+      { title: 'Aftercare', description: 'Recommendations for maintaining the benefits of your session.' },
+    ],
+    ctaHeadline: 'Ready to Feel Better?',
+    ctaButtonText: 'Book a Session',
+  }
 
-- [ ] Create Footer Settings document
-  - Copy description and therapist name
+  const policiesPage = {
+    _type: 'policiesPage',
+    _id: 'policiesPage',
+    pageTitle: 'Policies',
+    pageDescription: 'Please review the following policies before booking your appointment.',
+    policies: [
+      {
+        title: 'Cancellation Policy',
+        items: [
+          '24-hour notice required for cancellations',
+          'Late cancellations may be charged 50% of service fee',
+          'No-shows will be charged the full service fee',
+        ],
+      },
+      {
+        title: 'Arrival',
+        items: [
+          'Please arrive 10 minutes before your appointment',
+          'Late arrivals may result in shortened session time',
+        ],
+      },
+      {
+        title: 'Payment',
+        items: [
+          'Payment is due at time of service',
+          'Cash, credit cards, and HSA/FSA cards accepted',
+        ],
+      },
+      {
+        title: 'Health & Safety',
+        items: [
+          'Please reschedule if you are feeling unwell',
+          'Inform your therapist of any medical conditions or injuries',
+        ],
+      },
+    ],
+  }
 
-#### 5.2 Create Service Documents
-- [ ] Create "30 Minute Session" service
-  - Duration: "30 min"
-  - Price: "$60"
-  - Description from Services.tsx
-  - Order: 1
-  - Featured: true
+  const bookPage = {
+    _type: 'bookPage',
+    _id: 'bookPage',
+    eyebrow: 'Schedule',
+    headline: 'Book Your Session',
+    description: 'Select a service and preferred time to begin your wellness journey.',
+  }
 
-- [ ] Create "60 Minute Session" service
-  - Duration: "60 min"
-  - Price: "$100"
-  - Description from Services.tsx
-  - Order: 2
-  - Featured: true
+  const footerSettings = {
+    _type: 'footerSettings',
+    _id: 'footerSettings',
+    brandDescription: 'Therapeutic massage in Port Angeles, helping you reconnect with your body and find balance.',
+    therapistName: 'Destiny Pugh, LMT',
+  }
 
-- [ ] Create "90 Minute Session" service
-  - Duration: "90 min"
-  - Price: "$145"
-  - Description from Services.tsx
-  - Order: 3
-  - Featured: true
+  const services = [
+    {
+      _type: 'service',
+      name: '30 Minute Session',
+      slug: { _type: 'slug', current: '30-minute-session' },
+      duration: '30 min',
+      price: '$60',
+      description: 'A focused session targeting specific areas of tension. Perfect for a quick reset or targeting problem areas.',
+      featured: true,
+      order: 1,
+    },
+    {
+      _type: 'service',
+      name: '60 Minute Session',
+      slug: { _type: 'slug', current: '60-minute-session' },
+      duration: '60 min',
+      price: '$100',
+      description: 'Our most popular option. A full-body massage with extra attention to areas of concern.',
+      featured: true,
+      order: 2,
+    },
+    {
+      _type: 'service',
+      name: '90 Minute Session',
+      slug: { _type: 'slug', current: '90-minute-session' },
+      duration: '90 min',
+      price: '$145',
+      description: 'The ultimate relaxation experience. Extended time for comprehensive bodywork and deep relaxation.',
+      featured: true,
+      order: 3,
+    },
+  ]
 
-#### 5.3 Verify Content
-- [ ] Review all documents in Studio
-- [ ] Check for typos or missing fields
-- [ ] Verify image uploads display correctly
+  async function migrate() {
+    console.log('Starting content migration...\n')
+
+    // Create singletons
+    const singletons = [
+      siteSettings,
+      homepageSettings,
+      aboutPage,
+      policiesPage,
+      bookPage,
+      footerSettings,
+    ]
+
+    for (const doc of singletons) {
+      try {
+        await client.createOrReplace(doc)
+        console.log(`✓ Created ${doc._type}`)
+      } catch (error) {
+        console.error(`✗ Failed to create ${doc._type}:`, error)
+      }
+    }
+
+    // Create services
+    console.log('\nCreating services...')
+    for (const service of services) {
+      try {
+        await client.create(service)
+        console.log(`✓ Created service: ${service.name}`)
+      } catch (error) {
+        console.error(`✗ Failed to create service ${service.name}:`, error)
+      }
+    }
+
+    console.log('\n✅ Migration complete!')
+    console.log('\nNext steps:')
+    console.log('1. Review content in Sanity Studio at /studio')
+    console.log('2. Upload images manually (hero, about page)')
+    console.log('3. Update placeholder contact info with real values')
+  }
+
+  migrate().catch(console.error)
+  ```
+
+#### 5.2 Install Migration Dependencies
+- [ ] Run: `npm install -D tsx` (TypeScript executor for scripts)
+
+#### 5.3 Run Migration Script
+- [ ] Verify `.env.local` has `SANITY_API_TOKEN` with write permissions
+- [ ] Run: `npx tsx scripts/migrate-content.ts`
+- [ ] Verify output shows all documents created successfully
+
+#### 5.4 Post-Migration Manual Tasks
+- [ ] Open Studio at `/studio`
+- [ ] Upload hero image to Homepage Settings
+- [ ] Upload therapist photo to About Page (if available)
+- [ ] Update placeholder contact info with real values:
+  - Phone number
+  - Email address
+  - Street address
+- [ ] Review all content for accuracy
+
+#### 5.5 Verify Migration
+- [ ] All singleton documents exist and have content
+- [ ] All three services appear in Services collection
+- [ ] Services are ordered correctly (30 min → 60 min → 90 min)
 
 ---
 
@@ -515,6 +696,9 @@ When complete, these files should exist:
 Root:
 ├── sanity.config.ts
 ├── sanity.cli.ts
+
+scripts/:
+└── migrate-content.ts
 
 sanity/:
 ├── schemaTypes/

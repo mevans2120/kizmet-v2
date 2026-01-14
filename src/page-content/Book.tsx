@@ -13,13 +13,33 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar, Clock, User, Mail, Phone, MessageSquare } from "lucide-react";
 import { toast } from "sonner";
 
-const services = [
-  "30 Minute Session - $60",
-  "60 Minute Session - $100",
-  "90 Minute Session - $145",
+interface Service {
+  _id?: string;
+  name: string;
+  price: string;
+}
+
+interface BookData {
+  eyebrow?: string;
+  headline?: string;
+  description?: string;
+}
+
+interface BookProps {
+  data?: BookData;
+  services?: Service[];
+  siteSettings?: any;
+  footerSettings?: any;
+}
+
+// Fallback services
+const fallbackServices = [
+  { name: "30 Minute Session", price: "$60" },
+  { name: "60 Minute Session", price: "$100" },
+  { name: "90 Minute Session", price: "$145" },
 ];
 
-const Book = () => {
+const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,6 +49,13 @@ const Book = () => {
     preferredTime: "",
     message: "",
   });
+
+  const eyebrow = data?.eyebrow || "Schedule Your Visit";
+  const headline = data?.headline || "Book an Appointment";
+  const description = data?.description || "Fill out the form below and I'll get back to you within 24 hours to confirm your booking.";
+
+  const displayServices = services && services.length > 0 ? services : fallbackServices;
+  const serviceOptions = displayServices.map(s => `${s.name} - ${s.price}`);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,24 +79,24 @@ const Book = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
-      
+      <Navigation siteSettings={siteSettings} />
+
       <main className="pt-24 pb-16">
         {/* Header */}
         <section className="py-16 bg-card">
           <div className="container mx-auto px-6 text-center">
             <p className="font-body text-sm uppercase tracking-[0.2em] text-primary mb-4">
-              Schedule Your Visit
+              {eyebrow}
             </p>
             <h1 className="font-heading text-5xl md:text-6xl font-medium text-foreground mb-6">
-              Book an Appointment
+              {headline}
             </h1>
             <p className="font-body text-muted-foreground max-w-2xl mx-auto text-xl">
-              Fill out the form below and I'll get back to you within 24 hours to confirm your booking.
+              {description}
             </p>
           </div>
         </section>
-        
+
         {/* Booking Form */}
         <section className="py-16">
           <div className="container mx-auto px-6 max-w-3xl">
@@ -113,7 +140,7 @@ const Book = () => {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="phone" className="font-body flex items-center gap-2">
@@ -139,7 +166,7 @@ const Book = () => {
                           <SelectValue placeholder="Choose a service" />
                         </SelectTrigger>
                         <SelectContent className="bg-popover">
-                          {services.map((service) => (
+                          {serviceOptions.map((service) => (
                             <SelectItem key={service} value={service}>
                               {service}
                             </SelectItem>
@@ -148,7 +175,7 @@ const Book = () => {
                       </Select>
                     </div>
                   </div>
-                  
+
                   {/* Date & Time */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
@@ -188,7 +215,7 @@ const Book = () => {
                       </Select>
                     </div>
                   </div>
-                  
+
                   {/* Message */}
                   <div className="space-y-2">
                     <Label htmlFor="message" className="font-body flex items-center gap-2">
@@ -204,11 +231,11 @@ const Book = () => {
                       className="bg-background resize-none"
                     />
                   </div>
-                  
+
                   <Button type="submit" variant="hero" size="xl" className="w-full">
                     Submit Booking Request
                   </Button>
-                  
+
                   <p className="font-body text-xs text-muted-foreground text-center">
                     By submitting this form, you agree to our{" "}
                     <Link href="/policies" className="text-primary hover:underline">
@@ -220,21 +247,21 @@ const Book = () => {
             </Card>
           </div>
         </section>
-        
+
         {/* Contact Info */}
         <section className="py-12">
           <div className="container mx-auto px-6 text-center">
             <p className="font-body text-muted-foreground mb-2">
               Prefer to book by phone?
             </p>
-            <a href="tel:+15551234567" className="font-heading text-3xl text-primary hover:underline">
-              (555) 123-4567
+            <a href={`tel:${siteSettings?.phone?.replace(/\D/g, '') || "+15551234567"}`} className="font-heading text-3xl text-primary hover:underline">
+              {siteSettings?.phone || "(555) 123-4567"}
             </a>
           </div>
         </section>
       </main>
-      
-      <Footer />
+
+      <Footer siteSettings={siteSettings} footerSettings={footerSettings} />
     </div>
   );
 };

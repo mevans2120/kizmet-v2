@@ -3,22 +3,43 @@ import Image from "next/image";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { urlFor } from "@/sanity/lib/image";
 
-// =============================================================================
-// CONTENT DATA (Sanity-ready structure)
-// When Sanity is integrated, replace this object with GROQ query results
-// =============================================================================
+interface JourneyStep {
+  _key?: string;
+  title: string;
+  description: string;
+}
 
-const aboutContent = {
+interface AboutData {
+  eyebrow?: string;
+  headline?: string;
+  intro?: string;
+  heroImage?: any;
+  quoteText?: string;
+  quoteAttribution?: string;
+  bioTitle?: string;
+  credentials?: string[];
+  bioParagraphs?: string[];
+  journeyTitle?: string;
+  journeyIntro?: string;
+  journeySteps?: JourneyStep[];
+  ctaHeadline?: string;
+  ctaButtonText?: string;
+}
+
+interface AboutProps {
+  data?: AboutData;
+  siteSettings?: any;
+  footerSettings?: any;
+}
+
+// Fallback content
+const fallbackContent = {
   hero: {
     eyebrow: "About Destiny",
     headline: "Healing Hands, Open Heart",
-    intro:
-      "I grew up watching my grandmother's hands work magic on aching muscles and tired spirits. Now I'm carrying that tradition forward, blending generations of natural healing wisdom with modern therapeutic techniques.",
-    image: {
-      src: "/placeholder.svg",
-      alt: "Destiny, founder of Kizmet Massage & Wellness",
-    },
+    intro: "I grew up watching my grandmother's hands work magic on aching muscles and tired spirits. Now I'm carrying that tradition forward, blending generations of natural healing wisdom with modern therapeutic techniques.",
   },
   quote: {
     text: "In my family, healing was never something you learned from a textbook. It was passed down through touch, through presence, through care.",
@@ -41,46 +62,49 @@ const aboutContent = {
   },
   journey: {
     title: "What a Session Looks Like",
-    intro:
-      "No two bodies are the same, but every session follows a rhythm that honors both tradition and your individual needs.",
+    intro: "No two bodies are the same, but every session follows a rhythm that honors both tradition and your individual needs.",
     steps: [
-      {
-        number: 1,
-        title: "We Connect",
-        description:
-          "I want to hear what brought you in—not just the pain, but the life around it. Then my hands find what words sometimes can't.",
-      },
-      {
-        number: 2,
-        title: "We Work",
-        description:
-          "Drawing from deep tissue, Swedish, and techniques passed down through my family—whatever serves you best.",
-      },
-      {
-        number: 3,
-        title: "You Leave Transformed",
-        description:
-          "Not just relaxed. More aware of your body, with tools to continue the work at home.",
-      },
-    ],
+      { title: "We Connect", description: "I want to hear what brought you in—not just the pain, but the life around it. Then my hands find what words sometimes can't." },
+      { title: "We Work", description: "Drawing from deep tissue, Swedish, and techniques passed down through my family—whatever serves you best." },
+      { title: "You Leave Transformed", description: "Not just relaxed. More aware of your body, with tools to continue the work at home." },
+    ] as JourneyStep[],
   },
   cta: {
     headline: "Ready to Begin Your Journey?",
     buttonText: "Book Your Session",
-    buttonLink: "/book",
   },
 };
 
-// =============================================================================
-// COMPONENT
-// =============================================================================
-
-const About = () => {
-  const { hero, quote, bio, journey, cta } = aboutContent;
+const About = ({ data, siteSettings, footerSettings }: AboutProps) => {
+  // Use Sanity data or fallback
+  const hero = {
+    eyebrow: data?.eyebrow || fallbackContent.hero.eyebrow,
+    headline: data?.headline || fallbackContent.hero.headline,
+    intro: data?.intro || fallbackContent.hero.intro,
+    image: data?.heroImage,
+  };
+  const quote = {
+    text: data?.quoteText || fallbackContent.quote.text,
+    attribution: data?.quoteAttribution || fallbackContent.quote.attribution,
+  };
+  const bio = {
+    title: data?.bioTitle || fallbackContent.bio.title,
+    credentials: data?.credentials || fallbackContent.bio.credentials,
+    paragraphs: data?.bioParagraphs || fallbackContent.bio.paragraphs,
+  };
+  const journey = {
+    title: data?.journeyTitle || fallbackContent.journey.title,
+    intro: data?.journeyIntro || fallbackContent.journey.intro,
+    steps: data?.journeySteps || fallbackContent.journey.steps,
+  };
+  const cta = {
+    headline: data?.ctaHeadline || fallbackContent.cta.headline,
+    buttonText: data?.ctaButtonText || fallbackContent.cta.buttonText,
+  };
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
+      <Navigation siteSettings={siteSettings} />
 
       <main>
         {/* Hero Section */}
@@ -100,15 +124,18 @@ const About = () => {
               </div>
               <div className="relative">
                 <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-xl bg-muted">
-                  <Image
-                    src={hero.image.src}
-                    alt={hero.image.alt}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
+                  {hero.image ? (
+                    <Image
+                      src={urlFor(hero.image).width(800).quality(85).url()}
+                      alt={hero.headline}
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-sage-100" />
+                  )}
                 </div>
-                {/* Decorative accent circle */}
                 <div className="absolute -top-6 -right-6 w-32 h-32 md:w-48 md:h-48 bg-sage-100 rounded-full -z-10" />
               </div>
             </div>
@@ -136,7 +163,6 @@ const About = () => {
         <section className="py-16 md:py-24 bg-background">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-20">
-              {/* Sidebar */}
               <div>
                 <h2 className="font-heading text-3xl font-medium text-foreground mb-4">
                   {bio.title}
@@ -154,7 +180,6 @@ const About = () => {
                 </ul>
               </div>
 
-              {/* Main Content */}
               <div className="lg:col-span-2">
                 {bio.paragraphs.map((paragraph, index) => (
                   <p
@@ -185,16 +210,13 @@ const About = () => {
               </p>
             </div>
 
-            {/* Timeline */}
             <div className="max-w-4xl mx-auto">
               {/* Desktop: Horizontal */}
               <div className="hidden md:block relative">
-                {/* Connecting line */}
                 <div className="absolute top-7 left-0 right-0 h-0.5 bg-sage-200" />
-
                 <div className="flex justify-between">
                   {journey.steps.map((step, index) => (
-                    <div key={index} className="flex-1 text-center px-4">
+                    <div key={step._key || index} className="flex-1 text-center px-4">
                       <div
                         className={`w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-6 relative z-10 font-heading text-2xl text-white ${
                           index === 1
@@ -204,7 +226,7 @@ const About = () => {
                             : "bg-sage-500"
                         }`}
                       >
-                        {step.number}
+                        {index + 1}
                       </div>
                       <h3 className="font-heading text-xl font-medium text-foreground mb-3">
                         {step.title}
@@ -220,7 +242,7 @@ const About = () => {
               {/* Mobile: Vertical */}
               <div className="md:hidden space-y-8">
                 {journey.steps.map((step, index) => (
-                  <div key={index} className="flex gap-4">
+                  <div key={step._key || index} className="flex gap-4">
                     <div
                       className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 font-heading text-xl text-white ${
                         index === 1
@@ -230,7 +252,7 @@ const About = () => {
                           : "bg-sage-500"
                       }`}
                     >
-                      {step.number}
+                      {index + 1}
                     </div>
                     <div>
                       <h3 className="font-heading text-xl font-medium text-foreground mb-2">
@@ -254,13 +276,13 @@ const About = () => {
               {cta.headline}
             </h2>
             <Button variant="hero" size="xl" asChild>
-              <Link href={cta.buttonLink}>{cta.buttonText}</Link>
+              <Link href="/book">{cta.buttonText}</Link>
             </Button>
           </div>
         </section>
       </main>
 
-      <Footer />
+      <Footer siteSettings={siteSettings} footerSettings={footerSettings} />
     </div>
   );
 };
