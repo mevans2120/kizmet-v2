@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonts are loaded via next/font in layout.tsx */
+
+@layer base {
+  :root {
+    --background: 40 30% 97%;
+    --foreground: 30 20% 15%;
+
+    --card: 40 25% 95%;
+    --card-foreground: 30 20% 15%;
+
+    --popover: 40 30% 97%;
+    --popover-foreground: 30 20% 15%;
+
+    --primary: 145 25% 36%;
+    --primary-foreground: 40 30% 97%;
+
+    --secondary: 30 30% 90%;
+    --secondary-foreground: 30 20% 25%;
+
+    --muted: 40 20% 92%;
+    --muted-foreground: 30 15% 45%;
+
+    --accent: 18 50% 55%;
+    --accent-foreground: 40 30% 97%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 35 20% 85%;
+    --input: 35 20% 85%;
+    --ring: 145 25% 36%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 40 25% 95%;
+    --sidebar-foreground: 30 20% 25%;
+    --sidebar-primary: 145 25% 36%;
+    --sidebar-primary-foreground: 40 30% 97%;
+    --sidebar-accent: 40 20% 92%;
+    --sidebar-accent-foreground: 30 20% 25%;
+    --sidebar-border: 35 20% 85%;
+    --sidebar-ring: 145 25% 36%;
+
+    /* Custom color tokens */
+    --sage-50: 145 30% 96%;
+    --sage-100: 145 25% 90%;
+    --sage-200: 145 22% 80%;
+    --sage-500: 145 25% 36%;
+    --sage-600: 145 28% 28%;
+
+    --cream-50: 40 40% 98%;
+    --cream-100: 40 35% 95%;
+    --cream-200: 40 30% 90%;
+
+    --terracotta-400: 18 45% 60%;
+    --terracotta-500: 18 50% 55%;
+    --terracotta-600: 18 55% 45%;
+  }
+
+  .dark {
+    --background: 30 15% 10%;
+    --foreground: 40 25% 92%;
+
+    --card: 30 15% 12%;
+    --card-foreground: 40 25% 92%;
+
+    --popover: 30 15% 10%;
+    --popover-foreground: 40 25% 92%;
+
+    --primary: 145 30% 50%;
+    --primary-foreground: 30 15% 10%;
+
+    --secondary: 30 12% 18%;
+    --secondary-foreground: 40 25% 92%;
+
+    --muted: 30 12% 18%;
+    --muted-foreground: 40 15% 60%;
+
+    --accent: 18 45% 55%;
+    --accent-foreground: 40 30% 97%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 30 12% 22%;
+    --input: 30 12% 22%;
+    --ring: 145 30% 50%;
+
+    --sidebar-background: 30 15% 12%;
+    --sidebar-foreground: 40 25% 92%;
+    --sidebar-primary: 145 30% 50%;
+    --sidebar-primary-foreground: 30 15% 10%;
+    --sidebar-accent: 30 12% 18%;
+    --sidebar-accent-foreground: 40 25% 92%;
+    --sidebar-border: 30 12% 22%;
+    --sidebar-ring: 145 30% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+}
+
+@layer components {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in-delay {
+    animation: fadeIn 0.6s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-up-delay {
+    animation: slideUp 0.6s ease-out 0.3s forwards;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
