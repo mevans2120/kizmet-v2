@@ -23,8 +23,9 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="font-heading text-2xl font-semibold text-foreground">
-            Kizmet
+          <Link href="/" className="flex flex-col">
+            <span className="font-heading text-2xl font-semibold text-foreground leading-tight">Kizmet</span>
+            <span className="font-body text-xs text-primary tracking-wide">Massage and Wellness</span>
           </Link>
 
           {/* Desktop Navigation */}

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage with Fade Edge - Kizmet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage-50: #f6f7f4;
+      --sage-100: #e8ebe3;
+      --sage-200: #d4dac9;
+      --sage-500: #7c8c6e;
+      --sage-600: #5f6d52;
+      --cream-50: #fdfcf9;
+      --cream-100: #f9f6f0;
+      --terracotta-400: #c9785d;
+      --terracotta-500: #b86544;
+      --background: var(--cream-50);
+      --foreground: #1a1a1a;
+      --muted-foreground: #6b7280;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(253, 252, 249, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--sage-200);
+      padding: 16px 24px;
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--foreground);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--foreground);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--sage-100) 0%, var(--cream-100) 50%, var(--sage-50) 100%);
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--background);
+      opacity: 0.4;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 24px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--sage-600);
+      margin-bottom: 16px;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 10vw, 5rem);
+      font-weight: 500;
+      color: var(--foreground);
+      margin-bottom: 24px;
+      animation: slideUp 0.8s ease-out 0.1s both;
+    }
+
+    .hero-description {
+      font-size: 1.125rem;
+      color: var(--muted-foreground);
+      max-width: 540px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+      animation: fadeIn 0.8s ease-out 0.2s both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: slideUp 0.8s ease-out 0.3s both;
+    }
+
+    .btn {
+      padding: 16px 32px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-primary {
+      background: var(--sage-600);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--sage-500);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--foreground);
+      border: 1px solid var(--sage-500);
+    }
+
+    .btn-outline:hover {
+      background: var(--sage-50);
+    }
+
+    /* === FADE EDGE - The key concept === */
+    .fade-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 180px;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(253, 252, 249, 0.2) 20%,
+        rgba(253, 252, 249, 0.5) 40%,
+        rgba(253, 252, 249, 0.8) 70%,
+        var(--background) 100%
+      );
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    /* About Section (peeking) */
+    .about-section {
+      padding: 96px 24px;
+      background: var(--background);
+    }
+
+    .about-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    .about-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--sage-600);
+      margin-bottom: 16px;
+    }
+
+    .about-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .about-text {
+      color: var(--muted-foreground);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    /* Annotations */
+    .annotation {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
+      background: var(--sage-600);
+      color: white;
+      padding: 20px 24px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+    .annotation-badge {
+      background: var(--terracotta-500);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .annotation p {
+      flex: 1;
+      line-height: 1.5;
+    }
+
+    .annotation code {
+      background: rgba(255,255,255,0.15);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 0.8rem;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-content">
+      <a href="#" class="logo">Kizmet</a>
+      <div class="nav-links">
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Policies</a>
+        <a href="#">Book Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Massage & Wellness</p>
+      <h1 class="hero-title">Kizmet</h1>
+      <p class="hero-description">
+        Experience the restorative power of therapeutic massage.
+        Reconnect with your body and find your balance.
+      </p>
+      <div class="hero-buttons">
+        <a href="#" class="btn btn-primary">Book Your Session</a>
+        <a href="#" class="btn btn-outline">View Services</a>
+      </div>
+    </div>
+
+    <!-- NO bouncing mouse icon -->
+    <!-- Instead: Fade overlay that suggests continuation -->
+    <div class="fade-overlay"></div>
+  </section>
+
+  <section class="about-section">
+    <div class="about-content">
+      <div>
+        <p class="about-eyebrow">Meet Destiny</p>
+        <h2 class="about-title">Healing Through Touch</h2>
+        <p class="about-text">
+          At Kizmet Massage & Wellness, I believe in the profound connection
+          between body and mind. I combine traditional techniques with modern
+          approaches to create personalized treatments that address your unique needs.
+        </p>
+        <p class="about-text">
+          Whether you're seeking relief from chronic pain, recovering from
+          injury, or simply need a moment of relaxation, I'm here to
+          support your wellness journey.
+        </p>
+        <a href="#" class="btn btn-primary">Explore Services</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="annotation">
+    <span class="annotation-badge">Concept 1</span>
+    <p>
+      <strong>Fade Edge:</strong> The hero fades into the background color at the bottom.
+      No bouncing mouse icon. The gradient is <code>180px</code> tall, transitioning from
+      transparent to the page background. Scroll to see how it works.
+    </p>
+  </div>
+</body>
+</html>

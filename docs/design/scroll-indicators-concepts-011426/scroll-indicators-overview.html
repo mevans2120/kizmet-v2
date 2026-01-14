@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Indicator Concepts - Kizmet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage-50: #f6f7f4;
+      --sage-100: #e8ebe3;
+      --sage-200: #d4dac9;
+      --sage-500: #7c8c6e;
+      --sage-600: #5f6d52;
+      --cream-50: #fdfcf9;
+      --cream-100: #f9f6f0;
+      --terracotta-400: #c9785d;
+      --terracotta-500: #b86544;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream-50);
+      color: #1a1a1a;
+      line-height: 1.6;
+    }
+
+    .page-header {
+      background: var(--sage-600);
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .page-header p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .concepts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+
+    @media (max-width: 1200px) {
+      .concepts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .concept {
+      border-right: 1px solid var(--sage-200);
+      min-height: 100vh;
+    }
+
+    .concept:last-child {
+      border-right: none;
+    }
+
+    .concept-header {
+      padding: 32px 24px;
+      background: var(--sage-100);
+      border-bottom: 1px solid var(--sage-200);
+    }
+
+    .concept-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--terracotta-500);
+      margin-bottom: 8px;
+    }
+
+    .concept-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .concept-description {
+      font-size: 0.875rem;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    .demo-container {
+      height: 500px;
+      overflow: hidden;
+      position: relative;
+      background: var(--cream-100);
+    }
+
+    .annotation {
+      padding: 24px;
+      background: white;
+      border-top: 1px solid var(--sage-200);
+    }
+
+    .annotation h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: var(--sage-600);
+    }
+
+    .annotation ul {
+      font-size: 0.8rem;
+      color: #555;
+      padding-left: 20px;
+    }
+
+    .annotation li {
+      margin-bottom: 6px;
+    }
+
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .pros h5, .cons h5 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .pros h5 { color: var(--sage-600); }
+    .cons h5 { color: var(--terracotta-500); }
+
+    .pros ul, .cons ul {
+      font-size: 0.75rem;
+    }
+
+    /* ===================== */
+    /* CONCEPT 1: FADE EDGE  */
+    /* ===================== */
+    .fade-edge-demo {
+      position: relative;
+    }
+
+    .fade-edge-content {
+      padding: 40px 32px;
+    }
+
+    .fade-edge-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .fade-edge-content p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .fade-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(249, 246, 240, 0.3) 30%,
+        rgba(249, 246, 240, 0.7) 60%,
+        var(--cream-100) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* ===================== */
+    /* CONCEPT 2: BREATHING LINE */
+    /* ===================== */
+    .breathing-line-demo {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .breathing-content {
+      padding: 40px 32px;
+      flex: 1;
+    }
+
+    .breathing-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .breathing-content p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .breathing-indicator {
+      position: absolute;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .breathing-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--sage-500) 30%,
+        var(--sage-500) 70%,
+        transparent
+      );
+      animation: breathe 3s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% {
+        opacity: 0.3;
+        height: 30px;
+      }
+      50% {
+        opacity: 0.8;
+        height: 50px;
+      }
+    }
+
+    .breathing-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--sage-500);
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+      }
+    }
+
+    /* ===================== */
+    /* CONCEPT 3: PEEK CONTENT */
+    /* ===================== */
+    .peek-demo {
+      position: relative;
+    }
+
+    .peek-hero {
+      padding: 40px 32px 60px;
+      background: linear-gradient(to bottom, var(--sage-50), var(--cream-100));
+    }
+
+    .peek-hero h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .peek-hero p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .peek-next-section {
+      background: white;
+      padding: 32px 32px 100px;
+      border-top: 1px solid var(--sage-200);
+      /* This section is intentionally cut off */
+    }
+
+    .peek-next-section .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--terracotta-500);
+      margin-bottom: 12px;
+    }
+
+    .peek-next-section h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .peek-next-section p {
+      font-size: 0.9rem;
+      color: #666;
+      /* Cut off mid-sentence to imply more content */
+    }
+
+    /* Footer summary */
+    .summary {
+      background: var(--sage-600);
+      color: white;
+      padding: 60px 40px;
+    }
+
+    .summary h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .recommendation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 900px) {
+      .recommendation-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    .rec-card {
+      background: rgba(255,255,255,0.1);
+      padding: 24px;
+      border-radius: 8px;
+    }
+
+    .rec-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+
+    .rec-card p {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .rec-card.recommended {
+      background: var(--terracotta-500);
+    }
+
+    .rec-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      background: rgba(255,255,255,0.2);
+      padding: 4px 10px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <h1>Scroll Indicator Concepts</h1>
+    <p>Subtle alternatives to the bouncing mouse icon</p>
+  </header>
+
+  <div class="concepts-grid">
+    <!-- CONCEPT 1: Fade Edge -->
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-number">Concept 1</div>
+        <h3 class="concept-title">Fade Edge</h3>
+        <p class="concept-description">
+          Content fades into the background at the bottom edge, implying continuation without any explicit indicator.
+        </p>
+      </div>
+
+      <div class="demo-container fade-edge-demo">
+        <div class="fade-edge-content">
+          <h2>Healing Hands, Open Heart</h2>
+          <p>I grew up watching my grandmother's hands work magic on aching muscles and tired spirits. Now I'm carrying that tradition forward, blending generations of natural healing wisdom with modern therapeutic techniques.</p>
+          <p>In my family, healing was never something you learned from a textbook. It was passed down through touch, through presence, through care. My grandmother was the person everyone in our community called when their backs went out or their shoulders seized up.</p>
+          <p>My mother inherited those same intuitive hands. I spent my childhood learning by watching—absorbing techniques that no school could teach. When I decided to make this my profession, formal training gave me the language...</p>
+        </div>
+        <div class="fade-overlay"></div>
+      </div>
+
+      <div class="annotation">
+        <h4>How it works</h4>
+        <ul>
+          <li>CSS gradient overlay from transparent to background color</li>
+          <li>Content is deliberately "cut off" mid-paragraph</li>
+          <li>No interactive elements or animations needed</li>
+          <li>Works on any content length</li>
+        </ul>
+        <div class="pros-cons">
+          <div class="pros">
+            <h5>Strengths</h5>
+            <ul>
+              <li>Most subtle option</li>
+              <li>Zero distraction</li>
+              <li>Works universally</li>
+              <li>No JS required</li>
+            </ul>
+          </div>
+          <div class="cons">
+            <h5>Tradeoffs</h5>
+            <ul>
+              <li>Less discoverable</li>
+              <li>Could seem like rendering bug</li>
+              <li>Passive, not active cue</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONCEPT 2: Breathing Line -->
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-number">Concept 2</div>
+        <h3 class="concept-title">Breathing Line</h3>
+        <p class="concept-description">
+          A subtle vertical line with gentle "breathing" animation. Spa-like, meditative, and aligned with wellness brand.
+        </p>
+      </div>
+
+      <div class="demo-container breathing-line-demo">
+        <div class="breathing-content">
+          <h2>Healing Hands, Open Heart</h2>
+          <p>I grew up watching my grandmother's hands work magic on aching muscles and tired spirits. Now I'm carrying that tradition forward, blending generations of natural healing wisdom with modern therapeutic techniques.</p>
+        </div>
+        <div class="breathing-indicator">
+          <div class="breathing-line"></div>
+          <div class="breathing-dot"></div>
+        </div>
+      </div>
+
+      <div class="annotation">
+        <h4>How it works</h4>
+        <ul>
+          <li>Single 1px vertical line, center-aligned</li>
+          <li>Slow "breathing" animation (3s cycle)</li>
+          <li>Line expands/contracts with opacity change</li>
+          <li>Small dot at bottom adds subtle endpoint</li>
+        </ul>
+        <div class="pros-cons">
+          <div class="pros">
+            <h5>Strengths</h5>
+            <ul>
+              <li>On-brand (calming, spa-like)</li>
+              <li>More discoverable than fade</li>
+              <li>Feels intentional, not error</li>
+              <li>Gentle, not demanding</li>
+            </ul>
+          </div>
+          <div class="cons">
+            <h5>Tradeoffs</h5>
+            <ul>
+              <li>Still uses animation</li>
+              <li>Takes visual space</li>
+              <li>Could auto-hide after first scroll</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONCEPT 3: Peek Content -->
+    <div class="concept">
+      <div class="concept-header">
+        <div class="concept-number">Concept 3</div>
+        <h3 class="concept-title">Peek Content</h3>
+        <p class="concept-description">
+          Show the top of the next section, clearly cut off. The visible content itself becomes the scroll indicator.
+        </p>
+      </div>
+
+      <div class="demo-container peek-demo">
+        <div class="peek-hero">
+          <h2>Healing Hands, Open Heart</h2>
+          <p>I grew up watching my grandmother's hands work magic on aching muscles and tired spirits.</p>
+        </div>
+        <div class="peek-next-section">
+          <div class="section-label">My Roots</div>
+          <h3>Third-Generation Healer</h3>
+          <p>Healing has always been the family business. My grandmother was the person everyone in our community called when their backs went out or their...</p>
+        </div>
+      </div>
+
+      <div class="annotation">
+        <h4>How it works</h4>
+        <ul>
+          <li>Hero section doesn't fill viewport</li>
+          <li>Next section's header is visible above fold</li>
+          <li>Content cut off mid-sentence implies continuation</li>
+          <li>Clear section break (color/border) signals new content</li>
+        </ul>
+        <div class="pros-cons">
+          <div class="pros">
+            <h5>Strengths</h5>
+            <ul>
+              <li>Content IS the indicator</li>
+              <li>No extra UI elements</li>
+              <li>Teases what's coming</li>
+              <li>Most natural pattern</li>
+            </ul>
+          </div>
+          <div class="cons">
+            <h5>Tradeoffs</h5>
+            <ul>
+              <li>Requires careful layout sizing</li>
+              <li>Different on every viewport</li>
+              <li>Hero feels less "full bleed"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="summary">
+    <h2>Recommendation</h2>
+    <div class="recommendation-grid">
+      <div class="rec-card">
+        <h4>Fade Edge</h4>
+        <p>Best for: Pages with long-form content where the cut-off text naturally implies more. Simple to implement, but most passive.</p>
+      </div>
+      <div class="rec-card recommended">
+        <span class="rec-badge">Recommended</span>
+        <h4>Peek Content</h4>
+        <p>Best for: Kizmet's About page. The hero doesn't need to be full-viewport. Showing the "My Roots" section header creates natural curiosity and scroll motivation with zero additional UI.</p>
+      </div>
+      <div class="rec-card">
+        <h4>Breathing Line</h4>
+        <p>Best for: When you need something more explicit but still want that spa/wellness feel. Could be combined with fade edge if needed.</p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
