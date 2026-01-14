@@ -46,7 +46,7 @@ const Services = () => {
             <h1 className="font-heading text-5xl md:text-6xl font-medium text-foreground mb-6">
               Services & Pricing
             </h1>
-            <p className="font-body text-muted-foreground max-w-2xl mx-auto text-lg">
+            <p className="font-body text-muted-foreground max-w-2xl mx-auto text-xl">
               Every massage is customized to your individual needs. 
               Let me know your goals and I'll create the perfect treatment for you.
             </p>
@@ -65,7 +65,7 @@ const Services = () => {
                   {category.items.map((service) => (
                     <Card key={service.name} className="border-border bg-card hover:shadow-md transition-all duration-300">
                       <CardHeader>
-                        <CardTitle className="font-heading text-2xl font-medium text-foreground">
+                        <CardTitle className="font-heading text-3xl font-medium text-foreground">
                           {service.name}
                         </CardTitle>
                         <div className="flex flex-wrap gap-4 pt-2">
@@ -80,7 +80,7 @@ const Services = () => {
                         </div>
                       </CardHeader>
                       <CardContent>
-                        <p className="font-body text-muted-foreground text-sm leading-relaxed">
+                        <p className="font-body text-muted-foreground text-base leading-relaxed">
                           {service.description}
                         </p>
                       </CardContent>
@@ -95,7 +95,7 @@ const Services = () => {
         {/* CTA */}
         <section className="py-16 bg-card">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="font-heading text-3xl md:text-4xl font-medium text-foreground mb-4">
+            <h2 className="font-heading text-3xl font-medium text-foreground mb-4">
               Ready to Feel Your Best?
             </h2>
             <p className="font-body text-muted-foreground mb-8 max-w-lg mx-auto">

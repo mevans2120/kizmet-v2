@@ -24,8 +24,11 @@ const Navigation = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex flex-col">
-            <span className="font-heading text-2xl font-semibold text-foreground leading-tight">Kizmet</span>
-            <span className="font-body text-xs text-primary tracking-wide">Massage and Wellness</span>
+            <span
+                className="font-heading text-3xl text-foreground leading-tight"
+                style={{ fontVariationSettings: "'opsz' 80", fontWeight: 450, letterSpacing: "-0.01em" }}
+              >Kizmet</span>
+            <span className="font-body text-sm text-primary tracking-wide">Massage and Wellness</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -34,7 +37,7 @@ const Navigation = () => {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`font-body text-sm tracking-wide transition-colors duration-300 ${
+                className={`font-body text-base tracking-wide transition-colors duration-300 ${
                   isActive(link.path)
                     ? "text-primary font-medium"
                     : "text-muted-foreground hover:text-foreground"

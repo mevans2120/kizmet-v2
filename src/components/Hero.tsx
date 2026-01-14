@@ -17,14 +17,17 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <div className="animate-slide-up mb-6">
-            <h1 className="font-heading text-5xl md:text-7xl font-semibold text-foreground leading-tight">
+            <h1
+              className="font-heading text-5xl md:text-6xl text-foreground leading-tight"
+              style={{ fontVariationSettings: "'opsz' 80", fontWeight: 450, letterSpacing: "-0.02em" }}
+            >
               Kizmet
             </h1>
-            <p className="font-body text-base md:text-lg text-primary tracking-wide">
+            <p className="font-body text-base text-primary tracking-wide">
               Massage and Wellness
             </p>
           </div>
-          <p className="font-body text-lg md:text-xl text-muted-foreground mb-10 max-w-xl mx-auto leading-relaxed animate-fade-in-delay">
+          <p className="font-body text-xl text-muted-foreground mb-10 max-w-xl mx-auto leading-relaxed animate-fade-in-delay">
             Destiny Pugh offers therapeutic massage in Port Angeles.
             Reconnect with your body and find your balance.
           </p>

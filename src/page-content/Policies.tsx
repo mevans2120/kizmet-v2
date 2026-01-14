@@ -68,8 +68,8 @@ const Policies = () => {
             <h1 className="font-heading text-5xl md:text-6xl font-medium text-foreground mb-6">
               Policies
             </h1>
-            <p className="font-body text-muted-foreground max-w-2xl mx-auto text-lg">
-              I appreciate your understanding and cooperation with these policies. 
+            <p className="font-body text-muted-foreground max-w-2xl mx-auto text-xl">
+              I appreciate your understanding and cooperation with these policies.
               They help me provide the best possible experience for all clients.
             </p>
           </div>
@@ -84,7 +84,7 @@ const Policies = () => {
                   key={policy.title} 
                   className="pb-12 border-b border-border last:border-0 last:pb-0"
                 >
-                  <h2 className="font-heading text-2xl md:text-3xl font-medium text-foreground mb-6 flex items-center gap-4">
+                  <h2 className="font-heading text-3xl font-medium text-foreground mb-6 flex items-center gap-4">
                     <span className="w-8 h-8 rounded-full bg-primary/10 text-primary text-sm font-body flex items-center justify-center">
                       {index + 1}
                     </span>
@@ -92,7 +92,7 @@ const Policies = () => {
                   </h2>
                   <ul className="space-y-4">
                     {policy.content.map((item, itemIndex) => (
-                      <li key={itemIndex} className="font-body text-muted-foreground leading-relaxed pl-6 relative">
+                      <li key={itemIndex} className="font-body text-base text-muted-foreground leading-relaxed pl-6 relative">
                         <span className="absolute left-0 top-2 w-2 h-2 rounded-full bg-primary/40" />
                         {item}
                       </li>

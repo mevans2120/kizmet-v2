@@ -22,7 +22,7 @@ const ServicesPreview = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <p className="font-body text-sm uppercase tracking-[0.2em] text-primary mb-4">OFFERINGS</p>
-          <h2 className="font-heading text-4xl md:text-5xl font-medium text-foreground mb-4">
+          <h2 className="font-heading text-5xl md:text-6xl font-medium text-foreground mb-4">
             Signature Services
           </h2>
           <p className="font-body text-muted-foreground max-w-xl mx-auto">
@@ -35,7 +35,7 @@ const ServicesPreview = () => {
           animationDelay: `${index * 0.1}s`
         }}>
               <CardHeader className="pb-4">
-                <CardTitle className="font-heading text-2xl font-medium text-foreground group-hover:text-primary transition-colors">
+                <CardTitle className="font-heading text-3xl font-medium text-foreground group-hover:text-primary transition-colors">
                   {service.name}
                 </CardTitle>
                 <div className="flex items-center gap-3 text-sm text-muted-foreground">
@@ -45,7 +45,7 @@ const ServicesPreview = () => {
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="font-body text-muted-foreground text-sm leading-relaxed">
+                <p className="font-body text-muted-foreground text-base leading-relaxed">
                   {service.description}
                 </p>
               </CardContent>

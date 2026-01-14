@@ -8,13 +8,13 @@ export default function NotFound() {
       <Navigation />
       <main className="flex-1 flex items-center justify-center">
         <div className="text-center px-6">
-          <h1 className="font-heading text-6xl font-medium text-foreground mb-4">404</h1>
+          <h1 className="font-heading text-5xl md:text-6xl font-medium text-foreground mb-4">404</h1>
           <p className="font-body text-xl text-muted-foreground mb-8">
             Page not found
           </p>
           <Link
             href="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-base font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
           >
             Return Home
           </Link>

@@ -64,7 +64,7 @@ const Book = () => {
             <h1 className="font-heading text-5xl md:text-6xl font-medium text-foreground mb-6">
               Book an Appointment
             </h1>
-            <p className="font-body text-muted-foreground max-w-2xl mx-auto text-lg">
+            <p className="font-body text-muted-foreground max-w-2xl mx-auto text-xl">
               Fill out the form below and I'll get back to you within 24 hours to confirm your booking.
             </p>
           </div>
@@ -75,7 +75,7 @@ const Book = () => {
           <div className="container mx-auto px-6 max-w-3xl">
             <Card className="border-border bg-card shadow-lg">
               <CardHeader className="pb-6">
-                <CardTitle className="font-heading text-2xl text-center text-foreground">
+                <CardTitle className="font-heading text-3xl text-center text-foreground">
                   Booking Request Form
                 </CardTitle>
               </CardHeader>
@@ -227,7 +227,7 @@ const Book = () => {
             <p className="font-body text-muted-foreground mb-2">
               Prefer to book by phone?
             </p>
-            <a href="tel:+15551234567" className="font-heading text-2xl text-primary hover:underline">
+            <a href="tel:+15551234567" className="font-heading text-3xl text-primary hover:underline">
               (555) 123-4567
             </a>
           </div>

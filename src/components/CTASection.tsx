@@ -10,10 +10,10 @@ const CTASection = () => {
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-heading text-4xl md:text-5xl font-medium text-primary-foreground mb-6">
-            Ready to Begin Your Wellness Journey?
+          <h2 className="font-heading text-5xl md:text-6xl font-medium text-primary-foreground mb-6">
+            It's Time to Feel Good
           </h2>
-          <p className="font-body text-primary-foreground/80 mb-10 text-lg">
+          <p className="font-body text-primary-foreground/80 mb-10 text-xl">
             Book your first session today and experience the transformative 
             power of therapeutic massage.
           </p>

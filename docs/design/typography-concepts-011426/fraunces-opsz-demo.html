@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fraunces Optical Size Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream-50: #fdfcf9;
+      --sage-600: #3d5a3d;
+      --foreground: #1a1a1a;
+      --muted: #6b7280;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: var(--cream-50);
+      color: var(--foreground);
+      padding: 60px 40px;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      font-variation-settings: 'opsz' 72;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 48px;
+      max-width: 600px;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-bottom: 64px;
+    }
+
+    .demo-card {
+      background: white;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .demo-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--sage-600);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e5e5e5;
+    }
+
+    .demo-text {
+      font-family: 'Fraunces', serif;
+      font-size: 3.5rem;
+      color: var(--foreground);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .demo-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    /* Optical Size Variations */
+    .opsz-9 { font-variation-settings: 'opsz' 9; }
+    .opsz-24 { font-variation-settings: 'opsz' 24; }
+    .opsz-48 { font-variation-settings: 'opsz' 48; }
+    .opsz-72 { font-variation-settings: 'opsz' 72; }
+    .opsz-100 { font-variation-settings: 'opsz' 100; }
+    .opsz-144 { font-variation-settings: 'opsz' 144; }
+
+    /* Weight comparison section */
+    .weight-section {
+      margin-top: 64px;
+    }
+
+    .weight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .weight-card {
+      background: white;
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .weight-text {
+      font-family: 'Fraunces', serif;
+      font-size: 2.5rem;
+      font-variation-settings: 'opsz' 144;
+      margin-bottom: 8px;
+    }
+
+    .w-300 { font-weight: 300; }
+    .w-400 { font-weight: 400; }
+    .w-500 { font-weight: 500; }
+    .w-600 { font-weight: 600; }
+    .w-700 { font-weight: 700; }
+
+    /* Interactive slider */
+    .slider-section {
+      margin-top: 64px;
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+    }
+
+    .slider-demo {
+      font-family: 'Fraunces', serif;
+      font-size: 5rem;
+      text-align: center;
+      margin: 32px 0;
+      transition: font-variation-settings 0.2s ease;
+    }
+
+    .slider-controls {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .slider-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slider-group label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--sage-600);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    input[type="range"] {
+      width: 200px;
+      height: 8px;
+      -webkit-appearance: none;
+      background: #e5e5e5;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: var(--sage-600);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .slider-value {
+      font-family: monospace;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .annotation {
+      position: fixed;
+      bottom: 24px;
+      left: 24px;
+      right: 24px;
+      background: var(--sage-600);
+      color: white;
+      padding: 16px 20px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      z-index: 100;
+    }
+
+    .annotation code {
+      background: rgba(255,255,255,0.15);
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Fraunces Optical Size</h1>
+  <p class="subtitle">
+    Fraunces is a variable font with an <code>opsz</code> (optical size) axis ranging from 9 to 144.
+    Lower values are chunkier for small text, higher values are more delicate for display use.
+  </p>
+
+  <div class="demo-grid">
+    <div class="demo-card">
+      <p class="demo-label">opsz: 9 (smallest)</p>
+      <p class="demo-text opsz-9">Kizmet</p>
+      <p class="demo-desc">Chunky, high contrast - designed for tiny text</p>
+    </div>
+
+    <div class="demo-card">
+      <p class="demo-label">opsz: 24</p>
+      <p class="demo-text opsz-24">Kizmet</p>
+      <p class="demo-desc">Still sturdy - good for body text</p>
+    </div>
+
+    <div class="demo-card">
+      <p class="demo-label">opsz: 48</p>
+      <p class="demo-text opsz-48">Kizmet</p>
+      <p class="demo-desc">Balanced - works for subheadings</p>
+    </div>
+
+    <div class="demo-card">
+      <p class="demo-label">opsz: 72</p>
+      <p class="demo-text opsz-72">Kizmet</p>
+      <p class="demo-desc">Refined - good for headings (nav logo)</p>
+    </div>
+
+    <div class="demo-card">
+      <p class="demo-label">opsz: 100</p>
+      <p class="demo-text opsz-100">Kizmet</p>
+      <p class="demo-desc">Elegant - approaching display quality</p>
+    </div>
+
+    <div class="demo-card">
+      <p class="demo-label">opsz: 144 (largest)</p>
+      <p class="demo-text opsz-144">Kizmet</p>
+      <p class="demo-desc">Most delicate - ideal for hero display text</p>
+    </div>
+  </div>
+
+  <h2 style="font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 72; margin-bottom: 24px;">Weight at opsz: 144</h2>
+
+  <div class="weight-grid">
+    <div class="weight-card">
+      <p class="weight-text w-300">Kizmet</p>
+      <p class="demo-desc">300 (Light)</p>
+    </div>
+    <div class="weight-card">
+      <p class="weight-text w-400">Kizmet</p>
+      <p class="demo-desc">400 (Regular)</p>
+    </div>
+    <div class="weight-card">
+      <p class="weight-text w-500">Kizmet</p>
+      <p class="demo-desc">500 (Medium)</p>
+    </div>
+    <div class="weight-card">
+      <p class="weight-text w-600">Kizmet</p>
+      <p class="demo-desc">600 (SemiBold)</p>
+    </div>
+    <div class="weight-card">
+      <p class="weight-text w-700">Kizmet</p>
+      <p class="demo-desc">700 (Bold)</p>
+    </div>
+  </div>
+
+  <div class="slider-section">
+    <h2 style="font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 72; margin-bottom: 8px;">Interactive Demo</h2>
+    <p class="demo-desc" style="margin-bottom: 24px;">Drag the sliders to see how opsz and weight interact</p>
+
+    <p class="slider-demo" id="sliderDemo">Kizmet</p>
+
+    <div class="slider-controls">
+      <div class="slider-group">
+        <label>Optical Size (opsz)</label>
+        <input type="range" id="opszSlider" min="9" max="144" value="144">
+        <span class="slider-value" id="opszValue">144</span>
+      </div>
+      <div class="slider-group">
+        <label>Weight (wght)</label>
+        <input type="range" id="wghtSlider" min="300" max="700" value="400" step="100">
+        <span class="slider-value" id="wghtValue">400</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="annotation">
+    <strong>Current site settings:</strong> Hero uses <code>opsz: 144</code> + <code>weight: 400</code>, Nav logo uses <code>opsz: 72</code> + <code>weight: 500</code>
+  </div>
+
+  <script>
+    const demo = document.getElementById('sliderDemo');
+    const opszSlider = document.getElementById('opszSlider');
+    const wghtSlider = document.getElementById('wghtSlider');
+    const opszValue = document.getElementById('opszValue');
+    const wghtValue = document.getElementById('wghtValue');
+
+    function updateDemo() {
+      const opsz = opszSlider.value;
+      const wght = wghtSlider.value;
+      demo.style.fontVariationSettings = `'opsz' ${opsz}`;
+      demo.style.fontWeight = wght;
+      opszValue.textContent = opsz;
+      wghtValue.textContent = wght;
+    }
+
+    opszSlider.addEventListener('input', updateDemo);
+    wghtSlider.addEventListener('input', updateDemo);
+  </script>
+</body>
+</html>

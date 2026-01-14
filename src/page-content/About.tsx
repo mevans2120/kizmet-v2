@@ -91,10 +91,10 @@ const About = () => {
                 <p className="font-body text-sm uppercase tracking-[0.25em] text-primary mb-4">
                   {hero.eyebrow}
                 </p>
-                <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-medium text-foreground mb-6">
+                <h1 className="font-heading text-5xl md:text-6xl font-medium text-foreground mb-6">
                   {hero.headline}
                 </h1>
-                <p className="font-body text-lg text-muted-foreground leading-relaxed">
+                <p className="font-body text-xl text-muted-foreground leading-relaxed">
                   {hero.intro}
                 </p>
               </div>
@@ -122,7 +122,7 @@ const About = () => {
               <span className="font-heading text-8xl md:text-9xl text-terracotta-400 opacity-50 leading-none">
                 "
               </span>
-              <blockquote className="font-heading text-2xl md:text-3xl italic text-foreground -mt-12 mb-6">
+              <blockquote className="font-heading text-3xl italic text-foreground -mt-12 mb-6">
                 {quote.text}
               </blockquote>
               <p className="font-body text-sm uppercase tracking-[0.15em] text-sage-600">
@@ -138,7 +138,7 @@ const About = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-20">
               {/* Sidebar */}
               <div>
-                <h2 className="font-heading text-3xl md:text-4xl font-medium text-foreground mb-4">
+                <h2 className="font-heading text-3xl font-medium text-foreground mb-4">
                   {bio.title}
                 </h2>
                 <div className="w-16 h-0.5 bg-terracotta-500 mb-6" />
@@ -177,7 +177,7 @@ const About = () => {
         <section className="py-16 md:py-24 bg-card">
           <div className="container mx-auto px-6">
             <div className="max-w-2xl mx-auto text-center mb-12 md:mb-16">
-              <h2 className="font-heading text-3xl md:text-4xl font-medium text-foreground mb-4">
+              <h2 className="font-heading text-3xl font-medium text-foreground mb-4">
                 {journey.title}
               </h2>
               <p className="font-body text-muted-foreground">
@@ -209,7 +209,7 @@ const About = () => {
                       <h3 className="font-heading text-xl font-medium text-foreground mb-3">
                         {step.title}
                       </h3>
-                      <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                      <p className="font-body text-base text-muted-foreground leading-relaxed">
                         {step.description}
                       </p>
                     </div>
@@ -236,7 +236,7 @@ const About = () => {
                       <h3 className="font-heading text-xl font-medium text-foreground mb-2">
                         {step.title}
                       </h3>
-                      <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                      <p className="font-body text-base text-muted-foreground leading-relaxed">
                         {step.description}
                       </p>
                     </div>

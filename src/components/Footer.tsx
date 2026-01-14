@@ -6,50 +6,50 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-heading text-2xl font-semibold text-foreground mb-4">
+            <h3 className="font-heading text-3xl font-medium text-foreground mb-4">
               Kizmet
             </h3>
-            <p className="font-body text-muted-foreground text-sm leading-relaxed">
+            <p className="font-body text-muted-foreground text-base leading-relaxed">
               Massage & Wellness<br />
               Nurturing your body and mind through the healing power of touch.
             </p>
           </div>
 
           <div>
-            <h4 className="font-heading text-lg font-medium text-foreground mb-4">
+            <h4 className="font-heading text-xl font-medium text-foreground mb-4">
               Quick Links
             </h4>
             <div className="flex flex-col gap-2">
-              <Link href="/about" className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="/about" className="font-body text-base text-muted-foreground hover:text-foreground transition-colors">
                 About
               </Link>
-              <Link href="/services" className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="/services" className="font-body text-base text-muted-foreground hover:text-foreground transition-colors">
                 Services
               </Link>
-              <Link href="/book" className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="/book" className="font-body text-base text-muted-foreground hover:text-foreground transition-colors">
                 Book Appointment
               </Link>
-              <Link href="/policies" className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="/policies" className="font-body text-base text-muted-foreground hover:text-foreground transition-colors">
                 Policies
               </Link>
             </div>
           </div>
 
           <div>
-            <h4 className="font-heading text-lg font-medium text-foreground mb-4">
+            <h4 className="font-heading text-xl font-medium text-foreground mb-4">
               Location
             </h4>
-            <div className="font-body text-sm text-muted-foreground space-y-2">
+            <div className="font-body text-base text-muted-foreground space-y-2">
               <p>105 1/2 E 1st St</p>
               <p>Port Angeles, WA</p>
             </div>
           </div>
 
           <div>
-            <h4 className="font-heading text-lg font-medium text-foreground mb-4">
+            <h4 className="font-heading text-xl font-medium text-foreground mb-4">
               Your Therapist
             </h4>
-            <p className="font-body text-sm text-muted-foreground">
+            <p className="font-body text-base text-muted-foreground">
               Destiny
             </p>
           </div>
