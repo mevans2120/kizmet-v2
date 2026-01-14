@@ -20,6 +20,9 @@ const Footer = () => {
               Quick Links
             </h4>
             <div className="flex flex-col gap-2">
+              <Link href="/about" className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors">
+                About
+              </Link>
               <Link href="/services" className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Services
               </Link>
