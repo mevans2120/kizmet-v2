@@ -33,15 +33,15 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-baseline gap-2">
+          <Link href="/" className="flex flex-col">
             <span
-              className="font-heading text-2xl text-foreground"
+              className="font-heading text-3xl text-foreground"
               style={{ fontWeight: 500, letterSpacing: "-0.01em" }}
             >
               Kizmet
             </span>
             <span
-              className="font-heading text-2xl text-primary"
+              className="font-heading text-3xl text-primary -mt-2"
               style={{ fontWeight: 400, letterSpacing: "-0.01em" }}
             >
               Massage

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concept 3: Full Integration - Kizmet Massage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: hsl(40, 30%, 97%);
+      --foreground: hsl(30, 20%, 15%);
+      --card: hsl(40, 25%, 95%);
+      --primary: hsl(145, 25%, 36%);
+      --primary-foreground: hsl(40, 30%, 97%);
+      --muted: hsl(40, 20%, 92%);
+      --muted-foreground: hsl(30, 15%, 45%);
+      --border: hsl(35, 20%, 85%);
+      --accent: hsl(18, 50%, 55%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+    }
+
+    .font-heading {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    /* Concept Header */
+    .concept-header {
+      background: #1a1a1a;
+      color: white;
+      padding: 1rem 1.5rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .concept-header h1 {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .concept-header .badge {
+      background: #8b5cf6;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 52px;
+      left: 0;
+      right: 0;
+      background: rgba(250, 248, 245, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      z-index: 50;
+      padding: 1rem 1.5rem;
+    }
+
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .logo-kizmet { color: var(--foreground); }
+    .logo-massage { color: var(--primary); font-weight: 400; }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--primary);
+    }
+
+    /* Main Content */
+    main {
+      padding-top: 132px;
+    }
+
+    /* Page Header */
+    .page-header {
+      background: var(--card);
+      padding: 4rem 1.5rem;
+      text-align: center;
+    }
+
+    .page-header .eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .page-header .subtitle {
+      color: var(--muted-foreground);
+      font-size: 1.125rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Services Section */
+    .services-section {
+      padding: 3rem 1.5rem 4rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .services-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Premium Service Cards */
+    .service-card-premium {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s;
+    }
+
+    .service-card-premium:hover {
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .service-card-content {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      padding: 2rem;
+      align-items: center;
+    }
+
+    .service-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .popular-badge {
+      background: var(--accent);
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .service-meta-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+
+    .meta-item.price {
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 1.125rem;
+    }
+
+    .service-description {
+      color: var(--muted-foreground);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 500px;
+    }
+
+    .service-benefits {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .benefit-tag {
+      display: flex;
+      align-items: center;
+      gap: 0.375rem;
+      font-size: 0.8rem;
+      color: var(--primary);
+      background: hsl(145, 30%, 94%);
+      padding: 0.375rem 0.75rem;
+      border-radius: 20px;
+    }
+
+    .service-action {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      min-width: 180px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--primary-foreground);
+      box-shadow: 0 4px 14px rgba(90, 122, 90, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(90, 122, 90, 0.35);
+    }
+
+    .cal-link-hint {
+      font-size: 0.7rem;
+      color: var(--muted-foreground);
+      font-family: 'Courier New', monospace;
+      background: var(--muted);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* Pay at Studio Banner */
+    .pay-banner {
+      background: linear-gradient(135deg, hsl(145, 30%, 94%) 0%, hsl(145, 25%, 90%) 100%);
+      border: 1px solid hsl(145, 25%, 80%);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .pay-banner-content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .pay-badge {
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .pay-banner p {
+      font-size: 0.9rem;
+      color: var(--foreground);
+    }
+
+    .payment-icons {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .payment-icon {
+      width: 36px;
+      height: 24px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      color: var(--muted-foreground);
+    }
+
+    /* Contact Bar */
+    .contact-bar {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+    }
+
+    .contact-bar-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .contact-bar h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    .contact-methods {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-method a {
+      color: var(--foreground);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .contact-method a:hover {
+      color: var(--primary);
+    }
+
+    .contact-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--muted);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--foreground);
+      color: var(--background);
+      padding: 3rem 1.5rem;
+    }
+
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer-brand .logo-dark .logo-kizmet {
+      color: var(--background);
+    }
+
+    .footer-brand .logo-dark .logo-massage {
+      color: hsl(145, 30%, 60%);
+    }
+
+    .footer-brand p {
+      color: hsl(40, 20%, 70%);
+      font-size: 0.875rem;
+      margin-top: 0.75rem;
+      max-width: 240px;
+    }
+
+    .footer-section h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.125rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      color: var(--background);
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section a {
+      color: hsl(40, 20%, 70%);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .footer-section a:hover {
+      color: var(--background);
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: hsl(40, 20%, 70%);
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-contact-item a {
+      color: var(--background);
+      font-weight: 500;
+    }
+
+    /* Annotations */
+    .annotation {
+      position: relative;
+      margin: 0.75rem 0;
+      padding: 0.75rem 1rem;
+      background: #fffbeb;
+      border: 1px dashed #f59e0b;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      color: #92400e;
+    }
+
+    .annotation::before {
+      content: "Design Note";
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .annotation-badge {
+      display: inline-block;
+      background: #8b5cf6;
+      color: white;
+      font-size: 0.65rem;
+      padding: 0.125rem 0.375rem;
+      border-radius: 3px;
+      margin-left: 0.375rem;
+      font-weight: 600;
+    }
+
+    /* Responsive */
+    @media (max-width: 800px) {
+      .service-card-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .service-action {
+        align-items: flex-start;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+      }
+
+      .page-header h1 {
+        font-size: 2.25rem;
+      }
+
+      .service-info h3 {
+        font-size: 1.5rem;
+      }
+
+      .pay-banner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .contact-bar-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Concept Header -->
+  <div class="concept-header">
+    <h1>Concept 3: Full Integration (Approach D)</h1>
+    <span class="badge">SERVICE-SPECIFIC BOOKING</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-content">
+      <a href="#" class="logo">
+        <span class="logo-kizmet">Kizmet</span>
+        <span class="logo-massage">Massage</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#">About</a></li>
+        <li><a href="#" class="active">Services</a></li>
+        <li><a href="#">Policies</a></li>
+        <li><a href="#">Book Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Page Header -->
+    <section class="page-header">
+      <p class="eyebrow">What I Offer</p>
+      <h1 class="font-heading">Services & Pricing</h1>
+      <p class="subtitle">Every massage is customized to your individual needs. Choose your session length and book directly.</p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+      <!-- Pay Banner -->
+      <div class="pay-banner">
+        <div class="pay-banner-content">
+          <div class="pay-badge">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+              <line x1="1" y1="10" x2="23" y2="10"></line>
+            </svg>
+            Pay at Studio
+          </div>
+          <p>No prepayment required. Pay when you arrive.</p>
+        </div>
+        <div class="payment-icons">
+          <div class="payment-icon">Cash</div>
+          <div class="payment-icon">Card</div>
+          <div class="payment-icon">Apple</div>
+        </div>
+      </div>
+
+      <div class="annotation">
+        Pay at Studio banner at top of services. Sets expectations before user browses options.
+      </div>
+
+      <h2 class="font-heading">Massage Sessions</h2>
+
+      <!-- 30 Minute -->
+      <div class="service-card-premium">
+        <div class="service-card-content">
+          <div class="service-info">
+            <h3 class="font-heading">30 Minute Session</h3>
+            <div class="service-meta-row">
+              <span class="meta-item">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                30 min
+              </span>
+              <span class="meta-item price">$60</span>
+            </div>
+            <p class="service-description">
+              A focused session perfect for targeting a specific area of concern. Great for a quick tune-up or when you're short on time.
+            </p>
+            <div class="service-benefits">
+              <span class="benefit-tag">
+                <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Targeted relief
+              </span>
+              <span class="benefit-tag">
+                <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Quick tune-up
+              </span>
+            </div>
+          </div>
+          <div class="service-action">
+            <button class="btn btn-primary">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              Book 30 Min
+            </button>
+            <span class="cal-link-hint">cal.com/destiny/30min</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 60 Minute -->
+      <div class="service-card-premium">
+        <div class="service-card-content">
+          <div class="service-info">
+            <h3 class="font-heading">
+              60 Minute Session
+              <span class="popular-badge">Most Popular</span>
+            </h3>
+            <div class="service-meta-row">
+              <span class="meta-item">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                60 min
+              </span>
+              <span class="meta-item price">$100</span>
+            </div>
+            <p class="service-description">
+              The most popular choice. Enough time for a full-body massage or to thoroughly address multiple areas of tension and discomfort.
+            </p>
+            <div class="service-benefits">
+              <span class="benefit-tag">
+                <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Full-body coverage
+              </span>
+              <span class="benefit-tag">
+                <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Multiple areas
+              </span>
+              <span class="benefit-tag">
+                <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Best value
+              </span>
+            </div>
+          </div>
+          <div class="service-action">
+            <button class="btn btn-primary">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              Book 60 Min
+            </button>
+            <span class="cal-link-hint">cal.com/destiny/60min</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 90 Minute -->
+      <div class="service-card-premium">
+        <div class="service-card-content">
+          <div class="service-info">
+            <h3 class="font-heading">90 Minute Session</h3>
+            <div class="service-meta-row">
+              <span class="meta-item">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                90 min
+              </span>
+              <span class="meta-item price">$145</span>
+            </div>
+            <p class="service-description">
+              The ultimate relaxation experience. Allows time for comprehensive full-body work with extra attention to problem areas.
+            </p>
+            <div class="service-benefits">
+              <span class="benefit-tag">
+                <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Deep relaxation
+              </span>
+              <span class="benefit-tag">
+                <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Extra attention
+              </span>
+              <span class="benefit-tag">
+                <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Premium experience
+              </span>
+            </div>
+          </div>
+          <div class="service-action">
+            <button class="btn btn-primary">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              Book 90 Min
+            </button>
+            <span class="cal-link-hint">cal.com/destiny/90min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="annotation">
+        <strong>Service-Specific Booking Links</strong> <span class="annotation-badge">APPROACH D</span><br>
+        Each service has a unique cal.com event type URL. User clicks "Book 60 Min" → goes directly to 60-minute booking with that service pre-selected. Requires setting up 3 event types in cal.com. Sanity could store the cal.com slug per service for full CMS control.
+      </div>
+    </section>
+
+    <!-- Contact Bar -->
+    <section class="contact-bar">
+      <div class="contact-bar-content">
+        <h3 class="font-heading">Questions about which session is right for you?</h3>
+        <div class="contact-methods">
+          <div class="contact-method">
+            <div class="contact-icon">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"></path>
+              </svg>
+            </div>
+            <a href="tel:+13601234567">(360) 123-4567</a>
+          </div>
+          <div class="contact-method">
+            <div class="contact-icon">
+              <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <a href="mailto:destiny@kizmetmassage.com">destiny@kizmetmassage.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="logo logo-dark">
+          <span class="logo-kizmet">Kizmet</span>
+          <span class="logo-massage">Massage</span>
+        </span>
+        <p>Nurturing your body and mind through the healing power of touch.</p>
+      </div>
+
+      <div class="footer-section">
+        <h4 class="font-heading">Quick Links</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Book Appointment</a></li>
+          <li><a href="#">Policies</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h4 class="font-heading">Contact</h4>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3"></path>
+          </svg>
+          <a href="tel:+13601234567">(360) 123-4567</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          </svg>
+          <a href="mailto:destiny@kizmetmassage.com">destiny@kizmetmassage.com</a>
+        </div>
+      </div>
+
+      <div class="footer-section">
+        <h4 class="font-heading">Location</h4>
+        <p style="font-size: 0.875rem; color: hsl(40, 20%, 70%);">
+          105 1/2 E 1st St<br>
+          Port Angeles, WA
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

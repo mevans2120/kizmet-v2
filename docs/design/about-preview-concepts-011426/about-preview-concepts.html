@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Preview Component Concepts — Kizmet Massage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage-500: #5a725c;
+      --sage-600: #485c4a;
+      --sage-100: #e8ede9;
+      --cream-bg: #faf8f5;
+      --cream-card: #f5f2ed;
+      --foreground: #2d2520;
+      --muted: #7a7067;
+      --terracotta: #c4785a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #1a1a1a;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    .page-header {
+      padding: 60px 40px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+
+    .page-header p {
+      color: #888;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .concept-section {
+      padding: 80px 40px;
+      border-bottom: 1px solid #333;
+    }
+
+    .concept-header {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+    }
+
+    .concept-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+    }
+
+    .concept-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .concept-description {
+      color: #999;
+      max-width: 600px;
+      font-size: 15px;
+    }
+
+    .preview-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .browser-frame {
+      background: var(--cream-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .browser-bar {
+      background: #e8e4df;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .browser-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .browser-dot.red { background: #ff5f57; }
+    .browser-dot.yellow { background: #febc2e; }
+    .browser-dot.green { background: #28c840; }
+
+    .annotations {
+      margin-top: 40px;
+      padding: 24px;
+      background: #252525;
+      border-radius: 8px;
+    }
+
+    .annotation-title {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+    }
+
+    .annotation-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .annotation-item {
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .annotation-item strong {
+      color: #ddd;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* ============================================
+       CONCEPT 1: Quote-Led Editorial
+       ============================================ */
+    .concept-1-component {
+      padding: 80px 60px;
+      background: var(--cream-card);
+      text-align: center;
+    }
+
+    .concept-1-component .eyebrow {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage-500);
+      margin-bottom: 24px;
+    }
+
+    .concept-1-component .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 120px;
+      color: var(--terracotta);
+      opacity: 0.4;
+      line-height: 0.5;
+      margin-bottom: -20px;
+    }
+
+    .concept-1-component .quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--foreground);
+      max-width: 700px;
+      margin: 0 auto 24px;
+      line-height: 1.4;
+    }
+
+    .concept-1-component .attribution {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .concept-1-component .attribution span {
+      color: var(--sage-500);
+      font-weight: 500;
+    }
+
+    .concept-1-component .cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--sage-500);
+      text-decoration: none;
+      padding: 12px 24px;
+      border: 2px solid var(--sage-500);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .concept-1-component .cta-link:hover {
+      background: var(--sage-500);
+      color: white;
+    }
+
+    .concept-1-component .cta-link svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .concept-1-component .cta-link:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* ============================================
+       CONCEPT 2: Split Layout with Image
+       ============================================ */
+    .concept-2-component {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 500px;
+    }
+
+    .concept-2-image {
+      background: linear-gradient(135deg, var(--sage-100) 0%, #d4ddd5 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .concept-2-image::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      width: 120px;
+      height: 120px;
+      border: 2px solid var(--sage-500);
+      border-radius: 50%;
+      opacity: 0.3;
+    }
+
+    .concept-2-image .placeholder {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      color: var(--sage-600);
+      text-align: center;
+    }
+
+    .concept-2-image .placeholder-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--sage-500);
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .concept-2-image .placeholder-icon svg {
+      width: 40px;
+      height: 40px;
+      color: white;
+    }
+
+    .concept-2-content {
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--cream-bg);
+    }
+
+    .concept-2-content .eyebrow {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage-500);
+      margin-bottom: 16px;
+    }
+
+    .concept-2-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 500;
+      color: var(--foreground);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .concept-2-content .teaser {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .concept-2-content .credentials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .concept-2-content .credential {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      color: var(--sage-600);
+      background: var(--sage-100);
+      padding: 6px 14px;
+      border-radius: 20px;
+    }
+
+    .concept-2-content .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: white;
+      background: var(--sage-500);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 8px;
+      width: fit-content;
+      transition: all 0.3s ease;
+    }
+
+    .concept-2-content .cta-button:hover {
+      background: var(--sage-600);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(90, 114, 92, 0.3);
+    }
+
+    /* ============================================
+       CONCEPT 3: Generational Timeline
+       ============================================ */
+    .concept-3-component {
+      padding: 80px 60px;
+      background: var(--cream-bg);
+    }
+
+    .concept-3-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .concept-3-header .eyebrow {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage-500);
+      margin-bottom: 16px;
+    }
+
+    .concept-3-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 500;
+      color: var(--foreground);
+      margin-bottom: 12px;
+    }
+
+    .concept-3-header p {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    .concept-3-timeline {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 0;
+      position: relative;
+      margin-bottom: 48px;
+    }
+
+    .concept-3-timeline::before {
+      content: '';
+      position: absolute;
+      top: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--sage-500), var(--sage-500), transparent);
+      opacity: 0.3;
+    }
+
+    .generation {
+      flex: 1;
+      max-width: 280px;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .generation-icon {
+      width: 70px;
+      height: 70px;
+      background: white;
+      border: 3px solid var(--sage-500);
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .generation-icon svg {
+      width: 32px;
+      height: 32px;
+      color: var(--sage-500);
+    }
+
+    .generation.current .generation-icon {
+      background: var(--sage-500);
+      box-shadow: 0 0 0 8px rgba(90, 114, 92, 0.15);
+    }
+
+    .generation.current .generation-icon svg {
+      color: white;
+    }
+
+    .generation-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .generation-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--foreground);
+      margin-bottom: 8px;
+    }
+
+    .generation-desc {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .generation.current .generation-title {
+      color: var(--sage-600);
+    }
+
+    .concept-3-cta {
+      text-align: center;
+    }
+
+    .concept-3-cta .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: white;
+      background: var(--sage-500);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .concept-3-cta .cta-button:hover {
+      background: var(--sage-600);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(90, 114, 92, 0.3);
+    }
+
+    /* Summary section */
+    .summary-section {
+      padding: 60px 40px;
+      background: #222;
+    }
+
+    .summary-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .summary-card {
+      background: #2a2a2a;
+      padding: 24px;
+      border-radius: 12px;
+    }
+
+    .summary-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: var(--terracotta);
+    }
+
+    .summary-card p {
+      font-size: 14px;
+      color: #aaa;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <h1>About Preview Component</h1>
+    <p>Three concepts for a homepage component that teases Destiny's story and encourages users to visit the About page</p>
+  </div>
+
+  <!-- ============================================
+       CONCEPT 1: Quote-Led Editorial
+       ============================================ -->
+  <section class="concept-section">
+    <div class="concept-header">
+      <div class="concept-number">Concept 01</div>
+      <h2 class="concept-title">Quote-Led Editorial</h2>
+      <p class="concept-description">
+        Leads with a compelling pull quote that hooks visitors emotionally. Minimal layout puts focus entirely on Destiny's voice. The quote creates intrigue and invites deeper exploration.
+      </p>
+    </div>
+
+    <div class="preview-container">
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+        </div>
+        <div class="concept-1-component">
+          <p class="eyebrow">Meet Your Therapist</p>
+          <div class="quote-mark">"</div>
+          <p class="quote">
+            In my family, healing was never something you learned from a textbook. It was passed down through touch, through presence, through care.
+          </p>
+          <p class="attribution">
+            — <span>Destiny</span>, Third-Generation Healer
+          </p>
+          <a href="#" class="cta-link">
+            Read My Story
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="annotations">
+        <div class="annotation-title">Design Rationale</div>
+        <div class="annotation-list">
+          <div class="annotation-item">
+            <strong>Quote as Hook</strong>
+            The quote is the most emotionally resonant content from the About page. Leading with it creates immediate intrigue about Destiny's unique background.
+          </div>
+          <div class="annotation-item">
+            <strong>Minimal Layout</strong>
+            No image or extra elements competing for attention. The typography does all the work, creating an editorial, magazine-like feel.
+          </div>
+          <div class="annotation-item">
+            <strong>Soft CTA</strong>
+            "Read My Story" is inviting rather than demanding. The outline button style keeps focus on the quote while still being clickable.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CONCEPT 2: Split Layout with Image
+       ============================================ -->
+  <section class="concept-section">
+    <div class="concept-header">
+      <div class="concept-number">Concept 02</div>
+      <h2 class="concept-title">Split Layout with Image</h2>
+      <p class="concept-description">
+        Classic two-column layout with image on left, content on right. More informational approach that previews credentials alongside the story teaser. Good for users who want facts before clicking through.
+      </p>
+    </div>
+
+    <div class="preview-container">
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+        </div>
+        <div class="concept-2-component">
+          <div class="concept-2-image">
+            <div class="placeholder">
+              <div class="placeholder-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                </svg>
+              </div>
+              Image of Destiny
+            </div>
+          </div>
+          <div class="concept-2-content">
+            <p class="eyebrow">About Destiny</p>
+            <h2>Healing Hands,<br>Open Heart</h2>
+            <p class="teaser">
+              I grew up watching my grandmother's hands work magic on aching muscles and tired spirits. Now I'm carrying that tradition forward, blending generations of natural healing wisdom with modern therapeutic techniques.
+            </p>
+            <div class="credentials">
+              <span class="credential">Licensed Massage Therapist</span>
+              <span class="credential">Third-Generation Healer</span>
+              <span class="credential">Deep Tissue Certified</span>
+            </div>
+            <a href="#" class="cta-button">
+              Learn More About Me
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="annotations">
+        <div class="annotation-title">Design Rationale</div>
+        <div class="annotation-list">
+          <div class="annotation-item">
+            <strong>Visual Balance</strong>
+            The image creates visual interest and puts a face to the name before users even click. The 50/50 split feels balanced and professional.
+          </div>
+          <div class="annotation-item">
+            <strong>Credentials Preview</strong>
+            Showing credentials as pills gives users quick validation. "Third-Generation Healer" is unique and creates curiosity.
+          </div>
+          <div class="annotation-item">
+            <strong>Story Teaser</strong>
+            The intro paragraph is the actual first paragraph from the About page, creating continuity when users click through.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CONCEPT 3: Generational Timeline
+       ============================================ -->
+  <section class="concept-section">
+    <div class="concept-header">
+      <div class="concept-number">Concept 03</div>
+      <h2 class="concept-title">Generational Timeline</h2>
+      <p class="concept-description">
+        Visualizes the "third-generation healer" story as a timeline. Shows the lineage from grandmother to mother to Destiny, making the heritage tangible and creating a unique differentiator from other massage therapists.
+      </p>
+    </div>
+
+    <div class="preview-container">
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+        </div>
+        <div class="concept-3-component">
+          <div class="concept-3-header">
+            <p class="eyebrow">Three Generations of Healing</p>
+            <h2>A Legacy of Touch</h2>
+            <p>Healing wisdom passed down through generations</p>
+          </div>
+
+          <div class="concept-3-timeline">
+            <div class="generation">
+              <div class="generation-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                </svg>
+              </div>
+              <p class="generation-label">First Generation</p>
+              <h3 class="generation-title">Grandmother</h3>
+              <p class="generation-desc">The community healer everyone called when backs went out</p>
+            </div>
+
+            <div class="generation">
+              <div class="generation-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                </svg>
+              </div>
+              <p class="generation-label">Second Generation</p>
+              <h3 class="generation-title">Mother</h3>
+              <p class="generation-desc">Inherited those same intuitive, healing hands</p>
+            </div>
+
+            <div class="generation current">
+              <div class="generation-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                </svg>
+              </div>
+              <p class="generation-label">Third Generation</p>
+              <h3 class="generation-title">Destiny</h3>
+              <p class="generation-desc">Heritage meets modern therapeutic technique</p>
+            </div>
+          </div>
+
+          <div class="concept-3-cta">
+            <a href="#" class="cta-button">
+              Discover Destiny's Story
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="annotations">
+        <div class="annotation-title">Design Rationale</div>
+        <div class="annotation-list">
+          <div class="annotation-item">
+            <strong>Visual Storytelling</strong>
+            The timeline makes "third-generation healer" concrete and visual. Users immediately understand what makes Destiny different.
+          </div>
+          <div class="annotation-item">
+            <strong>Progression Emphasis</strong>
+            The visual progression from left to right, with Destiny highlighted, shows evolution while honoring the lineage.
+          </div>
+          <div class="annotation-item">
+            <strong>Unique Differentiator</strong>
+            No other massage therapist in the area likely has this story. The timeline makes it the centerpiece of the brand identity.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <section class="summary-section">
+    <div class="concept-header" style="max-width: 1200px; margin: 0 auto 40px;">
+      <div class="concept-number">Summary</div>
+      <h2 class="concept-title">Comparison</h2>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h3>Concept 1: Quote-Led</h3>
+        <p><strong>Best for:</strong> Emotional connection. Lets Destiny's voice do the work. Minimal and elegant. Good if you want an editorial, magazine-like feel.</p>
+      </div>
+      <div class="summary-card">
+        <h3>Concept 2: Split Layout</h3>
+        <p><strong>Best for:</strong> Balanced information. Shows face + story + credentials. More traditional layout that users expect. Good for building trust quickly.</p>
+      </div>
+      <div class="summary-card">
+        <h3>Concept 3: Timeline</h3>
+        <p><strong>Best for:</strong> Unique differentiation. Makes the heritage story visual and memorable. Most distinctive approach. Good for standing out from competitors.</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

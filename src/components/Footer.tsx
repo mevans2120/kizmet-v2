@@ -28,9 +28,9 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-heading text-2xl mb-4 flex items-baseline gap-2">
+            <h3 className="font-heading text-3xl mb-4 flex flex-col">
               <span className="text-foreground" style={{ fontWeight: 500 }}>Kizmet</span>
-              <span className="text-primary" style={{ fontWeight: 400 }}>Massage</span>
+              <span className="text-primary -mt-2" style={{ fontWeight: 400 }}>Massage</span>
             </h3>
             <p className="font-body text-muted-foreground text-base leading-relaxed">
               {brandDescription}
