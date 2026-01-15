@@ -1,3 +1,5 @@
+export const revalidate = 300 // Revalidate every 5 minutes as fallback
+
 import { draftMode } from 'next/headers'
 import { VisualEditing } from 'next-sanity/visual-editing'
 import Navigation from '@/components/Navigation'

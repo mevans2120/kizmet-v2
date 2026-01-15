@@ -1,3 +1,5 @@
+export const revalidate = 300 // Revalidate every 5 minutes as fallback
+
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { draftMode } from 'next/headers'
