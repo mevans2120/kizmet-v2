@@ -219,6 +219,8 @@
       border-radius: 12px;
       padding: 1.5rem;
       transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
     }
 
     .service-card:hover {
@@ -306,7 +308,8 @@
     .service-card-footer {
       display: flex;
       justify-content: flex-end;
-      margin-top: 1rem;
+      margin-top: auto;
+      padding-top: 1rem;
     }
 
     .service-detail {
@@ -859,6 +862,9 @@
                 <span class="price">$60</span>
               </div>
               <p>Targeted work on a single area of concern. I use focused pressure and trigger point techniques to address specific tension in the neck, shoulders, or lower back. Ideal for maintenance between longer sessions.</p>
+              <div class="service-card-footer">
+                <a href="#" class="btn btn-outline btn-sm" onclick="showPage('book', '30'); return false;">Book</a>
+              </div>
             </div>
 
             <!-- 60 Min Preview -->
@@ -869,6 +875,9 @@
                 <span class="price">$100</span>
               </div>
               <p>A complete full-body treatment combining Swedish strokes, kneading, and deeper pressure where needed. Enough time to address multiple areas while promoting overall relaxation. My most popular session.</p>
+              <div class="service-card-footer">
+                <a href="#" class="btn btn-outline btn-sm" onclick="showPage('book', '60'); return false;">Book</a>
+              </div>
             </div>
 
             <!-- 90 Min Preview -->
@@ -879,6 +888,9 @@
                 <span class="price">$145</span>
               </div>
               <p>An unhurried, comprehensive session with time for detailed work on problem areas. Includes hot towel application and can incorporate stretching or aromatherapy. Best for chronic tension or complete restoration.</p>
+              <div class="service-card-footer">
+                <a href="#" class="btn btn-outline btn-sm" onclick="showPage('book', '90'); return false;">Book</a>
+              </div>
             </div>
           </div>
 
@@ -1153,15 +1165,6 @@
         </ul>
       </div>
     </nav>
-
-    <!-- Simplified Pay Notice -->
-    <div class="pay-notice">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-        <line x1="1" y1="10" x2="23" y2="10"></line>
-      </svg>
-      <strong>Pay at Studio</strong> — No prepayment required. Cash, card, and mobile payments accepted.
-    </div>
 
     <main>
       <section class="page-header">

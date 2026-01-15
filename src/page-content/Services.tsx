@@ -11,6 +11,7 @@ interface Service {
   duration: string;
   price: string;
   description: string;
+  bookingUrl?: string;
 }
 
 interface ServicesProps {
@@ -74,7 +75,7 @@ const Services = ({ services, siteSettings, footerSettings }: ServicesProps) => 
               </h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {displayServices.map((service) => (
-                  <Card key={service._id || service.name} className="border-border bg-card hover:shadow-md transition-all duration-300">
+                  <Card key={service._id || service.name} className="border-border bg-card hover:shadow-md transition-all duration-300 flex flex-col">
                     <CardHeader>
                       <CardTitle className="font-heading text-3xl font-medium text-foreground">
                         {service.name}
@@ -90,11 +91,18 @@ const Services = ({ services, siteSettings, footerSettings }: ServicesProps) => 
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="flex-grow">
                       <p className="font-body text-muted-foreground text-base leading-relaxed">
                         {service.description}
                       </p>
                     </CardContent>
+                    {service.bookingUrl && (
+                      <div className="px-6 pb-6 mt-auto flex justify-end">
+                        <Button variant="outline" size="sm" asChild>
+                          <Link href={service.bookingUrl}>Book</Link>
+                        </Button>
+                      </div>
+                    )}
                   </Card>
                 ))}
               </div>

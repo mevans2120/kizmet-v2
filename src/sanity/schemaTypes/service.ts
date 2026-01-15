@@ -49,6 +49,12 @@ export default defineType({
       type: 'number',
       description: 'Lower numbers appear first',
     }),
+    defineField({
+      name: 'bookingUrl',
+      title: 'Booking URL',
+      type: 'url',
+      description: 'Cal.com booking link for this service (e.g., https://cal.com/username/30min)',
+    }),
   ],
   orderings: [
     {

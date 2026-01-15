@@ -1,22 +1,20 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Cal, { getCalApi } from "@calcom/embed-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, Clock, User, Mail, Phone, MessageSquare } from "lucide-react";
-import { toast } from "sonner";
+import { Phone, Mail, MapPin, FileText } from "lucide-react";
 
 interface Service {
   _id?: string;
   name: string;
+  duration: string;
   price: string;
+  bookingUrl?: string;
 }
 
 interface BookData {
@@ -32,50 +30,87 @@ interface BookProps {
   footerSettings?: any;
 }
 
-// Fallback services
-const fallbackServices = [
-  { name: "30 Minute Session", price: "$60" },
-  { name: "60 Minute Session", price: "$100" },
-  { name: "90 Minute Session", price: "$145" },
-];
-
 const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    service: "",
-    preferredDate: "",
-    preferredTime: "",
-    message: "",
-  });
+  // Filter to only services with booking URLs
+  const bookableServices = services?.filter(s => s.bookingUrl) || [];
+
+  // Get initial service from URL params or default to first bookable service
+  const searchParams = useSearchParams();
+  const serviceParam = searchParams.get('service');
+
+  const getInitialService = () => {
+    if (serviceParam && bookableServices.length > 0) {
+      // Try to match by duration (e.g., "30", "60", "90")
+      const match = bookableServices.find(s => s.duration.includes(serviceParam));
+      if (match) return match;
+    }
+    return bookableServices[0] || null;
+  };
+
+  const [selectedService, setSelectedService] = useState<Service | null>(getInitialService);
+
+  // Extract calLink from full URL (e.g., "https://cal.com/user/event" -> "user/event")
+  const getCalLink = (url: string) => {
+    try {
+      const urlObj = new URL(url);
+      return urlObj.pathname.slice(1); // Remove leading slash
+    } catch {
+      return url;
+    }
+  };
+
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi();
+      cal("ui", {
+        theme: "light",
+        styles: { branding: { brandColor: "#5a725c" } },
+        hideEventTypeDetails: false,
+      });
+    })();
+  }, []);
 
   const eyebrow = data?.eyebrow || "Schedule Your Visit";
   const headline = data?.headline || "Book an Appointment";
-  const description = data?.description || "Fill out the form below and I'll get back to you within 24 hours to confirm your booking.";
+  const description = data?.description || "Select your service and choose a time that works for you.";
 
-  const displayServices = services && services.length > 0 ? services : fallbackServices;
-  const serviceOptions = displayServices.map(s => `${s.name} - ${s.price}`);
+  const phone = siteSettings?.phone;
+  const email = siteSettings?.email;
+  const address = siteSettings?.address;
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast.success("Booking request submitted!", {
-      description: "I'll contact you shortly to confirm your appointment.",
-    });
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      service: "",
-      preferredDate: "",
-      preferredTime: "",
-      message: "",
-    });
-  };
-
-  const handleChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
+  // If no bookable services, show a message
+  if (bookableServices.length === 0) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation siteSettings={siteSettings} />
+        <main className="pt-24 pb-16">
+          <section className="py-16 bg-card">
+            <div className="container mx-auto px-6 text-center">
+              <p className="font-body text-sm uppercase tracking-[0.2em] text-primary mb-4">
+                {eyebrow}
+              </p>
+              <h1 className="font-heading text-5xl md:text-6xl font-medium text-foreground mb-6">
+                {headline}
+              </h1>
+              <p className="font-body text-muted-foreground max-w-2xl mx-auto text-xl mb-8">
+                Online booking is coming soon. Please contact us directly to schedule your appointment.
+              </p>
+              {phone && (
+                <a
+                  href={`tel:${phone.replace(/\D/g, '')}`}
+                  className="inline-flex items-center gap-2 font-heading text-2xl text-primary hover:underline"
+                >
+                  <Phone className="w-6 h-6" />
+                  {phone}
+                </a>
+              )}
+            </div>
+          </section>
+        </main>
+        <Footer siteSettings={siteSettings} footerSettings={footerSettings} />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -97,166 +132,134 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
           </div>
         </section>
 
-        {/* Booking Form */}
-        <section className="py-16">
-          <div className="container mx-auto px-6 max-w-3xl">
-            <Card className="border-border bg-card shadow-lg">
-              <CardHeader className="pb-6">
-                <CardTitle className="font-heading text-3xl text-center text-foreground">
-                  Booking Request Form
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Personal Info */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="font-body flex items-center gap-2">
-                        <User className="w-4 h-4 text-primary" />
-                        Full Name
-                      </Label>
-                      <Input
-                        id="name"
-                        required
-                        value={formData.name}
-                        onChange={(e) => handleChange("name", e.target.value)}
-                        placeholder="Your full name"
-                        className="bg-background"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="font-body flex items-center gap-2">
-                        <Mail className="w-4 h-4 text-primary" />
-                        Email
-                      </Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => handleChange("email", e.target.value)}
-                        placeholder="your@email.com"
-                        className="bg-background"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="phone" className="font-body flex items-center gap-2">
-                        <Phone className="w-4 h-4 text-primary" />
-                        Phone Number
-                      </Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        required
-                        value={formData.phone}
-                        onChange={(e) => handleChange("phone", e.target.value)}
-                        placeholder="(555) 123-4567"
-                        className="bg-background"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="service" className="font-body">
-                        Select Service
-                      </Label>
-                      <Select value={formData.service} onValueChange={(value) => handleChange("service", value)}>
-                        <SelectTrigger className="bg-background">
-                          <SelectValue placeholder="Choose a service" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-popover">
-                          {serviceOptions.map((service) => (
-                            <SelectItem key={service} value={service}>
-                              {service}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  {/* Date & Time */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="date" className="font-body flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-primary" />
-                        Preferred Date
-                      </Label>
-                      <Input
-                        id="date"
-                        type="date"
-                        required
-                        value={formData.preferredDate}
-                        onChange={(e) => handleChange("preferredDate", e.target.value)}
-                        className="bg-background"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="time" className="font-body flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-primary" />
-                        Preferred Time
-                      </Label>
-                      <Select value={formData.preferredTime} onValueChange={(value) => handleChange("preferredTime", value)}>
-                        <SelectTrigger className="bg-background">
-                          <SelectValue placeholder="Select time" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-popover">
-                          <SelectItem value="9:00 AM">9:00 AM</SelectItem>
-                          <SelectItem value="10:00 AM">10:00 AM</SelectItem>
-                          <SelectItem value="11:00 AM">11:00 AM</SelectItem>
-                          <SelectItem value="12:00 PM">12:00 PM</SelectItem>
-                          <SelectItem value="1:00 PM">1:00 PM</SelectItem>
-                          <SelectItem value="2:00 PM">2:00 PM</SelectItem>
-                          <SelectItem value="3:00 PM">3:00 PM</SelectItem>
-                          <SelectItem value="4:00 PM">4:00 PM</SelectItem>
-                          <SelectItem value="5:00 PM">5:00 PM</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  {/* Message */}
-                  <div className="space-y-2">
-                    <Label htmlFor="message" className="font-body flex items-center gap-2">
-                      <MessageSquare className="w-4 h-4 text-primary" />
-                      Additional Notes (Optional)
-                    </Label>
-                    <Textarea
-                      id="message"
-                      value={formData.message}
-                      onChange={(e) => handleChange("message", e.target.value)}
-                      placeholder="Any special requests, health conditions, or areas of focus..."
-                      rows={4}
-                      className="bg-background resize-none"
-                    />
-                  </div>
-
-                  <Button type="submit" variant="hero" size="xl" className="w-full">
-                    Submit Booking Request
-                  </Button>
-
-                  <p className="font-body text-xs text-muted-foreground text-center">
-                    By submitting this form, you agree to our{" "}
-                    <Link href="/policies" className="text-primary hover:underline">
-                      booking and cancellation policies
-                    </Link>.
-                  </p>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Contact Info */}
+        {/* Booking Section */}
         <section className="py-12">
-          <div className="container mx-auto px-6 text-center">
-            <p className="font-body text-muted-foreground mb-2">
-              Prefer to book by phone?
-            </p>
-            <a href={`tel:${siteSettings?.phone?.replace(/\D/g, '') || "+15551234567"}`} className="font-heading text-3xl text-primary hover:underline">
-              {siteSettings?.phone || "(555) 123-4567"}
-            </a>
+          <div className="container mx-auto px-6 max-w-4xl">
+            {/* Cal.com Embed Container */}
+            <div className="bg-card border border-border rounded-xl overflow-hidden mb-8">
+              {/* Service Selector */}
+              <div className="p-6 border-b border-border">
+                <p className="font-body text-sm text-muted-foreground mb-3">Select your session:</p>
+                <div className="flex flex-wrap gap-3">
+                  {bookableServices.map((service) => (
+                    <Button
+                      key={service._id || service.name}
+                      variant={selectedService?._id === service._id || selectedService?.name === service.name ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setSelectedService(service)}
+                      className="font-body"
+                    >
+                      {service.duration} <span className="ml-1 opacity-80">{service.price}</span>
+                    </Button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Cal.com Embed */}
+              <div className="p-6">
+                {selectedService?.bookingUrl && (
+                  <Cal
+                    key={selectedService.bookingUrl}
+                    calLink={getCalLink(selectedService.bookingUrl)}
+                    style={{ width: "100%", height: "100%", overflow: "scroll" }}
+                    config={{
+                      layout: "month_view",
+                      theme: "light",
+                    }}
+                  />
+                )}
+              </div>
+            </div>
+
+            {/* Contact Section */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+              {phone && (
+                <a
+                  href={`tel:${phone.replace(/\D/g, '')}`}
+                  className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-primary transition-colors"
+                >
+                  <div className="w-10 h-10 bg-background rounded-lg flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-body text-xs text-muted-foreground">Call</p>
+                    <p className="font-body text-sm font-medium text-foreground">{phone}</p>
+                  </div>
+                </a>
+              )}
+              {email && (
+                <a
+                  href={`mailto:${email}`}
+                  className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-primary transition-colors"
+                >
+                  <div className="w-10 h-10 bg-background rounded-lg flex items-center justify-center">
+                    <Mail className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-body text-xs text-muted-foreground">Email</p>
+                    <p className="font-body text-sm font-medium text-foreground">{email}</p>
+                  </div>
+                </a>
+              )}
+              {address && (
+                <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg">
+                  <div className="w-10 h-10 bg-background rounded-lg flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-body text-xs text-muted-foreground">Location</p>
+                    <p className="font-body text-sm font-medium text-foreground">
+                      {address.street}, {address.city}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Policies Preview */}
+            <div className="bg-card border border-border rounded-xl overflow-hidden">
+              <div className="p-4 border-b border-border flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-primary" />
+                  <h3 className="font-heading text-lg font-medium text-foreground">Before Your Visit</h3>
+                </div>
+                <Link
+                  href="/policies#cancellation"
+                  className="font-body text-sm text-primary hover:underline"
+                >
+                  View All Policies
+                </Link>
+              </div>
+              <div className="p-6 space-y-4">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center text-xs font-medium">1</span>
+                    <h4 className="font-body text-sm font-semibold text-foreground">Cancellation</h4>
+                  </div>
+                  <p className="font-body text-sm text-muted-foreground pl-7">
+                    24 hours notice required. Late cancellations subject to 50% fee.
+                  </p>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center text-xs font-medium">2</span>
+                    <h4 className="font-body text-sm font-semibold text-foreground">Arrival</h4>
+                  </div>
+                  <p className="font-body text-sm text-muted-foreground pl-7">
+                    Please arrive 5 minutes early. New clients: 10-15 minutes for paperwork.
+                  </p>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center text-xs font-medium">3</span>
+                    <h4 className="font-body text-sm font-semibold text-foreground">Payment</h4>
+                  </div>
+                  <p className="font-body text-sm text-muted-foreground pl-7">
+                    Payment due at time of service. Cash, card, and mobile payments accepted.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </main>

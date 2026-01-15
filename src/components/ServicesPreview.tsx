@@ -8,6 +8,7 @@ interface Service {
   duration: string;
   price: string;
   description: string;
+  bookingUrl?: string;
 }
 
 interface ServicesPreviewProps {
@@ -62,7 +63,7 @@ const ServicesPreview = ({ services, data }: ServicesPreviewProps) => {
           {displayServices.map((service, index) => (
             <Card
               key={service._id || service.name}
-              className="border-border bg-background hover:shadow-lg transition-all duration-300 group"
+              className="border-border bg-background hover:shadow-lg transition-all duration-300 group flex flex-col"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardHeader className="pb-4">
@@ -75,11 +76,18 @@ const ServicesPreview = ({ services, data }: ServicesPreviewProps) => {
                   <span className="text-primary font-medium">{service.price}</span>
                 </div>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow">
                 <p className="font-body text-muted-foreground text-base leading-relaxed">
                   {service.description}
                 </p>
               </CardContent>
+              {service.bookingUrl && (
+                <div className="px-6 pb-6 mt-auto flex justify-end">
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href={service.bookingUrl}>Book</Link>
+                  </Button>
+                </div>
+              )}
             </Card>
           ))}
         </div>
