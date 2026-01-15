@@ -40,8 +40,9 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
             >
               <span className="text-3xl">K</span>izmet
             </span>
+            {/* -mt-4 is intentional: K and M should touch vertically */}
             <span
-              className="font-heading text-2xl text-primary -mt-3"
+              className="font-heading text-2xl text-primary -mt-4"
               style={{ fontWeight: 400, letterSpacing: "-0.01em" }}
             >
               <span className="text-3xl">M</span>assage
