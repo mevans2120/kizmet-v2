@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
+import { draftMode } from 'next/headers'
+import { VisualEditing } from 'next-sanity/visual-editing'
 import ServicesContent from '@/page-content/Services'
-import { client } from '@/sanity/lib/client'
+import { sanityFetch } from '@/sanity/lib/fetch'
 import { ALL_SERVICES_QUERY, SITE_SETTINGS_QUERY, FOOTER_SETTINGS_QUERY } from '@/sanity/lib/queries'
 
 export const metadata: Metadata = {
@@ -9,17 +11,22 @@ export const metadata: Metadata = {
 }
 
 export default async function ServicesPage() {
+  const isDraft = (await draftMode()).isEnabled
+
   const [services, siteSettings, footerSettings] = await Promise.all([
-    client.fetch(ALL_SERVICES_QUERY),
-    client.fetch(SITE_SETTINGS_QUERY),
-    client.fetch(FOOTER_SETTINGS_QUERY),
+    sanityFetch(ALL_SERVICES_QUERY),
+    sanityFetch(SITE_SETTINGS_QUERY),
+    sanityFetch(FOOTER_SETTINGS_QUERY),
   ])
 
   return (
-    <ServicesContent
-      services={services}
-      siteSettings={siteSettings}
-      footerSettings={footerSettings}
-    />
+    <>
+      <ServicesContent
+        services={services}
+        siteSettings={siteSettings}
+        footerSettings={footerSettings}
+      />
+      {isDraft && <VisualEditing />}
+    </>
   )
 }

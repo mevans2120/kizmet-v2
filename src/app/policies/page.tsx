@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
+import { draftMode } from 'next/headers'
+import { VisualEditing } from 'next-sanity/visual-editing'
 import PoliciesContent from '@/page-content/Policies'
-import { client } from '@/sanity/lib/client'
+import { sanityFetch } from '@/sanity/lib/fetch'
 import { POLICIES_PAGE_QUERY, SITE_SETTINGS_QUERY, FOOTER_SETTINGS_QUERY } from '@/sanity/lib/queries'
 
 export const metadata: Metadata = {
@@ -9,17 +11,22 @@ export const metadata: Metadata = {
 }
 
 export default async function PoliciesPage() {
+  const isDraft = (await draftMode()).isEnabled
+
   const [policiesData, siteSettings, footerSettings] = await Promise.all([
-    client.fetch(POLICIES_PAGE_QUERY),
-    client.fetch(SITE_SETTINGS_QUERY),
-    client.fetch(FOOTER_SETTINGS_QUERY),
+    sanityFetch(POLICIES_PAGE_QUERY),
+    sanityFetch(SITE_SETTINGS_QUERY),
+    sanityFetch(FOOTER_SETTINGS_QUERY),
   ])
 
   return (
-    <PoliciesContent
-      data={policiesData}
-      siteSettings={siteSettings}
-      footerSettings={footerSettings}
-    />
+    <>
+      <PoliciesContent
+        data={policiesData}
+        siteSettings={siteSettings}
+        footerSettings={footerSettings}
+      />
+      {isDraft && <VisualEditing />}
+    </>
   )
 }

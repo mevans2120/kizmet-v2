@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Kizmet Massage & Wellness booking website - a Next.js App Router site for a massage therapy business. Prepared for future Sanity CMS integration.
+Kizmet Massage & Wellness booking website - a Next.js App Router site for a massage therapy business with Sanity CMS for content management.
 
 ## Development Commands
 
@@ -44,12 +44,16 @@ npm run lint         # Run ESLint
 
 **Design System:**
 - Custom colors: sage (primary), cream (background), terracotta (accent)
-- Fonts: Cormorant Garamond (headings), Inter (body) via next/font
+- Fonts: Fraunces (headings), Plus Jakarta Sans (body) via next/font
 - CSS variables in `src/app/globals.css`
 - Tailwind config extends theme in `tailwind.config.ts`
 
 **Class Merging:** Use `cn()` from `@/lib/utils` for conditional Tailwind classes.
 
-## Future: Sanity Integration
+## Sanity CMS
 
-This site is prepared for Sanity CMS. Content in page components is placeholder that will be replaced with Sanity queries. See `docs/research/RESEARCH_2026-01-14_vite-to-nextjs-migration.md` for integration plan.
+Sanity is fully integrated:
+- `src/sanity/` - Sanity client, schemas, and queries
+- `src/app/studio/` - Embedded Sanity Studio at `/studio`
+- Content is fetched server-side and passed to page-content components
+- Images use `getCroppedImageUrl()` from `@/sanity/lib/image` to respect crop/hotspot
