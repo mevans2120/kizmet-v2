@@ -33,14 +33,19 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex flex-col">
+          <Link href="/" className="flex items-baseline gap-2">
             <span
-              className="font-heading text-3xl text-foreground leading-tight"
-              style={{ fontVariationSettings: "'opsz' 80", fontWeight: 450, letterSpacing: "-0.01em" }}
+              className="font-heading text-2xl text-foreground"
+              style={{ fontWeight: 500, letterSpacing: "-0.01em" }}
             >
-              {brandName}
+              Kizmet
             </span>
-            <span className="font-body text-sm text-primary tracking-wide">{tagline}</span>
+            <span
+              className="font-heading text-2xl text-primary"
+              style={{ fontWeight: 400, letterSpacing: "-0.01em" }}
+            >
+              Massage
+            </span>
           </Link>
 
           {/* Desktop Navigation */}

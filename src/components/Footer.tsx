@@ -28,11 +28,11 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-heading text-3xl font-medium text-foreground mb-4">
-              {brandName}
+            <h3 className="font-heading text-2xl mb-4 flex items-baseline gap-2">
+              <span className="text-foreground" style={{ fontWeight: 500 }}>Kizmet</span>
+              <span className="text-primary" style={{ fontWeight: 400 }}>Massage</span>
             </h3>
             <p className="font-body text-muted-foreground text-base leading-relaxed">
-              Massage & Wellness<br />
               {brandDescription}
             </p>
           </div>
@@ -79,7 +79,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
 
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="font-body text-xs text-muted-foreground">
-            © {new Date().getFullYear()} {brandName} Massage & Wellness. All rights reserved.
+            © {new Date().getFullYear()} Kizmet Massage. All rights reserved.
           </p>
         </div>
       </div>

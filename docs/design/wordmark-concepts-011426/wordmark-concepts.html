@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kizmet Wordmark Concepts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage-500: #5a725c;
+      --sage-600: #485c4a;
+      --cream-bg: #faf8f5;
+      --cream-card: #f5f2ed;
+      --foreground: #2d2520;
+      --muted: #7a7067;
+      --terracotta: #c4785a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #1a1a1a;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    .concept-section {
+      padding: 80px 40px;
+      border-bottom: 1px solid #333;
+    }
+
+    .concept-header {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+    }
+
+    .concept-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+    }
+
+    .concept-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .concept-description {
+      color: #999;
+      max-width: 600px;
+      font-size: 15px;
+    }
+
+    /* Preview containers */
+    .preview-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      gap: 40px;
+    }
+
+    .preview-label {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 16px;
+    }
+
+    /* Mock browser frame */
+    .browser-frame {
+      background: var(--cream-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .browser-bar {
+      background: #e8e4df;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .browser-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ccc;
+    }
+
+    .browser-dot.red { background: #ff5f57; }
+    .browser-dot.yellow { background: #febc2e; }
+    .browser-dot.green { background: #28c840; }
+
+    /* ============================================
+       CONCEPT 1: Botanical Leaf Mark
+       ============================================ */
+    .concept-1 .wordmark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .concept-1 .logo-mark {
+      width: 40px;
+      height: 40px;
+      position: relative;
+    }
+
+    .concept-1 .logo-mark svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .concept-1 .wordmark-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--foreground);
+      letter-spacing: -0.01em;
+    }
+
+    .concept-1 .wordmark-text .massage {
+      font-weight: 400;
+      color: var(--sage-500);
+    }
+
+    /* Nav version - smaller */
+    .concept-1 .nav .wordmark {
+      gap: 10px;
+    }
+
+    .concept-1 .nav .logo-mark {
+      width: 32px;
+      height: 32px;
+    }
+
+    .concept-1 .nav .wordmark-text {
+      font-size: 22px;
+    }
+
+    /* Hero version - larger */
+    .concept-1 .hero .wordmark {
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .concept-1 .hero .logo-mark {
+      width: 60px;
+      height: 60px;
+    }
+
+    .concept-1 .hero .wordmark-text {
+      font-size: 72px;
+      letter-spacing: -0.02em;
+    }
+
+    /* Footer version */
+    .concept-1 .footer .wordmark {
+      gap: 10px;
+    }
+
+    .concept-1 .footer .logo-mark {
+      width: 28px;
+      height: 28px;
+    }
+
+    .concept-1 .footer .wordmark-text {
+      font-size: 20px;
+      color: var(--cream-bg);
+    }
+
+    .concept-1 .footer .wordmark-text .massage {
+      color: rgba(250, 248, 245, 0.7);
+    }
+
+    /* ============================================
+       CONCEPT 2: Zen Stone Circle
+       ============================================ */
+    .concept-2 .wordmark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .concept-2 .logo-mark {
+      width: 36px;
+      height: 36px;
+      position: relative;
+    }
+
+    .concept-2 .wordmark-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      color: var(--foreground);
+      letter-spacing: 0.02em;
+    }
+
+    .concept-2 .wordmark-text .kizmet {
+      font-size: 26px;
+    }
+
+    .concept-2 .wordmark-text .massage {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sage-500);
+      display: block;
+      margin-top: -4px;
+    }
+
+    /* Nav version */
+    .concept-2 .nav .logo-mark {
+      width: 30px;
+      height: 30px;
+    }
+
+    .concept-2 .nav .wordmark-text .kizmet {
+      font-size: 22px;
+    }
+
+    .concept-2 .nav .wordmark-text .massage {
+      font-size: 10px;
+      margin-top: -2px;
+    }
+
+    /* Hero version */
+    .concept-2 .hero .wordmark {
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .concept-2 .hero .logo-mark {
+      width: 80px;
+      height: 80px;
+    }
+
+    .concept-2 .hero .wordmark-text {
+      text-align: center;
+    }
+
+    .concept-2 .hero .wordmark-text .kizmet {
+      font-size: 80px;
+      letter-spacing: 0.05em;
+    }
+
+    .concept-2 .hero .wordmark-text .massage {
+      font-size: 18px;
+      letter-spacing: 0.35em;
+      margin-top: 4px;
+    }
+
+    /* Footer version */
+    .concept-2 .footer .logo-mark {
+      width: 24px;
+      height: 24px;
+    }
+
+    .concept-2 .footer .wordmark-text .kizmet {
+      font-size: 18px;
+      color: var(--cream-bg);
+    }
+
+    .concept-2 .footer .wordmark-text .massage {
+      font-size: 9px;
+      color: rgba(250, 248, 245, 0.6);
+    }
+
+    /* ============================================
+       CONCEPT 3: Typography Only - Studio
+       ============================================ */
+    .concept-3 .wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--foreground);
+    }
+
+    .concept-3 .wordmark .kizmet {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .concept-3 .wordmark .divider {
+      display: inline-block;
+      width: 1px;
+      height: 20px;
+      background: var(--sage-500);
+      margin: 0 16px;
+      vertical-align: middle;
+      opacity: 0.5;
+    }
+
+    .concept-3 .wordmark .massage-studio {
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      vertical-align: middle;
+    }
+
+    /* Nav version */
+    .concept-3 .nav .wordmark .kizmet {
+      font-size: 22px;
+    }
+
+    .concept-3 .nav .wordmark .divider {
+      height: 16px;
+      margin: 0 12px;
+    }
+
+    .concept-3 .nav .wordmark .massage-studio {
+      font-size: 11px;
+    }
+
+    /* Hero version */
+    .concept-3 .hero .wordmark {
+      text-align: center;
+    }
+
+    .concept-3 .hero .wordmark .kizmet {
+      font-size: 96px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      display: block;
+    }
+
+    .concept-3 .hero .wordmark .divider {
+      display: none;
+    }
+
+    .concept-3 .hero .wordmark .massage-studio {
+      font-size: 20px;
+      letter-spacing: 0.4em;
+      display: block;
+      margin-top: 8px;
+      color: var(--sage-500);
+    }
+
+    /* Footer version */
+    .concept-3 .footer .wordmark .kizmet {
+      font-size: 18px;
+      color: var(--cream-bg);
+    }
+
+    .concept-3 .footer .wordmark .divider {
+      height: 14px;
+      margin: 0 10px;
+      background: rgba(250, 248, 245, 0.3);
+    }
+
+    .concept-3 .footer .wordmark .massage-studio {
+      font-size: 10px;
+      color: rgba(250, 248, 245, 0.6);
+    }
+
+    /* ============================================
+       Shared Layout Components
+       ============================================ */
+    .mock-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .mock-nav-links {
+      display: flex;
+      gap: 32px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .mock-nav-links span {
+      cursor: pointer;
+    }
+
+    .mock-nav-links span:hover {
+      color: var(--foreground);
+    }
+
+    .mock-cta {
+      background: var(--sage-500);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .mock-hero {
+      padding: 100px 40px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--cream-card) 0%, var(--cream-bg) 100%);
+    }
+
+    .mock-hero .tagline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 24px auto 0;
+      line-height: 1.7;
+    }
+
+    .mock-footer {
+      background: var(--sage-600);
+      padding: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mock-footer-links {
+      display: flex;
+      gap: 24px;
+      font-size: 13px;
+      color: rgba(250, 248, 245, 0.7);
+    }
+
+    /* Annotations */
+    .annotations {
+      margin-top: 40px;
+      padding: 24px;
+      background: #252525;
+      border-radius: 8px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .annotation-title {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+    }
+
+    .annotation-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .annotation-item {
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .annotation-item strong {
+      color: #ddd;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* Page header */
+    .page-header {
+      padding: 60px 40px;
+      text-align: center;
+      border-bottom: 1px solid #333;
+    }
+
+    .page-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+
+    .page-header p {
+      color: #888;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <h1>Kizmet Wordmark Concepts</h1>
+    <p>Three typography treatments exploring the rebrand from "Kizmet Massage and Wellness" to "Kizmet Massage" and "Kizmet Massage Studio"</p>
+  </div>
+
+  <!-- ============================================
+       CONCEPT 1: Botanical Leaf
+       ============================================ -->
+  <section class="concept-section concept-1">
+    <div class="concept-header">
+      <div class="concept-number">Concept 01</div>
+      <h2 class="concept-title">Kizmet Massage — Botanical Leaf</h2>
+      <p class="concept-description">
+        An organic leaf mark paired with elegant Cormorant Garamond typography. The leaf represents growth, renewal, and natural healing. "Kizmet" in medium weight with "Massage" in a lighter sage green creates hierarchy.
+      </p>
+    </div>
+
+    <div class="preview-container">
+      <div>
+        <div class="preview-label">Navigation</div>
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dot red"></div>
+            <div class="browser-dot yellow"></div>
+            <div class="browser-dot green"></div>
+          </div>
+          <div class="nav mock-nav">
+            <div class="wordmark">
+              <div class="logo-mark">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 4C12 4 6 12 6 20C6 28 12 36 20 36C20 36 20 28 20 20C20 12 20 4 20 4Z" fill="#5a725c" opacity="0.3"/>
+                  <path d="M20 4C28 4 34 12 34 20C34 28 28 36 20 36C20 36 20 28 20 20C20 12 20 4 20 4Z" fill="#5a725c"/>
+                  <path d="M20 8C20 8 20 20 20 32" stroke="#faf8f5" stroke-width="1.5" opacity="0.5"/>
+                </svg>
+              </div>
+              <span class="wordmark-text">Kizmet <span class="massage">Massage</span></span>
+            </div>
+            <div class="mock-nav-links">
+              <span>Services</span>
+              <span>About</span>
+              <span>Policies</span>
+            </div>
+            <div class="mock-cta">Book Now</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="preview-label">Hero Section</div>
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dot red"></div>
+            <div class="browser-dot yellow"></div>
+            <div class="browser-dot green"></div>
+          </div>
+          <div class="hero mock-hero">
+            <div class="wordmark">
+              <div class="logo-mark">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 4C12 4 6 12 6 20C6 28 12 36 20 36C20 36 20 28 20 20C20 12 20 4 20 4Z" fill="#5a725c" opacity="0.3"/>
+                  <path d="M20 4C28 4 34 12 34 20C34 28 28 36 20 36C20 36 20 28 20 20C20 12 20 4 20 4Z" fill="#5a725c"/>
+                  <path d="M20 8C20 8 20 20 20 32" stroke="#faf8f5" stroke-width="2" opacity="0.5"/>
+                </svg>
+              </div>
+              <span class="wordmark-text">Kizmet <span class="massage">Massage</span></span>
+            </div>
+            <p class="tagline">Therapeutic massage in Port Angeles. Reconnect with your body and find your balance.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="preview-label">Footer</div>
+        <div class="browser-frame">
+          <div class="footer mock-footer">
+            <div class="wordmark">
+              <div class="logo-mark">
+                <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 4C12 4 6 12 6 20C6 28 12 36 20 36C20 36 20 28 20 20C20 12 20 4 20 4Z" fill="#faf8f5" opacity="0.3"/>
+                  <path d="M20 4C28 4 34 12 34 20C34 28 28 36 20 36C20 36 20 28 20 20C20 12 20 4 20 4Z" fill="#faf8f5"/>
+                  <path d="M20 8C20 8 20 20 20 32" stroke="#485c4a" stroke-width="1.5" opacity="0.5"/>
+                </svg>
+              </div>
+              <span class="wordmark-text">Kizmet <span class="massage">Massage</span></span>
+            </div>
+            <div class="mock-footer-links">
+              <span>Services</span>
+              <span>About</span>
+              <span>Policies</span>
+              <span>Contact</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-title">Design Rationale</div>
+      <div class="annotation-list">
+        <div class="annotation-item">
+          <strong>Leaf Symbol</strong>
+          Represents natural healing, growth, and the organic approach to wellness. The split leaf with varying opacity creates depth and sophistication.
+        </div>
+        <div class="annotation-item">
+          <strong>Typography Treatment</strong>
+          "Kizmet" in Cormorant Garamond Medium (500) grounds the brand name. "Massage" in Regular weight (400) and sage green creates a natural hierarchy.
+        </div>
+        <div class="annotation-item">
+          <strong>Color Strategy</strong>
+          The sage green ties to the existing brand palette. Using it for both the mark and "Massage" creates cohesion without being monotonous.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CONCEPT 2: Zen Stone Circle
+       ============================================ -->
+  <section class="concept-section concept-2">
+    <div class="concept-header">
+      <div class="concept-number">Concept 02</div>
+      <h2 class="concept-title">Kizmet Massage — Zen Stone</h2>
+      <p class="concept-description">
+        A minimalist stacked stone mark evokes balance, calm, and the meditative quality of massage. The stacked arrangement with "MASSAGE" in small caps beneath creates a vertical rhythm that feels grounded and serene.
+      </p>
+    </div>
+
+    <div class="preview-container">
+      <div>
+        <div class="preview-label">Navigation</div>
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dot red"></div>
+            <div class="browser-dot yellow"></div>
+            <div class="browser-dot green"></div>
+          </div>
+          <div class="nav mock-nav">
+            <div class="wordmark">
+              <div class="logo-mark">
+                <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="18" cy="28" rx="10" ry="5" fill="#5a725c" opacity="0.2"/>
+                  <ellipse cx="18" cy="22" rx="8" ry="4" fill="#5a725c" opacity="0.4"/>
+                  <ellipse cx="18" cy="16" rx="6" ry="3.5" fill="#5a725c" opacity="0.7"/>
+                  <ellipse cx="18" cy="10" rx="4" ry="3" fill="#5a725c"/>
+                </svg>
+              </div>
+              <span class="wordmark-text">
+                <span class="kizmet">Kizmet</span>
+                <span class="massage">Massage</span>
+              </span>
+            </div>
+            <div class="mock-nav-links">
+              <span>Services</span>
+              <span>About</span>
+              <span>Policies</span>
+            </div>
+            <div class="mock-cta">Book Now</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="preview-label">Hero Section</div>
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dot red"></div>
+            <div class="browser-dot yellow"></div>
+            <div class="browser-dot green"></div>
+          </div>
+          <div class="hero mock-hero" style="padding: 80px 40px;">
+            <div class="wordmark">
+              <div class="logo-mark">
+                <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="18" cy="28" rx="10" ry="5" fill="#5a725c" opacity="0.2"/>
+                  <ellipse cx="18" cy="22" rx="8" ry="4" fill="#5a725c" opacity="0.4"/>
+                  <ellipse cx="18" cy="16" rx="6" ry="3.5" fill="#5a725c" opacity="0.7"/>
+                  <ellipse cx="18" cy="10" rx="4" ry="3" fill="#5a725c"/>
+                </svg>
+              </div>
+              <span class="wordmark-text">
+                <span class="kizmet">Kizmet</span>
+                <span class="massage">Massage</span>
+              </span>
+            </div>
+            <p class="tagline">Therapeutic massage in Port Angeles. Reconnect with your body and find your balance.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="preview-label">Footer</div>
+        <div class="browser-frame">
+          <div class="footer mock-footer">
+            <div class="wordmark">
+              <div class="logo-mark">
+                <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="18" cy="28" rx="10" ry="5" fill="#faf8f5" opacity="0.15"/>
+                  <ellipse cx="18" cy="22" rx="8" ry="4" fill="#faf8f5" opacity="0.3"/>
+                  <ellipse cx="18" cy="16" rx="6" ry="3.5" fill="#faf8f5" opacity="0.6"/>
+                  <ellipse cx="18" cy="10" rx="4" ry="3" fill="#faf8f5"/>
+                </svg>
+              </div>
+              <span class="wordmark-text">
+                <span class="kizmet">Kizmet</span>
+                <span class="massage">Massage</span>
+              </span>
+            </div>
+            <div class="mock-footer-links">
+              <span>Services</span>
+              <span>About</span>
+              <span>Policies</span>
+              <span>Contact</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-title">Design Rationale</div>
+      <div class="annotation-list">
+        <div class="annotation-item">
+          <strong>Stone Stack Symbol</strong>
+          Stacked massage stones are universally recognized in wellness. The graduated opacity creates depth while maintaining simplicity. Works at any size.
+        </div>
+        <div class="annotation-item">
+          <strong>Typography Treatment</strong>
+          "Kizmet" in Semibold (600) with generous letter-spacing. "MASSAGE" in small caps below creates a badge-like lockup that works vertically or horizontally.
+        </div>
+        <div class="annotation-item">
+          <strong>Hierarchy Strategy</strong>
+          The hero treatment stacks logo above text for maximum impact. Nav and footer use horizontal layout for space efficiency.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CONCEPT 3: Typography Only - Studio
+       ============================================ -->
+  <section class="concept-section concept-3">
+    <div class="concept-header">
+      <div class="concept-number">Concept 03</div>
+      <h2 class="concept-title">Kizmet Massage Studio — Wordmark Only</h2>
+      <p class="concept-description">
+        A pure typographic approach with no logo mark. The elegant Cormorant Garamond carries the brand entirely. A subtle vertical divider separates "Kizmet" from "Massage Studio" creating a sophisticated, editorial feel.
+      </p>
+    </div>
+
+    <div class="preview-container">
+      <div>
+        <div class="preview-label">Navigation</div>
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dot red"></div>
+            <div class="browser-dot yellow"></div>
+            <div class="browser-dot green"></div>
+          </div>
+          <div class="nav mock-nav">
+            <div class="wordmark">
+              <span class="kizmet">Kizmet</span>
+              <span class="divider"></span>
+              <span class="massage-studio">Massage Studio</span>
+            </div>
+            <div class="mock-nav-links">
+              <span>Services</span>
+              <span>About</span>
+              <span>Policies</span>
+            </div>
+            <div class="mock-cta">Book Now</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="preview-label">Hero Section</div>
+        <div class="browser-frame">
+          <div class="browser-bar">
+            <div class="browser-dot red"></div>
+            <div class="browser-dot yellow"></div>
+            <div class="browser-dot green"></div>
+          </div>
+          <div class="hero mock-hero">
+            <div class="wordmark">
+              <span class="kizmet">Kizmet</span>
+              <span class="divider"></span>
+              <span class="massage-studio">Massage Studio</span>
+            </div>
+            <p class="tagline">Therapeutic massage in Port Angeles. Reconnect with your body and find your balance.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="preview-label">Footer</div>
+        <div class="browser-frame">
+          <div class="footer mock-footer">
+            <div class="wordmark">
+              <span class="kizmet">Kizmet</span>
+              <span class="divider"></span>
+              <span class="massage-studio">Massage Studio</span>
+            </div>
+            <div class="mock-footer-links">
+              <span>Services</span>
+              <span>About</span>
+              <span>Policies</span>
+              <span>Contact</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="annotations">
+      <div class="annotation-title">Design Rationale</div>
+      <div class="annotation-list">
+        <div class="annotation-item">
+          <strong>No Logo Approach</strong>
+          Pure typography puts focus on the name. "Studio" adds professionalism and distinguishes from generic massage services. Feels boutique and intentional.
+        </div>
+        <div class="annotation-item">
+          <strong>Typography Treatment</strong>
+          "Kizmet" in Semibold with wide letter-spacing commands attention. "MASSAGE STUDIO" in small caps creates elegant secondary hierarchy.
+        </div>
+        <div class="annotation-item">
+          <strong>Divider Element</strong>
+          The subtle vertical line in nav/footer creates visual separation without a logo. In hero, the stacked layout makes the divider unnecessary.
+        </div>
+        <div class="annotation-item">
+          <strong>Flexibility</strong>
+          Without a logo to maintain, the wordmark scales beautifully from favicon (just "K") to billboard. Easier to implement across touchpoints.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <section class="concept-section" style="background: #222;">
+    <div class="concept-header">
+      <div class="concept-number">Summary</div>
+      <h2 class="concept-title">Comparison</h2>
+    </div>
+    <div class="annotations" style="background: transparent; margin-top: 0;">
+      <div class="annotation-list">
+        <div class="annotation-item">
+          <strong>Concept 1: Botanical Leaf</strong>
+          Best for: Emphasizing natural, organic healing. The leaf mark is distinctive and memorable. Works well if you want a recognizable icon for social media, favicon, etc.
+        </div>
+        <div class="annotation-item">
+          <strong>Concept 2: Zen Stone</strong>
+          Best for: Emphasizing calm, balance, and traditional massage therapy. The stacked stones are immediately recognizable in the wellness space. Strong vertical hero presence.
+        </div>
+        <div class="annotation-item">
+          <strong>Concept 3: Wordmark Only</strong>
+          Best for: A sophisticated, editorial aesthetic. "Studio" elevates the brand positioning. Simplest to implement and most flexible across applications.
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
