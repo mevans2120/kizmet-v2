@@ -38,13 +38,13 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
               className="font-heading text-3xl text-foreground"
               style={{ fontWeight: 500, letterSpacing: "-0.01em" }}
             >
-              Kizmet
+              <span className="text-4xl">K</span>izmet
             </span>
             <span
-              className="font-heading text-3xl text-primary -mt-2"
+              className="font-heading text-3xl text-primary -mt-4"
               style={{ fontWeight: 400, letterSpacing: "-0.01em" }}
             >
-              Massage
+              <span className="text-4xl">M</span>assage
             </span>
           </Link>
 
