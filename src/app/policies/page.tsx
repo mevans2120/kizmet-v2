@@ -16,9 +16,9 @@ export default async function PoliciesPage() {
   const isDraft = (await draftMode()).isEnabled
 
   const [policiesData, siteSettings, footerSettings] = await Promise.all([
-    sanityFetch(POLICIES_PAGE_QUERY),
-    sanityFetch(SITE_SETTINGS_QUERY),
-    sanityFetch(FOOTER_SETTINGS_QUERY),
+    sanityFetch<any>(POLICIES_PAGE_QUERY),
+    sanityFetch<any>(SITE_SETTINGS_QUERY),
+    sanityFetch<any>(FOOTER_SETTINGS_QUERY),
   ])
 
   return (

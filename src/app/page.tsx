@@ -15,10 +15,10 @@ export default async function HomePage() {
   const isDraft = (await draftMode()).isEnabled
 
   const [homepage, services, siteSettings, footerSettings] = await Promise.all([
-    sanityFetch(HOMEPAGE_SETTINGS_QUERY),
-    sanityFetch(FEATURED_SERVICES_QUERY),
-    sanityFetch(SITE_SETTINGS_QUERY),
-    sanityFetch(FOOTER_SETTINGS_QUERY),
+    sanityFetch<any>(HOMEPAGE_SETTINGS_QUERY),
+    sanityFetch<any>(FEATURED_SERVICES_QUERY),
+    sanityFetch<any>(SITE_SETTINGS_QUERY),
+    sanityFetch<any>(FOOTER_SETTINGS_QUERY),
   ])
 
   return (

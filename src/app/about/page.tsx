@@ -16,9 +16,9 @@ export default async function AboutPage() {
   const isDraft = (await draftMode()).isEnabled
 
   const [aboutData, siteSettings, footerSettings] = await Promise.all([
-    sanityFetch(ABOUT_PAGE_QUERY),
-    sanityFetch(SITE_SETTINGS_QUERY),
-    sanityFetch(FOOTER_SETTINGS_QUERY),
+    sanityFetch<any>(ABOUT_PAGE_QUERY),
+    sanityFetch<any>(SITE_SETTINGS_QUERY),
+    sanityFetch<any>(FOOTER_SETTINGS_QUERY),
   ])
 
   return (

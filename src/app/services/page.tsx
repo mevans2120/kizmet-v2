@@ -16,9 +16,9 @@ export default async function ServicesPage() {
   const isDraft = (await draftMode()).isEnabled
 
   const [services, siteSettings, footerSettings] = await Promise.all([
-    sanityFetch(ALL_SERVICES_QUERY),
-    sanityFetch(SITE_SETTINGS_QUERY),
-    sanityFetch(FOOTER_SETTINGS_QUERY),
+    sanityFetch<any>(ALL_SERVICES_QUERY),
+    sanityFetch<any>(SITE_SETTINGS_QUERY),
+    sanityFetch<any>(FOOTER_SETTINGS_QUERY),
   ])
 
   return (
