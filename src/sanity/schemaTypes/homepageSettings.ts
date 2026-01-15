@@ -7,6 +7,7 @@ export default defineType({
   fieldsets: [
     { name: 'hero', title: 'Hero Section' },
     { name: 'services', title: 'Services Preview' },
+    { name: 'aboutPreview', title: 'About Preview Section' },
     { name: 'cta', title: 'Call to Action Section' },
   ],
   fields: [
@@ -54,6 +55,51 @@ export default defineType({
       type: 'text',
       fieldset: 'services',
       rows: 2,
+    }),
+
+    // About Preview Section
+    defineField({
+      name: 'aboutPreviewEyebrow',
+      title: 'Eyebrow Text',
+      type: 'string',
+      fieldset: 'aboutPreview',
+      initialValue: 'Meet Your Therapist',
+    }),
+    defineField({
+      name: 'aboutPreviewQuote',
+      title: 'Quote',
+      type: 'text',
+      fieldset: 'aboutPreview',
+      rows: 3,
+      description: 'The main quote to display',
+    }),
+    defineField({
+      name: 'aboutPreviewAttributionName',
+      title: 'Attribution Name',
+      type: 'string',
+      fieldset: 'aboutPreview',
+      initialValue: 'Destiny',
+    }),
+    defineField({
+      name: 'aboutPreviewAttributionTitle',
+      title: 'Attribution Title',
+      type: 'string',
+      fieldset: 'aboutPreview',
+      initialValue: 'Third-Generation Healer',
+    }),
+    defineField({
+      name: 'aboutPreviewCtaText',
+      title: 'CTA Button Text',
+      type: 'string',
+      fieldset: 'aboutPreview',
+      initialValue: 'Read My Story',
+    }),
+    defineField({
+      name: 'aboutPreviewCtaLink',
+      title: 'CTA Link',
+      type: 'string',
+      fieldset: 'aboutPreview',
+      initialValue: '/about',
     }),
 
     // CTA Section

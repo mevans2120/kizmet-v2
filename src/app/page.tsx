@@ -1,6 +1,7 @@
 import Navigation from '@/components/Navigation'
 import Hero from '@/components/Hero'
 import ServicesPreview from '@/components/ServicesPreview'
+import AboutPreview from '@/components/AboutPreview'
 import CTASection from '@/components/CTASection'
 import Footer from '@/components/Footer'
 import { client } from '@/sanity/lib/client'
@@ -19,6 +20,7 @@ export default async function HomePage() {
       <Navigation siteSettings={siteSettings} />
       <Hero data={homepage} />
       <ServicesPreview services={services} data={homepage} />
+      <AboutPreview data={homepage} />
       <CTASection data={homepage} />
       <Footer siteSettings={siteSettings} footerSettings={footerSettings} />
     </div>
