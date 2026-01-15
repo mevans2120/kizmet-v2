@@ -131,47 +131,53 @@ Replace the current manual booking request form with cal.com integration to enab
 
 ## Comparison Matrix
 
-| Criteria | Concept 1 | Concept 2 | Concept 3 |
-|----------|-----------|-----------|-----------|
-| **User Experience** | Good | Better | Best |
-| **Implementation Effort** | Medium | Medium-High | High |
-| **Maintenance Complexity** | Low | Medium | Medium |
-| **Booking Accessibility** | /book page only | Any page | Services page + /book |
-| **Service Pre-selection** | In cal.com embed | In cal.com embed | Pre-selected by button |
-| **Brand Consistency** | High | High | Highest |
-| **Cal.com Configuration** | 1 event type | 1 event type | 3 event types |
+| Criteria | Concept 1 | Concept 2 | Concept 3 | Concept 4 |
+|----------|-----------|-----------|-----------|-----------|
+| **User Experience** | Good | Better | Best | Best |
+| **Implementation Effort** | Medium | Medium-High | High | Medium-High |
+| **Maintenance Complexity** | Low | Medium | Medium | Low-Medium |
+| **Booking Accessibility** | /book page only | Any page | Services + /book | Services + /book |
+| **Service Pre-selection** | In embed | In embed | Pre-selected | URL param |
+| **Brand Consistency** | High | High | Highest | Highest |
+| **Cal.com Configuration** | 1 event type | 1 event type | 3 event types | 1 event type |
+| **Mobile UX** | Good | Modal (crowded) | Good | Best (full page) |
+
+---
+
+## Concept 4: Refined Flow (Recommended)
+
+**File:** [booking-concept-4-refined.html](./booking-concept-4-refined.html)
+
+**Approach:** Best of Concepts 1-3: embedded calendar on /book page, service pre-selection via URL params from Services page, full page (not popup) for better mobile UX.
+
+### Key Design Decisions
+
+| Element | Decision | Rationale |
+|---------|----------|-----------|
+| Booking location | Full /book page | Better mobile UX than popup |
+| Service selection | URL param (?service=60) | Pre-selects in embed, user can change |
+| Pay at Studio | Single-line banner | Visible without overwhelming |
+| Contact info | Inline below embed | Easy access without sidebar clutter |
+| Policies | Compact preview | Key info with link to full page |
+
+### Strengths
+- Best mobile experience (full page, not cramped popup)
+- Service pre-selection without 3 separate cal.com events
+- Simplified "Pay at Studio" messaging
+- Policies preview reduces friction
+- Single cal.com event type to maintain
+
+### Tradeoffs
+- User must navigate to /book (like Concept 1)
+- No floating button (could add later)
 
 ---
 
 ## Recommendation
 
-**Start with Concept 1 (Embedded Calendar)**, then add Concept 2 elements (popup triggers) as enhancement.
+**Implement Concept 4 (Refined Flow)** as the primary approach.
 
-### Rationale
-
-1. **Lower risk** — Concept 1 delivers core value with least complexity
-2. **Iterative path** — Concept 2 builds on Concept 1, not a rewrite
-3. **Quick wins first** — Footer contact info and Pay at Studio messaging work in all concepts
-4. **Validate first** — See if clients use the embedded booking before adding popups
-
-### Suggested Phasing
-
-```
-Phase 1: Foundation (Day 1)
-├── Update Footer with phone + email
-├── Add "Pay at Studio" messaging
-└── Simplify or replace current form
-
-Phase 2: Concept 1 (Day 2-3)
-├── Set up cal.com account and event type
-├── Implement inline embed on /book
-├── Style to match Kizmet brand
-
-Phase 3: Concept 2 Elements (Day 4+, optional)
-├── Add popup trigger to Hero CTA
-├── Add popup trigger to CTA section
-└── Consider floating button
-```
+See [booking-implementation-plan.md](./booking-implementation-plan.md) for technical details.
 
 ---
 
@@ -189,7 +195,9 @@ Phase 3: Concept 2 Elements (Day 4+, optional)
 - `booking-concept-1-embedded.html` — Embedded calendar on /book page
 - `booking-concept-2-hybrid.html` — Popup triggers throughout site
 - `booking-concept-3-full-integration.html` — Service-specific booking
+- `booking-concept-4-refined.html` — **Recommended:** Refined flow with service pre-selection
 - `booking-overview.md` — This comparison document
+- `booking-implementation-plan.md` — Technical implementation guide
 
 ---
 

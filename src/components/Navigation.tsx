@@ -35,16 +35,16 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex flex-col">
             <span
-              className="font-heading text-3xl text-foreground"
+              className="font-heading text-2xl text-foreground"
               style={{ fontWeight: 500, letterSpacing: "-0.01em" }}
             >
-              <span className="text-4xl">K</span>izmet
+              <span className="text-3xl">K</span>izmet
             </span>
             <span
-              className="font-heading text-3xl text-primary -mt-4"
+              className="font-heading text-2xl text-primary -mt-3"
               style={{ fontWeight: 400, letterSpacing: "-0.01em" }}
             >
-              <span className="text-4xl">M</span>assage
+              <span className="text-3xl">M</span>assage
             </span>
           </Link>
 
