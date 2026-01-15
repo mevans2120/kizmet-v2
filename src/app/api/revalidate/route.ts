@@ -9,7 +9,8 @@ export async function POST(req: NextRequest) {
       slug?: { current: string }
     }>(req, process.env.SANITY_REVALIDATE_SECRET)
 
-    if (!isValidSignature) {
+    // Only validate signature if secret is configured
+    if (process.env.SANITY_REVALIDATE_SECRET && !isValidSignature) {
       return NextResponse.json(
         { message: 'Invalid signature' },
         { status: 401 }
