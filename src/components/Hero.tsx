@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { urlFor } from "@/sanity/lib/image";
+import { getHeroImageUrl } from "@/sanity/lib/image";
 import heroImage from "@/assets/hero-spa.jpg";
 
 interface HeroProps {
@@ -18,9 +18,9 @@ const Hero = ({ data }: HeroProps) => {
   const subheadline = data?.heroSubheadline || "Destiny Pugh offers therapeutic massage in Port Angeles. Reconnect with your body and find your balance.";
   const ctaText = data?.heroCta || "Book Your Session";
 
-  // Use Sanity image if available, otherwise use local asset
+  // Use Sanity image if available (with crop/hotspot respected), otherwise use local asset
   const backgroundImage = data?.heroImage
-    ? urlFor(data.heroImage).width(1920).quality(85).url()
+    ? getHeroImageUrl(data.heroImage, 1920, 1080)
     : heroImage.src;
 
   return (

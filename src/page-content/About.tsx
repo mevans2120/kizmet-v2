@@ -3,7 +3,7 @@ import Image from "next/image";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { urlFor } from "@/sanity/lib/image";
+import { getCroppedImageUrl } from "@/sanity/lib/image";
 
 interface JourneyStep {
   _key?: string;
@@ -126,7 +126,7 @@ const About = ({ data, siteSettings, footerSettings }: AboutProps) => {
                 <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-xl bg-muted">
                   {hero.image ? (
                     <Image
-                      src={urlFor(hero.image).width(800).quality(85).url()}
+                      src={getCroppedImageUrl(hero.image, 800, 1000)}
                       alt={hero.headline}
                       fill
                       className="object-cover"
