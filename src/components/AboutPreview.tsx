@@ -41,7 +41,7 @@ const AboutPreview = ({ data, aboutData }: AboutPreviewProps) => {
   return (
     <section className="py-20 md:py-24 bg-card">
       <div className="container mx-auto px-6">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-12 items-center">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-6 items-center">
           {/* Image */}
           <div className="relative mx-auto lg:mx-0 max-w-sm">
             <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-lg">
