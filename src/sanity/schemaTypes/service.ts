@@ -76,6 +76,12 @@ export default defineType({
       type: 'url',
       description: 'Cal.com booking link for this service (e.g., https://cal.com/username/30min)',
     }),
+    defineField({
+      name: 'seo',
+      title: 'SEO Settings',
+      type: 'seo',
+      description: 'Custom SEO for this service (optional)',
+    }),
   ],
   orderings: [
     {

@@ -4,7 +4,19 @@ export default defineType({
   name: 'bookPage',
   title: 'Book Page',
   type: 'document',
+  fieldsets: [
+    { name: 'seo', title: 'SEO Settings' },
+  ],
   fields: [
+    // SEO
+    defineField({
+      name: 'seo',
+      title: 'SEO Settings',
+      type: 'seo',
+      fieldset: 'seo',
+      description: 'Custom SEO for this page (overrides site defaults)',
+    }),
+
     defineField({
       name: 'eyebrow',
       title: 'Eyebrow Text',

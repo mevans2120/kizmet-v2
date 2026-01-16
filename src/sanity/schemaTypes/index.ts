@@ -6,7 +6,11 @@ import bookPage from './bookPage'
 import footerSettings from './footerSettings'
 import service from './service'
 
+// Object types
+import seo from './objects/seo'
+
 export const schemaTypes = [
+  // Documents
   siteSettings,
   homepageSettings,
   aboutPage,
@@ -14,4 +18,6 @@ export const schemaTypes = [
   bookPage,
   footerSettings,
   service,
+  // Objects
+  seo,
 ]

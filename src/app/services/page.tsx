@@ -6,10 +6,15 @@ import { VisualEditing } from 'next-sanity/visual-editing'
 import ServicesContent from '@/page-content/Services'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { ALL_SERVICES_QUERY, SITE_SETTINGS_QUERY, FOOTER_SETTINGS_QUERY } from '@/sanity/lib/queries'
+import { generatePageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Services & Pricing',
-  description: 'Explore our massage therapy services: 30, 60, and 90-minute sessions tailored to your wellness needs.',
+// Dynamic metadata from CMS (services page doesn't have its own document, so use defaults)
+export async function generateMetadata(): Promise<Metadata> {
+  return generatePageMetadata({
+    title: 'Services & Pricing',
+    description: 'Explore our massage therapy services: 30, 60, and 90-minute sessions tailored to your wellness needs.',
+    path: '/services',
+  })
 }
 
 export default async function ServicesPage() {

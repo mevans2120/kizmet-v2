@@ -9,8 +9,18 @@ export default defineType({
     { name: 'services', title: 'Services Preview' },
     { name: 'aboutPreview', title: 'About Preview Section' },
     { name: 'cta', title: 'Call to Action Section' },
+    { name: 'seo', title: 'SEO Settings' },
   ],
   fields: [
+    // SEO
+    defineField({
+      name: 'seo',
+      title: 'SEO Settings',
+      type: 'seo',
+      fieldset: 'seo',
+      description: 'Custom SEO for homepage (overrides site defaults)',
+    }),
+
     // Hero Section
     defineField({
       name: 'heroImage',

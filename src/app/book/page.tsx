@@ -7,10 +7,17 @@ import { VisualEditing } from 'next-sanity/visual-editing'
 import BookContent from '@/page-content/Book'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { BOOK_PAGE_QUERY, ALL_SERVICES_QUERY, SITE_SETTINGS_QUERY, FOOTER_SETTINGS_QUERY } from '@/sanity/lib/queries'
+import { generatePageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Book an Appointment',
-  description: 'Schedule your massage therapy session at Kizmet Massage & Wellness.',
+// Dynamic metadata from CMS
+export async function generateMetadata(): Promise<Metadata> {
+  const bookData = await sanityFetch<any>(BOOK_PAGE_QUERY)
+  return generatePageMetadata({
+    title: 'Book an Appointment',
+    description: bookData?.description || 'Schedule your massage therapy session at Kizmet Massage.',
+    seo: bookData?.seo,
+    path: '/book',
+  })
 }
 
 export default async function BookPage() {

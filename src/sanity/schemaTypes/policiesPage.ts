@@ -4,7 +4,19 @@ export default defineType({
   name: 'policiesPage',
   title: 'Policies Page',
   type: 'document',
+  fieldsets: [
+    { name: 'seo', title: 'SEO Settings' },
+  ],
   fields: [
+    // SEO
+    defineField({
+      name: 'seo',
+      title: 'SEO Settings',
+      type: 'seo',
+      fieldset: 'seo',
+      description: 'Custom SEO for this page (overrides site defaults)',
+    }),
+
     defineField({
       name: 'pageTitle',
       title: 'Page Title',

@@ -10,8 +10,18 @@ export default defineType({
     { name: 'bio', title: 'Bio Section' },
     { name: 'journey', title: 'Session Journey' },
     { name: 'cta', title: 'Call to Action' },
+    { name: 'seo', title: 'SEO Settings' },
   ],
   fields: [
+    // SEO
+    defineField({
+      name: 'seo',
+      title: 'SEO Settings',
+      type: 'seo',
+      fieldset: 'seo',
+      description: 'Custom SEO for this page (overrides site defaults)',
+    }),
+
     // Hero Section
     defineField({
       name: 'eyebrow',

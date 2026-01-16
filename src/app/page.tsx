@@ -1,5 +1,6 @@
 export const revalidate = 300 // Revalidate every 5 minutes as fallback
 
+import type { Metadata } from 'next'
 import { draftMode } from 'next/headers'
 import { VisualEditing } from 'next-sanity/visual-editing'
 import Navigation from '@/components/Navigation'
@@ -10,6 +11,18 @@ import CTASection from '@/components/CTASection'
 import Footer from '@/components/Footer'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { HOMEPAGE_SETTINGS_QUERY, FEATURED_SERVICES_QUERY, SITE_SETTINGS_QUERY, FOOTER_SETTINGS_QUERY } from '@/sanity/lib/queries'
+import { generatePageMetadata } from '@/lib/metadata'
+
+// Dynamic metadata from CMS
+export async function generateMetadata(): Promise<Metadata> {
+  const homepage = await sanityFetch<any>(HOMEPAGE_SETTINGS_QUERY)
+  return generatePageMetadata({
+    title: homepage?.seo?.metaTitle || undefined,
+    description: homepage?.heroSubheadline,
+    seo: homepage?.seo,
+    path: '/',
+  })
+}
 
 export default async function HomePage() {
   const isDraft = (await draftMode()).isEnabled

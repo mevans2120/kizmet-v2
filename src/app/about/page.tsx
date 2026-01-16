@@ -6,10 +6,17 @@ import { VisualEditing } from 'next-sanity/visual-editing'
 import AboutContent from '@/page-content/About'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { ABOUT_PAGE_QUERY, SITE_SETTINGS_QUERY, FOOTER_SETTINGS_QUERY } from '@/sanity/lib/queries'
+import { generatePageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'About',
-  description: 'Meet Destiny, a third-generation healer bringing family wisdom and modern therapeutic techniques to Kizmet Massage & Wellness.',
+// Dynamic metadata from CMS
+export async function generateMetadata(): Promise<Metadata> {
+  const aboutData = await sanityFetch<any>(ABOUT_PAGE_QUERY)
+  return generatePageMetadata({
+    title: 'About',
+    description: aboutData?.intro || 'Meet Destiny, a third-generation healer bringing family wisdom and modern therapeutic techniques to Kizmet Massage.',
+    seo: aboutData?.seo,
+    path: '/about',
+  })
 }
 
 export default async function AboutPage() {

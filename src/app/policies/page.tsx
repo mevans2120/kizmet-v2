@@ -6,10 +6,17 @@ import { VisualEditing } from 'next-sanity/visual-editing'
 import PoliciesContent from '@/page-content/Policies'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { POLICIES_PAGE_QUERY, SITE_SETTINGS_QUERY, FOOTER_SETTINGS_QUERY } from '@/sanity/lib/queries'
+import { generatePageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Policies',
-  description: 'Review our booking, cancellation, and session policies for Kizmet Massage & Wellness.',
+// Dynamic metadata from CMS
+export async function generateMetadata(): Promise<Metadata> {
+  const policiesData = await sanityFetch<any>(POLICIES_PAGE_QUERY)
+  return generatePageMetadata({
+    title: 'What to Know',
+    description: policiesData?.pageDescription || 'Review our booking, cancellation, and session policies for Kizmet Massage.',
+    seo: policiesData?.seo,
+    path: '/policies',
+  })
 }
 
 export default async function PoliciesPage() {

@@ -14,7 +14,7 @@ const About = () => {
               Healing Through Touch
             </h2>
             <p className="font-body text-muted-foreground leading-relaxed mb-6">
-              At Kizmet Massage & Wellness, I believe in the profound connection 
+              At Kizmet Massage, I believe in the profound connection 
               between body and mind. I combine traditional techniques with modern 
               approaches to create personalized treatments that address your unique needs.
             </p>
