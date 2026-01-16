@@ -65,10 +65,10 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="md:hidden h-14 w-14 [&_svg]:size-10"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {isOpen ? <X /> : <Menu />}
           </Button>
         </div>
 

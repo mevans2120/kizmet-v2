@@ -97,7 +97,7 @@ const ServicesPreview = ({ services, data }: ServicesPreviewProps) => {
 
         <div className="text-center">
           <Button variant="heroOutline" size="lg" asChild>
-            <Link href="/services">View All Services</Link>
+            <Link href="/services">Learn More</Link>
           </Button>
         </div>
       </div>
