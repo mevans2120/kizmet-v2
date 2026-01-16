@@ -30,7 +30,7 @@ const Hero = ({ data }: HeroProps) => {
     : heroImage.src;
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[500px] h-[85vh] max-h-[900px] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-top bg-no-repeat bg-[length:auto_130%] md:bg-[length:135%]"
