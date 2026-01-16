@@ -23,7 +23,7 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
   const navLinks = [
     { path: "/about", label: "About" },
     { path: "/services", label: "Services" },
-    { path: "/policies", label: "Policies" },
+    { path: "/policies", label: "What to Know" },
     { path: "/book", label: "Book Now" },
   ];
 

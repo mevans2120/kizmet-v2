@@ -53,7 +53,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
                 Book Appointment
               </Link>
               <Link href="/policies" className="font-body text-base text-muted-foreground hover:text-foreground transition-colors">
-                Policies
+                What to Know
               </Link>
             </div>
           </div>
