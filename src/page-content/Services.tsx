@@ -11,6 +11,9 @@ interface Service {
   duration: string;
   price: string;
   description: string;
+  extendedDescription?: string;
+  techniques?: string[];
+  bestFor?: string[];
   bookingUrl?: string;
 }
 
@@ -26,19 +29,28 @@ const fallbackServices: Service[] = [
     name: "30 Minute Session",
     duration: "30 min",
     price: "$60",
-    description: "A focused session perfect for targeting a specific area of concern. Great for a quick tune-up or when you're short on time.",
+    description: "Targeted work on a single area of concern. I use focused pressure and trigger point techniques to address specific tension in the neck, shoulders, or lower back.",
+    extendedDescription: "This session works well for maintenance between longer appointments, addressing a flare-up, or when your schedule is tight. We'll spend the full time on your priority area rather than spreading attention thin.",
+    techniques: ["Trigger point therapy", "Focused deep tissue", "Myofascial release"],
+    bestFor: ["Desk workers with neck tension", "Runners with tight calves", "Maintenance between sessions"],
   },
   {
     name: "60 Minute Session",
     duration: "60 min",
     price: "$100",
-    description: "The most popular choice. Enough time for a full-body massage or to thoroughly address multiple areas of tension and discomfort.",
+    description: "A complete full-body treatment combining Swedish strokes, kneading, and deeper pressure where needed. This is my most popular session—enough time to address your back, neck, shoulders, and legs while promoting full-body relaxation.",
+    extendedDescription: "I'll check in about pressure throughout and adjust my approach based on what your body needs that day. Whether you want relaxation or more therapeutic work, an hour gives us the flexibility to do both.",
+    techniques: ["Swedish massage", "Deep tissue", "Kneading", "Long flowing strokes"],
+    bestFor: ["Regular wellness maintenance", "Stress relief", "First-time clients", "General tension"],
   },
   {
     name: "90 Minute Session",
     duration: "90 min",
     price: "$145",
-    description: "The ultimate relaxation experience. Allows time for comprehensive full-body work with extra attention to problem areas.",
+    description: "An unhurried, comprehensive session with time for detailed work on problem areas. The extra thirty minutes allows me to thoroughly address chronic tension without rushing, incorporating hot towel application and optional stretching or aromatherapy.",
+    extendedDescription: "This is my most thorough treatment—ideal when you're carrying significant tension, recovering from an event, or simply want to fully disconnect. We can spend extra time on stubborn areas while still providing complete full-body coverage.",
+    techniques: ["Combined modalities", "Hot towels", "Assisted stretching", "Aromatherapy (optional)"],
+    bestFor: ["Chronic pain", "Athletes", "High-stress periods", "Complete restoration", "Treating yourself"],
   },
 ];
 
@@ -95,6 +107,39 @@ const Services = ({ services, siteSettings, footerSettings }: ServicesProps) => 
                       <p className="font-body text-muted-foreground text-base leading-relaxed">
                         {service.description}
                       </p>
+                      {service.extendedDescription && (
+                        <p className="font-body text-muted-foreground text-base leading-relaxed mt-3">
+                          {service.extendedDescription}
+                        </p>
+                      )}
+                      {service.techniques && service.techniques.length > 0 && (
+                        <div className="mt-4">
+                          <p className="text-xs uppercase tracking-caps text-foreground font-medium mb-2">
+                            Techniques
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {service.techniques.map((t) => (
+                              <span key={t} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      {service.bestFor && service.bestFor.length > 0 && (
+                        <div className="mt-3">
+                          <p className="text-xs uppercase tracking-caps text-foreground font-medium mb-2">
+                            Best For
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {service.bestFor.map((b) => (
+                              <span key={b} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
+                                {b}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </CardContent>
                     {service.bookingUrl && (
                       <div className="px-6 pb-6 mt-auto flex justify-end">

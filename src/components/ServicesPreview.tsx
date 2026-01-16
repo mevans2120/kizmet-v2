@@ -8,6 +8,9 @@ interface Service {
   duration: string;
   price: string;
   description: string;
+  extendedDescription?: string;
+  techniques?: string[];
+  bestFor?: string[];
   bookingUrl?: string;
 }
 
@@ -22,22 +25,22 @@ interface ServicesPreviewProps {
 // Fallback services if Sanity data not available
 const fallbackServices: Service[] = [
   {
-    name: "Relaxation Massage",
-    duration: "30 / 60 / 90 min",
-    price: "$60 / $100 / $145",
-    description: "Classic relaxation massage using long, flowing strokes to ease tension and promote circulation."
+    name: "30 Minute Session",
+    duration: "30 min",
+    price: "$60",
+    description: "Targeted work on a single area of concern. I use focused pressure and trigger point techniques to address specific tension in the neck, shoulders, or lower back."
   },
   {
-    name: "Deep Tissue",
-    duration: "30 / 60 / 90 min",
-    price: "$60 / $100 / $145",
-    description: "Targeted pressure to release chronic muscle tension and knots in deeper layers of tissue."
+    name: "60 Minute Session",
+    duration: "60 min",
+    price: "$100",
+    description: "A complete full-body treatment combining Swedish strokes, kneading, and deeper pressure where needed. This is my most popular session."
   },
   {
-    name: "Therapeutic Massage",
-    duration: "30 / 60 / 90 min",
-    price: "$60 / $100 / $145",
-    description: "Customized treatment focused on your specific areas of concern for relief and recovery."
+    name: "90 Minute Session",
+    duration: "90 min",
+    price: "$145",
+    description: "An unhurried, comprehensive session with time for detailed work on problem areas, incorporating hot towel application and optional aromatherapy."
   }
 ];
 

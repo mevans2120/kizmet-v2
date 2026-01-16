@@ -37,6 +37,27 @@ export default defineType({
       rows: 3,
     }),
     defineField({
+      name: 'extendedDescription',
+      title: 'Extended Description',
+      type: 'text',
+      rows: 4,
+      description: 'Additional detail paragraph (optional)',
+    }),
+    defineField({
+      name: 'techniques',
+      title: 'Techniques',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'e.g., "Trigger point therapy", "Deep tissue"',
+    }),
+    defineField({
+      name: 'bestFor',
+      title: 'Best For',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description: 'e.g., "Desk workers", "Athletes", "Chronic pain"',
+    }),
+    defineField({
       name: 'featured',
       title: 'Featured',
       type: 'boolean',
