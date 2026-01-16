@@ -4,6 +4,7 @@ import './globals.css'
 import { Providers } from './providers'
 import { generateSiteMetadata, getSiteSettings } from '@/lib/metadata'
 import { StructuredData, generateSiteSchemaGraph } from '@/lib/structured-data'
+import { Analytics } from '@vercel/analytics/next'
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -42,6 +43,7 @@ export default async function RootLayout({
       </head>
       <body className="font-body antialiased">
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   )
