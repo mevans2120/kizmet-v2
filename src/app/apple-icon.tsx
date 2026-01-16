@@ -9,11 +9,12 @@ export const size = {
 
 export const contentType = 'image/png'
 
+// Fraunces font from jsDelivr CDN (fontsource)
+const fontUrl = 'https://cdn.jsdelivr.net/fontsource/fonts/fraunces@latest/latin-700-normal.ttf'
+
 export default async function AppleIcon() {
   // Load Fraunces font (Bold weight)
-  const frauncesBold = await fetch(
-    'https://fonts.gstatic.com/s/fraunces/v31/6NUu8FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0K7iN7hzFUPJH58nib1435.ttf'
-  ).then((res) => res.arrayBuffer())
+  const frauncesBold = await fetch(fontUrl).then((res) => res.arrayBuffer())
 
   return new ImageResponse(
     (

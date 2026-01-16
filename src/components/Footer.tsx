@@ -29,9 +29,9 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="font-heading text-3xl mb-4 flex flex-col">
-              <span className="text-foreground" style={{ fontWeight: 500 }}><span className="text-4xl">K</span>izmet</span>
-{/* -mt-4 is intentional: K and M should touch vertically */}
-              <span className="text-primary -mt-4" style={{ fontWeight: 400 }}><span className="text-4xl">M</span>assage</span>
+              <span className="text-logo-lg text-foreground font-medium"><span className="text-logo-initial-lg">K</span>izmet</span>
+              {/* -mt-4 is intentional: K and M should touch vertically */}
+              <span className="text-logo-lg text-primary -mt-4"><span className="text-logo-initial-lg">M</span>assage</span>
             </h3>
             <p className="font-body text-muted-foreground text-base leading-relaxed">
               {brandDescription}

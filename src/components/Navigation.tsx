@@ -34,18 +34,12 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex flex-col">
-            <span
-              className="font-heading text-2xl text-foreground"
-              style={{ fontWeight: 500, letterSpacing: "-0.01em" }}
-            >
-              <span className="text-3xl">K</span>izmet
+            <span className="text-logo text-foreground font-medium">
+              <span className="text-logo-initial">K</span>izmet
             </span>
             {/* -mt-4 is intentional: K and M should touch vertically */}
-            <span
-              className="font-heading text-2xl text-primary -mt-4"
-              style={{ fontWeight: 400, letterSpacing: "-0.01em" }}
-            >
-              <span className="text-3xl">M</span>assage
+            <span className="text-logo text-primary -mt-4">
+              <span className="text-logo-initial">M</span>assage
             </span>
           </Link>
 

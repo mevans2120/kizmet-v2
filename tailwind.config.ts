@@ -17,6 +17,11 @@ export default {
         heading: ['var(--font-fraunces)', 'Fraunces', 'serif'],
         body: ['var(--font-jakarta)', 'Plus Jakarta Sans', 'sans-serif'],
       },
+      letterSpacing: {
+        'tighter': '-0.02em',  // Hero headlines
+        'tight': '-0.01em',    // Logo, standard headings
+        'caps': '0.2em',       // Eyebrow/uppercase text
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

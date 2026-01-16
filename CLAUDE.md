@@ -50,6 +50,27 @@ npm run lint         # Run ESLint
 
 **Class Merging:** Use `cn()` from `@/lib/utils` for conditional Tailwind classes.
 
+## Typography
+
+**Reference:** See [Typography Guide](docs/design/TYPOGRAPHY.md) for the complete type scale.
+
+**Rules:**
+- Use utility classes from globals.css (e.g., `text-page-title`, `text-section-title`, `text-eyebrow`)
+- Never use inline `style={{ fontWeight }}` - use `font-normal` (400) or `font-medium` (500)
+- Never use inline `style={{ letterSpacing }}` - use `tracking-tight`, `tracking-tighter`, or `tracking-caps`
+- Headings: Always use `font-heading` (Fraunces)
+- Body: Always use `font-body` (Plus Jakarta Sans)
+
+**Quick Reference:**
+| Element | Class |
+|---------|-------|
+| Page h1 | `text-page-title` |
+| Section h2 | `text-section-title` |
+| Card title | `text-card-title` |
+| Intro paragraph | `text-body-lg text-foreground/80` |
+| Eyebrow label | `text-eyebrow` |
+| Logo text | `text-logo` + `text-logo-initial` for K/M |
+
 ## Sanity CMS
 
 Sanity is fully integrated:
