@@ -9,6 +9,8 @@ interface HeroProps {
     heroSubheadline?: string;
     heroCta?: string;
     heroCtaLink?: string;
+    heroSecondaryCta?: string;
+    heroSecondaryCtaLink?: string;
     heroImage?: any;
   };
 }
@@ -19,6 +21,8 @@ const Hero = ({ data }: HeroProps) => {
   const subheadline = data?.heroSubheadline || "Destiny Pugh offers therapeutic massage in Port Angeles. Reconnect with your body and find your balance.";
   const ctaText = data?.heroCta || "Book Your Session";
   const ctaLink = data?.heroCtaLink || "/book";
+  const secondaryCtaText = data?.heroSecondaryCta || "View Services";
+  const secondaryCtaLink = data?.heroSecondaryCtaLink || "/services";
 
   // Use Sanity image if available (with crop/hotspot respected), otherwise use local asset
   const backgroundImage = data?.heroImage
@@ -62,7 +66,7 @@ const Hero = ({ data }: HeroProps) => {
               <Link href={ctaLink}>{ctaText}</Link>
             </Button>
             <Button variant="heroOutline" size="xl" asChild>
-              <Link href="/services">View Services</Link>
+              <Link href={secondaryCtaLink}>{secondaryCtaText}</Link>
             </Button>
           </div>
         </div>

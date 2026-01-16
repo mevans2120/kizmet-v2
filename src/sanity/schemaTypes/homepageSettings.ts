@@ -49,6 +49,22 @@ export default defineType({
       description: 'URL for the main call-to-action button',
       initialValue: '/book',
     }),
+    defineField({
+      name: 'heroSecondaryCta',
+      title: 'Secondary Button Text',
+      type: 'string',
+      fieldset: 'hero',
+      description: 'Text for the secondary button',
+      initialValue: 'View Services',
+    }),
+    defineField({
+      name: 'heroSecondaryCtaLink',
+      title: 'Secondary Button Link',
+      type: 'string',
+      fieldset: 'hero',
+      description: 'URL for the secondary button',
+      initialValue: '/services',
+    }),
 
     // Services Preview
     defineField({

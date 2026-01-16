@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Card Concept 3: Artisanal Heritage - Kizmet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage: #5a725c;
+      --sage-dark: #4a5f4c;
+      --sage-light: #7a927c;
+      --cream: #faf8f5;
+      --cream-warm: #f5efe6;
+      --cream-dark: #e8e0d4;
+      --terracotta: #c4785a;
+      --terracotta-light: #d4927a;
+      --charcoal: #2d2d2d;
+      --brown: #6b5344;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, #e8e4df 0%, #d4cfc8 100%);
+      min-height: 100vh;
+      padding: 60px 40px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Fraunces', serif;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--charcoal);
+      font-size: 28px;
+      font-weight: 400;
+    }
+
+    .concept-description {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 50px;
+      color: #555;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .card-container {
+      display: flex;
+      gap: 60px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .card-wrapper {
+      text-align: center;
+    }
+
+    .card-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #888;
+      margin-bottom: 16px;
+    }
+
+    /* Standard business card: 3.5" x 2" */
+    .card {
+      width: 350px;
+      height: 200px;
+      border-radius: 4px;
+      box-shadow:
+        0 4px 6px rgba(0,0,0,0.07),
+        0 10px 40px rgba(0,0,0,0.1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* FRONT SIDE - Warm, textured, story-focused */
+    .card-front {
+      background: var(--cream-warm);
+      /* Subtle paper texture */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      display: flex;
+      position: relative;
+      padding: 0;
+    }
+
+    /* Organic shape border on left */
+    .organic-border {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 8px;
+      background: linear-gradient(
+        180deg,
+        var(--terracotta) 0%,
+        var(--terracotta-light) 30%,
+        var(--sage-light) 70%,
+        var(--sage) 100%
+      );
+    }
+
+    .front-content {
+      padding: 22px 25px 22px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .heritage-badge {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--terracotta);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* Stacked Logo Treatment */
+    .logo-stack {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo-line {
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      font-size: 24px;
+    }
+
+    .logo-line-1 {
+      color: var(--charcoal);
+    }
+
+    .logo-line-2 {
+      color: var(--sage);
+      margin-top: -9px;
+      font-weight: 400;
+    }
+
+    .logo-line .initial {
+      font-size: 30px;
+    }
+
+    .owner-section {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--cream-dark);
+    }
+
+    .owner-name {
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+
+    .owner-title {
+      font-size: 10px;
+      color: var(--sage);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* Decorative circles symbol */
+    .healing-symbol {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.08;
+      width: 70px;
+      height: 70px;
+    }
+
+    /* BACK SIDE */
+    .card-back {
+      background: var(--sage-dark);
+      /* Subtle texture */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+      display: flex;
+      padding: 22px 25px;
+      position: relative;
+    }
+
+    /* Cream strip on right */
+    .back-strip {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 90px;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 15px 10px;
+    }
+
+    /* Vertical stacked logo for strip */
+    .logo-stack-vertical {
+      display: flex;
+      flex-direction: column;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      line-height: 1;
+    }
+
+    .logo-stack-vertical .logo-line {
+      font-size: 11px;
+      writing-mode: vertical-rl;
+    }
+
+    .logo-stack-vertical .logo-line .initial {
+      font-size: 14px;
+    }
+
+    .logo-stack-vertical .logo-line-1 {
+      color: var(--charcoal);
+    }
+
+    .logo-stack-vertical .logo-line-2 {
+      color: var(--sage);
+      margin-top: 0;
+      margin-right: -4px;
+    }
+
+    .back-content {
+      flex: 1;
+      padding-right: 100px;
+    }
+
+    .contact-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--cream);
+    }
+
+    .contact-icon {
+      width: 13px;
+      height: 13px;
+      color: var(--terracotta-light);
+      flex-shrink: 0;
+    }
+
+    .contact-item a {
+      color: var(--cream);
+      text-decoration: none;
+    }
+
+    .contact-item a:hover {
+      text-decoration: underline;
+    }
+
+    .address-section {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(250, 248, 245, 0.15);
+    }
+
+    .address-line {
+      font-size: 10px;
+      color: rgba(250, 248, 245, 0.8);
+      line-height: 1.5;
+    }
+
+    /* Annotations */
+    .annotations {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 30px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .annotations h3 {
+      font-size: 16px;
+      color: var(--sage);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .annotation-list {
+      list-style: none;
+    }
+
+    .annotation-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .annotation-list li:last-child {
+      border-bottom: none;
+    }
+
+    .annotation-list strong {
+      color: var(--charcoal);
+    }
+  </style>
+</head>
+<body>
+  <h1 class="page-title">Concept 3: Artisanal Heritage</h1>
+  <p class="concept-description">
+    A warm, story-driven design that emphasizes Destiny's legacy as a third-generation healer.
+    Organic textures and earthy tones create a handcrafted, authentic feel.
+  </p>
+
+  <div class="card-container">
+    <!-- FRONT -->
+    <div class="card-wrapper">
+      <div class="card-label">Front</div>
+      <div class="card card-front">
+        <div class="organic-border"></div>
+
+        <!-- Healing circles symbol -->
+        <svg class="healing-symbol" viewBox="0 0 100 100" fill="var(--sage-dark)">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
+          <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="50" cy="50" r="8" fill="currentColor"/>
+        </svg>
+
+        <div class="front-content">
+          <div class="heritage-badge">Third Generation Healer</div>
+
+          <div class="logo-stack">
+            <span class="logo-line logo-line-1"><span class="initial">K</span>izmet</span>
+            <span class="logo-line logo-line-2"><span class="initial">M</span>assage</span>
+          </div>
+
+          <div class="owner-section">
+            <div class="owner-name">Destiny</div>
+            <div class="owner-title">Licensed Massage Therapist</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK -->
+    <div class="card-wrapper">
+      <div class="card-label">Back</div>
+      <div class="card card-back">
+        <div class="back-content">
+          <div class="contact-section">
+            <div class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              <span>(555) 123-4567</span>
+            </div>
+
+            <div class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <a href="mailto:destiny@kizmetwellness.com">destiny@kizmetwellness.com</a>
+            </div>
+
+            <div class="contact-item">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+              <a href="https://kizmetwellness.com">kizmetwellness.com</a>
+            </div>
+          </div>
+
+          <div class="address-section">
+            <div class="address-line">
+              123 Serenity Lane, Suite 4<br>
+              Austin, TX 78701
+            </div>
+          </div>
+        </div>
+
+        <div class="back-strip">
+          <div class="logo-stack-vertical">
+            <span class="logo-line logo-line-1"><span class="initial">K</span>izmet</span>
+            <span class="logo-line logo-line-2"><span class="initial">M</span>assage</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="annotations">
+    <h3>Design Rationale</h3>
+    <ul class="annotation-list">
+      <li><strong>Stacked logo treatment:</strong> The "Kizmet / Massage" wordmark with oversized K and M matches the website exactly. On the back's cream strip, it's rotated vertically for a distinctive touch while maintaining brand consistency.</li>
+      <li><strong>"Third Generation Healer" badge:</strong> Immediately communicates the unique story and heritage. This differentiator is the first thing people see, setting Destiny apart from other massage therapists.</li>
+      <li><strong>Gradient organic border:</strong> Terracotta-to-sage transition represents the passing of healing knowledge through generations. Feels handmade and intentional, not corporate.</li>
+      <li><strong>Paper texture overlay:</strong> Subtle noise pattern adds tactile quality, suggesting the card should feel special in your hands. Consider printing on textured stock.</li>
+      <li><strong>Concentric circles motif:</strong> Symbolizes healing energy radiating outward, or the layers of holistic wellness. Understated watermark that adds depth without distraction.</li>
+      <li><strong>Dark sage back:</strong> Inverts the color scheme, creating visual interest between front and back. The cream strip with vertical logo is a memorable design choice.</li>
+      <li><strong>Warm cream (not pure white):</strong> The slightly warmer tone (#f5efe6) feels more organic and aged, like well-loved paper. Supports the heritage narrative.</li>
+      <li><strong>Terracotta icons on dark background:</strong> The warm accent color ensures icons are visible against sage while maintaining the earthy palette.</li>
+    </ul>
+  </div>
+</body>
+</html>
