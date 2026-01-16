@@ -54,7 +54,7 @@ const ServicesPreview = ({ services, data }: ServicesPreviewProps) => {
           <h2 className="font-heading text-5xl md:text-6xl font-medium text-foreground mb-4">
             {heading}
           </h2>
-          <p className="font-body text-muted-foreground max-w-xl mx-auto">
+          <p className="font-body text-muted-foreground max-w-xl mx-auto text-base">
             {description}
           </p>
         </div>

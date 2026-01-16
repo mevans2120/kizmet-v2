@@ -17,6 +17,10 @@ export default {
         heading: ['var(--font-fraunces)', 'Fraunces', 'serif'],
         body: ['var(--font-jakarta)', 'Plus Jakarta Sans', 'sans-serif'],
       },
+      fontSize: {
+        'base': ['1.125rem', { lineHeight: '1.75rem' }],  // 18px base body text
+        'xl': ['1.375rem', { lineHeight: '1.875rem' }],   // 22px subheadlines
+      },
       letterSpacing: {
         'tighter': '-0.02em',  // Hero headlines
         'tight': '-0.01em',    // Logo, standard headings

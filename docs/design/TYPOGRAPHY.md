@@ -78,7 +78,7 @@
 |------|----------|--------|-----|-------|
 | xs | `text-xs` | 12px | 0.75 | Copyright, fine print |
 | sm | `text-sm` | 14px | 0.875 | Labels, meta text |
-| base | `text-base` | 16px | 1 | Body paragraphs |
+| base | `text-base` | 18px | 1.125 | Body paragraphs |
 | lg | `text-lg` | 18px | 1.125 | Large buttons |
 | xl | `text-xl` | 20px | 1.25 | Intro text, subheadlines |
 | 2xl | `text-2xl` | 24px | 1.5 | Nav logo, small titles |
