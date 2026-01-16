@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favicon Concepts - Kizmet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage: #5a725c;
+      --sage-light: #7a927c;
+      --cream: #faf8f5;
+      --cream-dark: #f0ebe4;
+      --terracotta: #c4785a;
+      --charcoal: #2d2d2d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background: linear-gradient(135deg, #e8e4df 0%, #d4cfc8 100%);
+      min-height: 100vh;
+      padding: 60px 40px;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Fraunces', serif;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--charcoal);
+      font-size: 28px;
+      font-weight: 400;
+    }
+
+    .concept-description {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 50px;
+      color: #555;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .concept-section {
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .concept-title {
+      font-size: 20px;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .concept-subtitle {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 30px;
+    }
+
+    .favicon-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 30px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .favicon-preview {
+      text-align: center;
+    }
+
+    .favicon-label {
+      font-size: 11px;
+      color: #999;
+      margin-bottom: 8px;
+    }
+
+    .favicon-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5f5f5;
+      border-radius: 4px;
+      padding: 10px;
+    }
+
+    /* Browser mockup for context */
+    .browser-mockup {
+      background: #e8e8e8;
+      border-radius: 8px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      max-width: 400px;
+    }
+
+    .browser-tab {
+      background: white;
+      border-radius: 6px 6px 0 0;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #555;
+    }
+
+    .rationale {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .rationale h4 {
+      font-size: 13px;
+      color: var(--sage);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .rationale p {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ========================================
+       CONCEPT 1: Stacked K/M (Logo Match)
+       ======================================== */
+    .favicon-stacked {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      line-height: 0.75;
+      letter-spacing: -0.02em;
+    }
+
+    .favicon-stacked .letter-k {
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+
+    .favicon-stacked .letter-m {
+      color: var(--sage);
+      font-weight: 400;
+    }
+
+    /* Size variations */
+    .favicon-stacked.size-128 { font-size: 56px; }
+    .favicon-stacked.size-64 { font-size: 28px; }
+    .favicon-stacked.size-32 { font-size: 14px; }
+    .favicon-stacked.size-16 { font-size: 7px; }
+
+    /* ========================================
+       CONCEPT 2: Contained Badge
+       ======================================== */
+    .favicon-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      line-height: 0.7;
+      letter-spacing: -0.02em;
+      background: var(--sage);
+      border-radius: 15%;
+    }
+
+    .favicon-badge .letter-k {
+      color: var(--cream);
+      font-weight: 500;
+    }
+
+    .favicon-badge .letter-m {
+      color: rgba(250, 248, 245, 0.7);
+      font-weight: 400;
+    }
+
+    .favicon-badge.size-128 {
+      width: 128px; height: 128px; font-size: 52px;
+    }
+    .favicon-badge.size-64 {
+      width: 64px; height: 64px; font-size: 26px;
+    }
+    .favicon-badge.size-32 {
+      width: 32px; height: 32px; font-size: 13px;
+    }
+    .favicon-badge.size-16 {
+      width: 16px; height: 16px; font-size: 6.5px;
+    }
+
+    /* ========================================
+       CONCEPT 3: Single K with Color Split
+       ======================================== */
+    .favicon-split {
+      position: relative;
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .favicon-split .letter {
+      position: relative;
+      background: linear-gradient(180deg, var(--charcoal) 50%, var(--sage) 50%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .favicon-split.size-128 { width: 128px; height: 128px; font-size: 100px; }
+    .favicon-split.size-64 { width: 64px; height: 64px; font-size: 50px; }
+    .favicon-split.size-32 { width: 32px; height: 32px; font-size: 25px; }
+    .favicon-split.size-16 { width: 16px; height: 16px; font-size: 12px; }
+
+    /* ========================================
+       CONCEPT 4: Circle with Initials
+       ======================================== */
+    .favicon-circle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      line-height: 0.7;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, #f0ebe4 0%, #e4dcd2 50%, #ddd4c8 100%);
+      border-radius: 50%;
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.4), inset 0 -1px 2px rgba(0,0,0,0.05);
+    }
+
+    .favicon-circle .letter-k {
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+
+    .favicon-circle .letter-m {
+      color: var(--sage);
+      font-weight: 400;
+    }
+
+    .favicon-circle.size-128 {
+      width: 128px; height: 128px; font-size: 48px;
+    }
+    .favicon-circle.size-64 {
+      width: 64px; height: 64px; font-size: 24px;
+    }
+    .favicon-circle.size-32 {
+      width: 32px; height: 32px; font-size: 12px;
+    }
+    .favicon-circle.size-16 {
+      width: 16px; height: 16px; font-size: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="page-title">Favicon Concepts</h1>
+  <p class="concept-description">
+    Favicon designs using the Kizmet K and M. Shown at multiple sizes to ensure
+    legibility from 128px (app icons) down to 16px (browser tabs).
+  </p>
+
+  <!-- CONCEPT 1: Stacked K/M -->
+  <div class="concept-section">
+    <h2 class="concept-title">Concept 1: Stacked K/M (Logo Match)</h2>
+    <p class="concept-subtitle">Exact replication of the website logo treatment</p>
+
+    <div class="favicon-row">
+      <div class="favicon-preview">
+        <div class="favicon-label">128px</div>
+        <div class="favicon-container">
+          <div class="favicon-stacked size-128">
+            <span class="letter-k">K</span>
+            <span class="letter-m">M</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="favicon-preview">
+        <div class="favicon-label">64px</div>
+        <div class="favicon-container">
+          <div class="favicon-stacked size-64">
+            <span class="letter-k">K</span>
+            <span class="letter-m">M</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="favicon-preview">
+        <div class="favicon-label">32px</div>
+        <div class="favicon-container">
+          <div class="favicon-stacked size-32">
+            <span class="letter-k">K</span>
+            <span class="letter-m">M</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="favicon-preview">
+        <div class="favicon-label">16px</div>
+        <div class="favicon-container">
+          <div class="favicon-stacked size-16">
+            <span class="letter-k">K</span>
+            <span class="letter-m">M</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="browser-mockup">
+      <div class="browser-tab">
+        <div class="favicon-stacked" style="font-size: 7px; line-height: 0.75;">
+          <span class="letter-k">K</span>
+          <span class="letter-m">M</span>
+        </div>
+        Kizmet Massage & Wellness
+      </div>
+    </div>
+
+    <div class="rationale">
+      <h4>Design Rationale</h4>
+      <p>
+        Direct translation of the website logo. The stacked K (charcoal) over M (sage)
+        maintains perfect brand consistency. Works well at larger sizes but may lose
+        detail at 16px. Best for users who prioritize exact logo matching.
+      </p>
+    </div>
+  </div>
+
+  <!-- CONCEPT 2: Contained Badge -->
+  <div class="concept-section">
+    <h2 class="concept-title">Concept 2: Sage Badge</h2>
+    <p class="concept-subtitle">Stacked K/M on sage background for better visibility</p>
+
+    <div class="favicon-row">
+      <div class="favicon-preview">
+        <div class="favicon-label">128px</div>
+        <div class="favicon-container">
+          <div class="favicon-badge size-128">
+            <span class="letter-k">K</span>
+            <span class="letter-m">M</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="favicon-preview">
+        <div class="favicon-label">64px</div>
+        <div class="favicon-container">
+          <div class="favicon-badge size-64">
+            <span class="letter-k">K</span>
+            <span class="letter-m">M</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="favicon-preview">
+        <div class="favicon-label">32px</div>
+        <div class="favicon-container">
+          <div class="favicon-badge size-32">
+            <span class="letter-k">K</span>
+            <span class="letter-m">M</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="favicon-preview">
+        <div class="favicon-label">16px</div>
+        <div class="favicon-container">
+          <div class="favicon-badge size-16">
+            <span class="letter-k">K</span>
+            <span class="letter-m">M</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="browser-mockup">
+      <div class="browser-tab">
+        <div class="favicon-badge" style="width: 16px; height: 16px; font-size: 6.5px; line-height: 0.7;">
+          <span class="letter-k">K</span>
+          <span class="letter-m">M</span>
+        </div>
+        Kizmet Massage & Wellness
+      </div>
+    </div>
+
+    <div class="rationale">
+      <h4>Design Rationale</h4>
+      <p>
+        The sage background creates a contained "badge" that stands out in browser tabs
+        and bookmark bars. The rounded square shape is modern and app-like. The K/M
+        treatment matches the logo but inverted for the dark background. Recommended
+        for best small-size visibility.
+      </p>
+    </div>
+  </div>
+
+  <!-- CONCEPT 3: Single K Split -->
+  <div class="concept-section">
+    <h2 class="concept-title">Concept 3: Split K</h2>
+    <p class="concept-subtitle">Single letter with charcoal/sage color split</p>
+
+    <div class="favicon-row">
+      <div class="favicon-preview">
+        <div class="favicon-label">128px</div>
+        <div class="favicon-container">
+          <div class="favicon-split size-128">
+            <span class="letter">K</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="favicon-preview">
+        <div class="favicon-label">64px</div>
+        <div class="favicon-container">
+          <div class="favicon-split size-64">
+            <span class="letter">K</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="favicon-preview">
+        <div class="favicon-label">32px</div>
+        <div class="favicon-container">
+          <div class="favicon-split size-32">
+            <span class="letter">K</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="favicon-preview">
+        <div class="favicon-label">16px</div>
+        <div class="favicon-container">
+          <div class="favicon-split size-16">
+            <span class="letter">K</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="browser-mockup">
+      <div class="browser-tab">
+        <div class="favicon-split" style="width: 16px; height: 16px; font-size: 12px;">
+          <span class="letter">K</span>
+        </div>
+        Kizmet Massage & Wellness
+      </div>
+    </div>
+
+    <div class="rationale">
+      <h4>Design Rationale</h4>
+      <p>
+        A simplified approach using just the K with a horizontal color split (charcoal
+        top, sage bottom) that references the stacked logo. Cleaner at small sizes
+        since there's only one letter. The split subtly suggests the two-tone brand
+        without requiring both letters.
+      </p>
+    </div>
+  </div>
+
+  <!-- CONCEPT 4: Circle Badge -->
+  <div class="concept-section">
+    <h2 class="concept-title">Concept 4: Circle Monogram</h2>
+    <p class="concept-subtitle">Stacked K/M in a circular frame</p>
+
+    <div class="favicon-row">
+      <div class="favicon-preview">
+        <div class="favicon-label">128px</div>
+        <div class="favicon-container">
+          <div class="favicon-circle size-128">
+            <span class="letter-k">K</span>
+            <span class="letter-m">M</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="favicon-preview">
+        <div class="favicon-label">64px</div>
+        <div class="favicon-container">
+          <div class="favicon-circle size-64">
+            <span class="letter-k">K</span>
+            <span class="letter-m">M</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="favicon-preview">
+        <div class="favicon-label">32px</div>
+        <div class="favicon-container">
+          <div class="favicon-circle size-32">
+            <span class="letter-k">K</span>
+            <span class="letter-m">M</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="favicon-preview">
+        <div class="favicon-label">16px</div>
+        <div class="favicon-container">
+          <div class="favicon-circle size-16">
+            <span class="letter-k">K</span>
+            <span class="letter-m">M</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="browser-mockup">
+      <div class="browser-tab">
+        <div class="favicon-circle" style="width: 16px; height: 16px; font-size: 6px;">
+          <span class="letter-k">K</span>
+          <span class="letter-m">M</span>
+        </div>
+        Kizmet Massage & Wellness
+      </div>
+    </div>
+
+    <div class="rationale">
+      <h4>Design Rationale</h4>
+      <p>
+        A softer, more organic approach with the circular frame. The darker sand gradient
+        (#f0ebe4 → #ddd4c8) feels warm and wellness-focused with subtle depth. The circle
+        shape is classic and timeless. The subtle inner shadow adds dimension without
+        relying on a border that could get too thin at small sizes.
+      </p>
+    </div>
+  </div>
+
+  <!-- Recommendation -->
+  <div class="concept-section" style="background: var(--cream);">
+    <h2 class="concept-title">Recommendation</h2>
+    <p style="font-size: 14px; color: #555; line-height: 1.7;">
+      <strong>For best results at all sizes:</strong> Concept 2 (Sage Badge) provides the best
+      visibility in browser tabs while maintaining brand recognition. The contained shape
+      creates a clear, recognizable mark even at 16px.
+      <br><br>
+      <strong>For exact logo match:</strong> Concept 1 (Stacked K/M) is the direct translation
+      of the website logo, though it may be harder to read at very small sizes.
+      <br><br>
+      <strong>For simplicity:</strong> Concept 3 (Split K) offers the cleanest small-size
+      rendering with a single letter that still references the brand's two-tone identity.
+    </p>
+  </div>
+</body>
+</html>

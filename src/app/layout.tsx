@@ -22,6 +22,10 @@ export const metadata: Metadata = {
     template: '%s | Kizmet Massage & Wellness',
   },
   description: 'Professional therapeutic massage services in Port Angeles, WA. Book your 30, 60, or 90-minute session today.',
+  icons: {
+    icon: '/icon',
+    apple: '/apple-icon',
+  },
 }
 
 export default function RootLayout({
