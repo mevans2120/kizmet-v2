@@ -12,15 +12,6 @@ export default defineType({
     { name: 'seo', title: 'SEO Settings' },
   ],
   fields: [
-    // SEO
-    defineField({
-      name: 'seo',
-      title: 'SEO Settings',
-      type: 'seo',
-      fieldset: 'seo',
-      description: 'Custom SEO for homepage (overrides site defaults)',
-    }),
-
     // Hero Section
     defineField({
       name: 'heroImage',
@@ -171,6 +162,15 @@ export default defineType({
       fieldset: 'cta',
       description: 'URL for the call-to-action button',
       initialValue: '/book',
+    }),
+
+    // SEO
+    defineField({
+      name: 'seo',
+      title: 'SEO Settings',
+      type: 'seo',
+      fieldset: 'seo',
+      description: 'Custom SEO for homepage (overrides site defaults)',
     }),
   ],
   preview: {

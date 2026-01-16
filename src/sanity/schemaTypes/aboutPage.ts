@@ -13,15 +13,6 @@ export default defineType({
     { name: 'seo', title: 'SEO Settings' },
   ],
   fields: [
-    // SEO
-    defineField({
-      name: 'seo',
-      title: 'SEO Settings',
-      type: 'seo',
-      fieldset: 'seo',
-      description: 'Custom SEO for this page (overrides site defaults)',
-    }),
-
     // Hero Section
     defineField({
       name: 'eyebrow',
@@ -136,6 +127,15 @@ export default defineType({
       title: 'CTA Button Text',
       type: 'string',
       fieldset: 'cta',
+    }),
+
+    // SEO
+    defineField({
+      name: 'seo',
+      title: 'SEO Settings',
+      type: 'seo',
+      fieldset: 'seo',
+      description: 'Custom SEO for this page (overrides site defaults)',
     }),
   ],
   preview: {

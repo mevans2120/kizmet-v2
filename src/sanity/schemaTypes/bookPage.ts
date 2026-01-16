@@ -8,15 +8,6 @@ export default defineType({
     { name: 'seo', title: 'SEO Settings' },
   ],
   fields: [
-    // SEO
-    defineField({
-      name: 'seo',
-      title: 'SEO Settings',
-      type: 'seo',
-      fieldset: 'seo',
-      description: 'Custom SEO for this page (overrides site defaults)',
-    }),
-
     defineField({
       name: 'eyebrow',
       title: 'Eyebrow Text',
@@ -34,6 +25,15 @@ export default defineType({
       type: 'text',
       rows: 2,
       description: 'Text below the headline',
+    }),
+
+    // SEO
+    defineField({
+      name: 'seo',
+      title: 'SEO Settings',
+      type: 'seo',
+      fieldset: 'seo',
+      description: 'Custom SEO for this page (overrides site defaults)',
     }),
   ],
   preview: {
