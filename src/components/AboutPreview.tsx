@@ -5,13 +5,15 @@ import { getCroppedImageUrl } from "@/sanity/lib/image";
 
 interface AboutPreviewProps {
   data?: {
-    aboutPreviewImage?: any;
     aboutPreviewEyebrow?: string;
     aboutPreviewQuote?: string;
     aboutPreviewAttributionName?: string;
     aboutPreviewAttributionTitle?: string;
     aboutPreviewCtaText?: string;
     aboutPreviewCtaLink?: string;
+  };
+  aboutData?: {
+    heroImage?: any;
   };
 }
 
@@ -25,9 +27,9 @@ const fallbackData = {
   ctaLink: '/about',
 };
 
-const AboutPreview = ({ data }: AboutPreviewProps) => {
+const AboutPreview = ({ data, aboutData }: AboutPreviewProps) => {
   const content = {
-    image: data?.aboutPreviewImage,
+    image: aboutData?.heroImage,
     eyebrow: data?.aboutPreviewEyebrow || fallbackData.eyebrow,
     quote: data?.aboutPreviewQuote || fallbackData.quote,
     attributionName: data?.aboutPreviewAttributionName || fallbackData.attributionName,
@@ -39,7 +41,7 @@ const AboutPreview = ({ data }: AboutPreviewProps) => {
   return (
     <section className="py-20 md:py-24 bg-card">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-12 items-center">
           {/* Image */}
           <div className="relative mx-auto lg:mx-0 max-w-sm">
             <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-lg">

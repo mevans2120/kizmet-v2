@@ -99,6 +99,11 @@ export const FEATURED_SERVICES_QUERY = `*[_type == "service" && featured == true
 // Pages with SEO
 export const ABOUT_PAGE_QUERY = `*[_type == "aboutPage"][0] {
   ...,
+  heroImage {
+    asset-> { _id, url },
+    hotspot,
+    crop
+  },
   seo {
     metaTitle,
     metaDescription,
