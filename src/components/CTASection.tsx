@@ -6,6 +6,7 @@ interface CTASectionProps {
     ctaHeadline?: string;
     ctaDescription?: string;
     ctaButtonText?: string;
+    ctaButtonLink?: string;
   };
 }
 
@@ -13,6 +14,7 @@ const CTASection = ({ data }: CTASectionProps) => {
   const headline = data?.ctaHeadline || "It's Time to Feel Good";
   const description = data?.ctaDescription || "Book your first session today and experience the transformative power of therapeutic massage.";
   const buttonText = data?.ctaButtonText || "Book Your Appointment";
+  const buttonLink = data?.ctaButtonLink || "/book";
 
   return (
     <section className="py-24 bg-primary relative overflow-hidden">
@@ -33,7 +35,7 @@ const CTASection = ({ data }: CTASectionProps) => {
             className="bg-background text-foreground hover:bg-cream-100 shadow-lg"
             asChild
           >
-            <Link href="/book">{buttonText}</Link>
+            <Link href={buttonLink}>{buttonText}</Link>
           </Button>
         </div>
       </div>

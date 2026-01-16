@@ -8,6 +8,7 @@ interface HeroProps {
     heroHeadline?: string;
     heroSubheadline?: string;
     heroCta?: string;
+    heroCtaLink?: string;
     heroImage?: any;
   };
 }
@@ -17,6 +18,7 @@ const Hero = ({ data }: HeroProps) => {
   const headline = data?.heroHeadline || "Kizmet";
   const subheadline = data?.heroSubheadline || "Destiny Pugh offers therapeutic massage in Port Angeles. Reconnect with your body and find your balance.";
   const ctaText = data?.heroCta || "Book Your Session";
+  const ctaLink = data?.heroCtaLink || "/book";
 
   // Use Sanity image if available (with crop/hotspot respected), otherwise use local asset
   const backgroundImage = data?.heroImage
@@ -57,7 +59,7 @@ const Hero = ({ data }: HeroProps) => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up-delay">
             <Button variant="hero" size="xl" asChild>
-              <Link href="/book">{ctaText}</Link>
+              <Link href={ctaLink}>{ctaText}</Link>
             </Button>
             <Button variant="heroOutline" size="xl" asChild>
               <Link href="/services">View Services</Link>

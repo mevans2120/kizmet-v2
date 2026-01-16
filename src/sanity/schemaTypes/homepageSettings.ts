@@ -41,6 +41,14 @@ export default defineType({
       fieldset: 'hero',
       description: 'Text for the main call-to-action button',
     }),
+    defineField({
+      name: 'heroCtaLink',
+      title: 'CTA Button Link',
+      type: 'string',
+      fieldset: 'hero',
+      description: 'URL for the main call-to-action button',
+      initialValue: '/book',
+    }),
 
     // Services Preview
     defineField({
@@ -121,6 +129,14 @@ export default defineType({
       title: 'CTA Button Text',
       type: 'string',
       fieldset: 'cta',
+    }),
+    defineField({
+      name: 'ctaButtonLink',
+      title: 'CTA Button Link',
+      type: 'string',
+      fieldset: 'cta',
+      description: 'URL for the call-to-action button',
+      initialValue: '/book',
     }),
   ],
   preview: {
