@@ -40,6 +40,11 @@ export const FOOTER_SETTINGS_QUERY = `*[_type == "footerSettings"][0]`
 // Homepage
 export const HOMEPAGE_SETTINGS_QUERY = `*[_type == "homepageSettings"][0] {
   ...,
+  aboutPreviewImage {
+    asset-> { _id, url },
+    hotspot,
+    crop
+  },
   seo {
     metaTitle,
     metaDescription,

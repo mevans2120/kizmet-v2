@@ -1,8 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { getCroppedImageUrl } from "@/sanity/lib/image";
 
 interface AboutPreviewProps {
   data?: {
+    aboutPreviewImage?: any;
     aboutPreviewEyebrow?: string;
     aboutPreviewQuote?: string;
     aboutPreviewAttributionName?: string;
@@ -24,6 +27,7 @@ const fallbackData = {
 
 const AboutPreview = ({ data }: AboutPreviewProps) => {
   const content = {
+    image: data?.aboutPreviewImage,
     eyebrow: data?.aboutPreviewEyebrow || fallbackData.eyebrow,
     quote: data?.aboutPreviewQuote || fallbackData.quote,
     attributionName: data?.aboutPreviewAttributionName || fallbackData.attributionName,
@@ -34,35 +38,58 @@ const AboutPreview = ({ data }: AboutPreviewProps) => {
 
   return (
     <section className="py-20 md:py-24 bg-card">
-      <div className="container mx-auto px-6 text-center">
-        {/* Eyebrow */}
-        <p className="font-body text-sm uppercase tracking-[0.2em] text-primary mb-6">
-          {content.eyebrow}
-        </p>
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Image */}
+          <div className="relative mx-auto lg:mx-0 max-w-sm">
+            <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-lg">
+              {content.image ? (
+                <Image
+                  src={getCroppedImageUrl(content.image, 800, 1000)}
+                  alt={content.attributionName}
+                  fill
+                  className="object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-sage-100" />
+              )}
+            </div>
+            {/* Decorative circle */}
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-sage-100 rounded-full -z-10" />
+          </div>
 
-        {/* Quote Mark */}
-        <span className="font-heading text-8xl md:text-9xl text-terracotta-400 opacity-40 leading-none block -mb-6 md:-mb-8">
-          "
-        </span>
+          {/* Quote Content */}
+          <div className="text-center lg:text-left">
+            {/* Eyebrow */}
+            <p className="font-body text-sm uppercase tracking-[0.2em] text-primary mb-6">
+              {content.eyebrow}
+            </p>
 
-        {/* Quote */}
-        <blockquote className="font-heading text-2xl md:text-3xl lg:text-4xl italic text-secondary-foreground max-w-3xl mx-auto mb-6 leading-relaxed">
-          {content.quote}
-        </blockquote>
+            {/* Quote Mark */}
+            <span className="font-heading text-8xl md:text-9xl text-terracotta-400 opacity-40 leading-none block -mb-6 md:-mb-8">
+              "
+            </span>
 
-        {/* Attribution */}
-        <p className="font-body text-sm text-muted-foreground mb-8">
-          — <span className="text-primary font-medium">{content.attributionName}</span>, {content.attributionTitle}
-        </p>
+            {/* Quote */}
+            <blockquote className="font-heading text-2xl md:text-3xl italic text-secondary-foreground mb-6 leading-relaxed">
+              {content.quote}
+            </blockquote>
 
-        {/* CTA */}
-        <Link
-          href={content.ctaLink}
-          className="inline-flex items-center gap-2 font-body text-base font-medium text-primary border-2 border-primary px-6 py-3 rounded-lg hover:shadow-[0_0_20px_rgba(90,114,92,0.4)] hover:-translate-y-0.5 transition-all duration-300"
-        >
-          {content.ctaText}
-          <ArrowRight className="w-4 h-4" />
-        </Link>
+            {/* Attribution */}
+            <p className="font-body text-sm text-muted-foreground mb-8">
+              — <span className="text-primary font-medium">{content.attributionName}</span>, {content.attributionTitle}
+            </p>
+
+            {/* CTA */}
+            <Link
+              href={content.ctaLink}
+              className="inline-flex items-center gap-2 font-body text-base font-medium text-primary border-2 border-primary px-6 py-3 rounded-lg hover:shadow-[0_0_20px_rgba(90,114,92,0.4)] hover:-translate-y-0.5 transition-all duration-300"
+            >
+              {content.ctaText}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );

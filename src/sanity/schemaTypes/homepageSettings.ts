@@ -93,6 +93,14 @@ export default defineType({
 
     // About Preview Section
     defineField({
+      name: 'aboutPreviewImage',
+      title: 'Photo',
+      type: 'image',
+      fieldset: 'aboutPreview',
+      options: { hotspot: true },
+      description: 'Portrait photo of Destiny (4:5 ratio recommended)',
+    }),
+    defineField({
       name: 'aboutPreviewEyebrow',
       title: 'Eyebrow Text',
       type: 'string',
