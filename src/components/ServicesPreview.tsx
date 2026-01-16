@@ -87,7 +87,7 @@ const ServicesPreview = ({ services, data }: ServicesPreviewProps) => {
               {service.bookingUrl && (
                 <div className="px-6 pb-6 mt-auto flex justify-end">
                   <Button variant="outline" size="sm" asChild>
-                    <Link href={service.bookingUrl}>Book</Link>
+                    <Link href={`/book?service=${service.duration.split(' ')[0]}`}>Book</Link>
                   </Button>
                 </div>
               )}
