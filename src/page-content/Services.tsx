@@ -68,7 +68,7 @@ const Services = ({ services, siteSettings, footerSettings }: ServicesProps) => 
             <p className="font-body text-sm uppercase tracking-[0.2em] text-primary mb-4">
               What I Offer
             </p>
-            <h1 className="font-heading text-5xl md:text-6xl font-medium text-foreground mb-6">
+            <h1 className="font-heading text-5xl md:text-6xl font-medium text-secondary-foreground mb-6">
               Services & Pricing
             </h1>
             <p className="font-body text-muted-foreground max-w-2xl mx-auto text-xl">
@@ -82,14 +82,14 @@ const Services = ({ services, siteSettings, footerSettings }: ServicesProps) => 
         <section className="py-16">
           <div className="container mx-auto px-6">
             <div className="mb-16">
-              <h2 className="font-heading text-3xl font-medium text-foreground mb-8 pb-4 border-b border-border">
+              <h2 className="font-heading text-3xl font-medium text-secondary-foreground mb-8 pb-4 border-b border-border">
                 Massage Sessions
               </h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {displayServices.map((service) => (
                   <Card key={service._id || service.name} className="border-border bg-card hover:shadow-md transition-all duration-300 flex flex-col">
                     <CardHeader>
-                      <CardTitle className="font-heading text-3xl font-medium text-foreground">
+                      <CardTitle className="font-heading text-3xl font-medium text-secondary-foreground">
                         {service.name}
                       </CardTitle>
                       <div className="flex flex-wrap gap-4 pt-2">
@@ -158,7 +158,7 @@ const Services = ({ services, siteSettings, footerSettings }: ServicesProps) => 
         {/* CTA */}
         <section className="py-16 bg-card">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="font-heading text-3xl font-medium text-foreground mb-4">
+            <h2 className="font-heading text-3xl font-medium text-secondary-foreground mb-4">
               Ready to Feel Your Best?
             </h2>
             <p className="font-body text-muted-foreground mb-8 max-w-lg mx-auto">

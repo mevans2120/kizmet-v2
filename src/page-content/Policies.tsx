@@ -88,7 +88,7 @@ const Policies = ({ data, siteSettings, footerSettings }: PoliciesProps) => {
             <p className="font-body text-sm uppercase tracking-[0.2em] text-primary mb-4">
               Important Information
             </p>
-            <h1 className="font-heading text-5xl md:text-6xl font-medium text-foreground mb-6">
+            <h1 className="font-heading text-5xl md:text-6xl font-medium text-secondary-foreground mb-6">
               {pageTitle}
             </h1>
             <p className="font-body text-muted-foreground max-w-2xl mx-auto text-xl">
@@ -106,7 +106,7 @@ const Policies = ({ data, siteSettings, footerSettings }: PoliciesProps) => {
                   key={policy._key || policy.title}
                   className="pb-12 border-b border-border last:border-0 last:pb-0"
                 >
-                  <h2 className="font-heading text-3xl font-medium text-foreground mb-6 flex items-center gap-4">
+                  <h2 className="font-heading text-3xl font-medium text-secondary-foreground mb-6 flex items-center gap-4">
                     <span className="w-8 h-8 rounded-full bg-primary/10 text-primary text-sm font-body flex items-center justify-center">
                       {index + 1}
                     </span>
@@ -129,7 +129,7 @@ const Policies = ({ data, siteSettings, footerSettings }: PoliciesProps) => {
         {/* Contact */}
         <section className="py-16 bg-card">
           <div className="container mx-auto px-6 text-center max-w-2xl">
-            <h2 className="font-heading text-3xl font-medium text-foreground mb-4">
+            <h2 className="font-heading text-3xl font-medium text-secondary-foreground mb-4">
               Questions?
             </h2>
             <p className="font-body text-muted-foreground mb-6">

@@ -10,7 +10,7 @@ const About = () => {
             <p className="font-body text-sm uppercase tracking-[0.2em] text-primary mb-4">
               Meet Destiny
             </p>
-            <h2 className="font-heading text-5xl md:text-6xl font-medium text-foreground mb-6">
+            <h2 className="font-heading text-5xl md:text-6xl font-medium text-secondary-foreground mb-6">
               Healing Through Touch
             </h2>
             <p className="font-body text-muted-foreground leading-relaxed mb-6">

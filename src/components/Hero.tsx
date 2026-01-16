@@ -44,7 +44,7 @@ const Hero = ({ data }: HeroProps) => {
         <div className="max-w-3xl mx-auto">
           <div className="animate-slide-up mb-6">
             <h1 className="font-heading text-5xl md:text-8xl leading-none flex items-baseline justify-center gap-2 md:gap-6">
-              <span className="text-foreground font-medium tracking-tighter">
+              <span className="text-secondary-foreground font-medium tracking-tighter">
                 Kizmet
               </span>
               <span className="text-primary tracking-tighter">

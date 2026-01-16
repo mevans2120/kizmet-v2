@@ -46,7 +46,7 @@ const AboutPreview = ({ data }: AboutPreviewProps) => {
         </span>
 
         {/* Quote */}
-        <blockquote className="font-heading text-2xl md:text-3xl lg:text-4xl italic text-foreground max-w-3xl mx-auto mb-6 leading-relaxed">
+        <blockquote className="font-heading text-2xl md:text-3xl lg:text-4xl italic text-secondary-foreground max-w-3xl mx-auto mb-6 leading-relaxed">
           {content.quote}
         </blockquote>
 

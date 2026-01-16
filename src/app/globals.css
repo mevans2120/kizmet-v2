@@ -137,7 +137,7 @@
 
   /* === PAGE HEADINGS === */
   .text-page-title {
-    @apply font-heading text-5xl md:text-6xl font-medium text-foreground tracking-tight;
+    @apply font-heading text-5xl md:text-6xl font-medium text-secondary-foreground tracking-tight;
   }
 
   .text-hero-title {
@@ -146,20 +146,20 @@
 
   /* === SECTION HEADINGS === */
   .text-section-title {
-    @apply font-heading text-3xl font-medium text-foreground;
+    @apply font-heading text-3xl font-medium text-secondary-foreground;
   }
 
   .text-section-title-lg {
-    @apply font-heading text-3xl md:text-4xl font-medium text-foreground;
+    @apply font-heading text-3xl md:text-4xl font-medium text-secondary-foreground;
   }
 
   /* === CARD/COMPONENT HEADINGS === */
   .text-card-title {
-    @apply font-heading text-xl font-medium text-foreground;
+    @apply font-heading text-xl font-medium text-secondary-foreground;
   }
 
   .text-card-title-lg {
-    @apply font-heading text-2xl md:text-3xl font-medium text-foreground;
+    @apply font-heading text-2xl md:text-3xl font-medium text-secondary-foreground;
   }
 
   /* === BODY TEXT === */

@@ -29,7 +29,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="font-heading text-3xl mb-4 flex flex-col">
-              <span className="text-logo-lg text-foreground font-medium"><span className="text-logo-initial-lg">K</span>izmet</span>
+              <span className="text-logo-lg text-secondary-foreground font-medium"><span className="text-logo-initial-lg">K</span>izmet</span>
               {/* -mt-4 is intentional: K and M should touch vertically */}
               <span className="text-logo-lg text-primary -mt-4"><span className="text-logo-initial-lg">M</span>assage</span>
             </h3>
@@ -39,7 +39,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
           </div>
 
           <div>
-            <h4 className="font-heading text-xl font-medium text-foreground mb-4">
+            <h4 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
               Quick Links
             </h4>
             <div className="flex flex-col gap-2">
@@ -59,7 +59,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
           </div>
 
           <div>
-            <h4 className="font-heading text-xl font-medium text-foreground mb-4">
+            <h4 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
               Location
             </h4>
             <div className="font-body text-base text-muted-foreground space-y-2">
@@ -69,7 +69,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
           </div>
 
           <div>
-            <h4 className="font-heading text-xl font-medium text-foreground mb-4">
+            <h4 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
               Your Therapist
             </h4>
             <p className="font-body text-base text-muted-foreground">

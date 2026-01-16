@@ -89,7 +89,7 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
               <p className="font-body text-sm uppercase tracking-[0.2em] text-primary mb-4">
                 {eyebrow}
               </p>
-              <h1 className="font-heading text-5xl md:text-6xl font-medium text-foreground mb-6">
+              <h1 className="font-heading text-5xl md:text-6xl font-medium text-secondary-foreground mb-6">
                 {headline}
               </h1>
               <p className="font-body text-muted-foreground max-w-2xl mx-auto text-xl mb-8">
@@ -123,7 +123,7 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
             <p className="font-body text-sm uppercase tracking-[0.2em] text-primary mb-4">
               {eyebrow}
             </p>
-            <h1 className="font-heading text-5xl md:text-6xl font-medium text-foreground mb-6">
+            <h1 className="font-heading text-5xl md:text-6xl font-medium text-secondary-foreground mb-6">
               {headline}
             </h1>
             <p className="font-body text-muted-foreground max-w-2xl mx-auto text-xl">
@@ -221,7 +221,7 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
               <div className="p-4 border-b border-border flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <FileText className="w-5 h-5 text-primary" />
-                  <h3 className="font-heading text-lg font-medium text-foreground">Before Your Visit</h3>
+                  <h3 className="font-heading text-lg font-medium text-secondary-foreground">Before Your Visit</h3>
                 </div>
                 <Link
                   href="/policies#cancellation"

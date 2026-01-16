@@ -22,9 +22,8 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
 
   const navLinks = [
     { path: "/about", label: "About" },
-    { path: "/services", label: "Services" },
     { path: "/policies", label: "What to Know" },
-    { path: "/book", label: "Book Now" },
+    { path: "/services", label: "Services", highlight: true },
   ];
 
   const isActive = (path: string) => pathname === path;
@@ -34,7 +33,7 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex flex-col">
-            <span className="text-logo text-foreground font-medium">
+            <span className="text-logo text-secondary-foreground font-medium">
               <span className="text-logo-initial">K</span>izmet
             </span>
             {/* -mt-4 is intentional: K and M should touch vertically */}
@@ -49,10 +48,12 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`font-body text-base tracking-wide transition-colors duration-300 ${
-                  isActive(link.path)
-                    ? "text-primary font-medium"
-                    : "text-muted-foreground hover:text-foreground"
+                className={`font-body text-base tracking-wide transition-all duration-300 ${
+                  link.highlight
+                    ? `text-primary ${isActive(link.path) ? "font-semibold" : "font-medium"}`
+                    : isActive(link.path)
+                    ? "text-secondary-foreground font-semibold"
+                    : "text-secondary-foreground hover:font-medium"
                 }`}
               >
                 {link.label}
@@ -80,10 +81,12 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
                   key={link.path}
                   href={link.path}
                   onClick={() => setIsOpen(false)}
-                  className={`font-body text-base py-2 transition-colors duration-300 ${
-                    isActive(link.path)
-                      ? "text-primary font-medium"
-                      : "text-muted-foreground hover:text-foreground"
+                  className={`font-body text-base py-2 transition-all duration-300 ${
+                    link.highlight
+                      ? `text-primary ${isActive(link.path) ? "font-semibold" : "font-medium"}`
+                      : isActive(link.path)
+                      ? "text-secondary-foreground font-semibold"
+                      : "text-secondary-foreground hover:font-medium"
                   }`}
                 >
                   {link.label}
