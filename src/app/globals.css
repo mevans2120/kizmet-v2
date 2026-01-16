@@ -135,6 +135,11 @@
     opacity: 0;
   }
 
+  .animate-fade-in-slow {
+    animation: fadeIn 0.9s ease-out forwards;
+    opacity: 0;
+  }
+
   /* === PAGE HEADINGS === */
   .text-page-title {
     @apply font-heading text-5xl md:text-6xl font-medium text-secondary-foreground tracking-tight;

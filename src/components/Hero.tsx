@@ -42,7 +42,7 @@ const Hero = ({ data }: HeroProps) => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center">
         <div className="max-w-3xl mx-auto">
-          <div className="animate-slide-up mb-6">
+          <div className="mb-6">
             <h1 className="font-heading text-5xl md:text-8xl leading-none flex items-baseline justify-center gap-2 md:gap-6">
               <span className="text-secondary-foreground font-medium tracking-tighter">
                 Kizmet
@@ -52,10 +52,10 @@ const Hero = ({ data }: HeroProps) => {
               </span>
             </h1>
           </div>
-          <p className="font-body text-xl text-foreground/80 mb-10 max-w-xl mx-auto leading-relaxed animate-fade-in-delay">
+          <p className="font-body text-xl text-foreground/80 mb-10 max-w-xl mx-auto leading-relaxed animate-fade-in-slow">
             {subheadline}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up-delay">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-slow">
             <Button variant="hero" size="xl" asChild>
               <Link href={ctaLink}>{ctaText}</Link>
             </Button>
