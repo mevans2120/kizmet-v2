@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonials Concept 3 - Two-Up Compact Grid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: hsl(40, 30%, 97%);
+      --card: hsl(40, 25%, 95%);
+      --primary: hsl(145, 25%, 36%);
+      --secondary-foreground: hsl(30, 20%, 25%);
+      --muted-foreground: hsl(30, 15%, 45%);
+      --terracotta: hsl(18, 50%, 55%);
+      --sage-100: hsl(145, 25%, 90%);
+      --border: hsl(35, 20%, 85%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--card);
+      color: var(--muted-foreground);
+      line-height: 1.6;
+    }
+
+    .font-heading {
+      font-family: 'Fraunces', serif;
+    }
+
+    /* Section */
+    .testimonials-section {
+      padding: 6rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .eyebrow {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 500;
+      color: var(--secondary-foreground);
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      max-width: 32rem;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+
+    /* 2-Up Grid */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 640px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .testimonial-card {
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Quote icon - smaller for compact cards */
+    .quote-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      color: var(--terracotta);
+      opacity: 0.6;
+      margin-bottom: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .testimonial-text {
+      font-family: 'Fraunces', serif;
+      font-size: 0.9375rem;
+      font-style: italic;
+      color: var(--secondary-foreground);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+      /* Limit to ~4 lines for consistency */
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Author section - compact */
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .author-avatar {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      background: var(--sage-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      color: var(--primary);
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
+
+    .author-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .author-name {
+      font-weight: 500;
+      color: var(--primary);
+      font-size: 0.8125rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .author-detail {
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Annotation */
+    .annotation {
+      background: #1a1a1a;
+      color: #a3e635;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      margin-top: 3rem;
+    }
+
+    .annotation-title {
+      color: #fbbf24;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <section class="testimonials-section">
+    <!-- Header -->
+    <header class="section-header">
+      <p class="eyebrow">Kind Words</p>
+      <h2 class="section-title font-heading">What Clients Say</h2>
+      <p class="section-subtitle">Real experiences from people who've found relief and relaxation</p>
+    </header>
+
+    <!-- 4-Up Compact Grid -->
+    <div class="testimonials-grid">
+      <!-- Testimonial 1 -->
+      <article class="testimonial-card">
+        <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+        </svg>
+        <p class="testimonial-text">
+          After years of chronic shoulder pain from desk work, I finally found relief. Destiny has an incredible intuition for finding exactly where the tension lives.
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SM</div>
+          <div class="author-info">
+            <span class="author-name">Sarah M.</span>
+            <span class="author-detail">Port Angeles, WA</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Testimonial 2 -->
+      <article class="testimonial-card">
+        <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+        </svg>
+        <p class="testimonial-text">
+          I was skeptical about massage therapy until I tried Kizmet. The 90-minute session is pure magic. It's become my monthly reset button.
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JT</div>
+          <div class="author-info">
+            <span class="author-name">James T.</span>
+            <span class="author-detail">Sequim, WA</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Testimonial 3 -->
+      <article class="testimonial-card">
+        <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+        </svg>
+        <p class="testimonial-text">
+          During my pregnancy, Destiny was a lifesaver. She knew exactly how to adjust her technique for each trimester. Highly recommend!
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">RL</div>
+          <div class="author-info">
+            <span class="author-name">Rachel L.</span>
+            <span class="author-detail">Port Townsend, WA</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Testimonial 4 -->
+      <article class="testimonial-card">
+        <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+        </svg>
+        <p class="testimonial-text">
+          Best deep tissue massage I've ever had. Destiny listens to what you need and delivers exactly that. My lower back has never felt better.
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MK</div>
+          <div class="author-info">
+            <span class="author-name">Michael K.</span>
+            <span class="author-detail">Forks, WA</span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Annotation -->
+    <div class="annotation">
+      <p class="annotation-title">CONCEPT 3: TWO-UP COMPACT GRID</p>
+      <p><strong>Layout:</strong> 2-column grid on desktop, stacked on mobile</p>
+      <p><strong>Design decisions:</strong></p>
+      <p>• Compact cards with small SVG quote icons</p>
+      <p>• Text truncation (4 lines) keeps cards uniform height</p>
+      <p>• Location displayed under name (adds local credibility)</p>
+      <p>• Border separator between quote and author</p>
+      <p>• Maintains brand colors: sage, terracotta, cream</p>
+      <p><strong>Tradeoff:</strong> Less room for long testimonials, but balanced density</p>
+      <p><strong>Best for:</strong> 4 testimonials with local geographic appeal</p>
+    </div>
+  </section>
+</body>
+</html>

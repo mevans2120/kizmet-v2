@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonials Concept 1 - Brand Aligned Stacked</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: hsl(40, 30%, 97%);
+      --card: hsl(40, 25%, 95%);
+      --primary: hsl(145, 25%, 36%);
+      --secondary-foreground: hsl(30, 20%, 25%);
+      --muted-foreground: hsl(30, 15%, 45%);
+      --terracotta: hsl(18, 50%, 55%);
+      --sage-100: hsl(145, 25%, 90%);
+      --border: hsl(35, 20%, 85%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--card);
+      color: var(--muted-foreground);
+      line-height: 1.6;
+    }
+
+    .font-heading {
+      font-family: 'Fraunces', serif;
+    }
+
+    /* Section */
+    .testimonials-section {
+      padding: 6rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .eyebrow {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 500;
+      color: var(--secondary-foreground);
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      max-width: 32rem;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+
+    /* Stacked Testimonials */
+    .testimonials-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 48rem;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 2.5rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Large decorative quote mark - matches AboutPreview style */
+    .quote-mark {
+      font-family: 'Fraunces', serif;
+      font-size: 6rem;
+      line-height: 1;
+      color: var(--terracotta);
+      opacity: 0.4;
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+    }
+
+    .testimonial-content {
+      position: relative;
+      z-index: 1;
+      padding-top: 2rem;
+    }
+
+    .testimonial-text {
+      font-family: 'Fraunces', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--secondary-foreground);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .author-avatar {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: var(--sage-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      color: var(--primary);
+      font-size: 1.125rem;
+    }
+
+    .author-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .author-name {
+      font-weight: 500;
+      color: var(--primary);
+      font-size: 0.9375rem;
+    }
+
+    .author-detail {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+    }
+
+    /* Decorative accent line */
+    .accent-line {
+      width: 3rem;
+      height: 2px;
+      background: var(--terracotta);
+      margin-bottom: 1rem;
+    }
+
+    /* Annotation */
+    .annotation {
+      background: #1a1a1a;
+      color: #a3e635;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      margin-top: 3rem;
+      max-width: 48rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .annotation-title {
+      color: #fbbf24;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <section class="testimonials-section">
+    <!-- Header - matches existing section pattern -->
+    <header class="section-header">
+      <p class="eyebrow">Kind Words</p>
+      <h2 class="section-title font-heading">What Clients Say</h2>
+      <p class="section-subtitle">Real experiences from people who've found relief and relaxation</p>
+    </header>
+
+    <!-- Stacked Testimonials -->
+    <div class="testimonials-stack">
+      <!-- Testimonial 1 -->
+      <article class="testimonial-card">
+        <span class="quote-mark font-heading">"</span>
+        <div class="testimonial-content">
+          <div class="accent-line"></div>
+          <p class="testimonial-text">
+            After years of chronic shoulder pain from desk work, I finally found relief. Destiny has an incredible intuition for finding exactly where the tension lives. I leave every session feeling like a new person.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SM</div>
+            <div class="author-info">
+              <span class="author-name">Sarah M.</span>
+              <span class="author-detail">Monthly client for 2 years</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Testimonial 2 -->
+      <article class="testimonial-card">
+        <span class="quote-mark font-heading">"</span>
+        <div class="testimonial-content">
+          <div class="accent-line"></div>
+          <p class="testimonial-text">
+            I was skeptical about massage therapy until I tried Kizmet. The 90-minute session is pure magic. It's become my monthly reset button—I can feel the stress melting away within minutes.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">JT</div>
+            <div class="author-info">
+              <span class="author-name">James T.</span>
+              <span class="author-detail">First-time visitor turned regular</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Testimonial 3 -->
+      <article class="testimonial-card">
+        <span class="quote-mark font-heading">"</span>
+        <div class="testimonial-content">
+          <div class="accent-line"></div>
+          <p class="testimonial-text">
+            During my pregnancy, Destiny was a lifesaver. She knew exactly how to adjust her technique for each trimester. I've never felt so cared for. Highly recommend for any expecting mothers.
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">RL</div>
+            <div class="author-info">
+              <span class="author-name">Rachel L.</span>
+              <span class="author-detail">Prenatal massage client</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Annotation -->
+    <div class="annotation">
+      <p class="annotation-title">CONCEPT 1: BRAND-ALIGNED STACKED</p>
+      <p><strong>Layout:</strong> Vertical stack, max-width constrained for readability</p>
+      <p><strong>Design decisions:</strong></p>
+      <p>• Large terracotta quote marks match AboutPreview component style</p>
+      <p>• Fraunces italic for testimonial text (same as existing quotes)</p>
+      <p>• Sage green accents for author names (brand primary)</p>
+      <p>• Terracotta accent lines add warmth without overwhelming</p>
+      <p>• Card hover effects match ServicesPreview pattern</p>
+      <p>• Initials avatars avoid need for client photos</p>
+      <p><strong>Tradeoff:</strong> Takes more vertical space, but each testimonial has room to breathe</p>
+    </div>
+  </section>
+</body>
+</html>

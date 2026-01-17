@@ -96,6 +96,14 @@ export const FEATURED_SERVICES_QUERY = `*[_type == "service" && featured == true
   bookingUrl
 }`
 
+// Testimonials
+export const TESTIMONIALS_QUERY = `*[_type == "testimonial" && featured == true] | order(order asc) {
+  _id,
+  authorName,
+  authorLocation,
+  quote
+}`
+
 // Pages with SEO
 export const ABOUT_PAGE_QUERY = `*[_type == "aboutPage"][0] {
   ...,

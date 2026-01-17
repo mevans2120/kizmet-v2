@@ -8,6 +8,7 @@ export default defineType({
     { name: 'hero', title: 'Hero Section' },
     { name: 'services', title: 'Services Preview' },
     { name: 'aboutPreview', title: 'About Preview Section' },
+    { name: 'testimonials', title: 'Testimonials Section' },
     { name: 'cta', title: 'Call to Action Section' },
     { name: 'seo', title: 'SEO Settings' },
   ],
@@ -133,6 +134,30 @@ export default defineType({
       type: 'string',
       fieldset: 'aboutPreview',
       initialValue: '/about',
+    }),
+
+    // Testimonials Section
+    defineField({
+      name: 'testimonialsEyebrow',
+      title: 'Eyebrow Text',
+      type: 'string',
+      fieldset: 'testimonials',
+      initialValue: 'Kind Words',
+    }),
+    defineField({
+      name: 'testimonialsTitle',
+      title: 'Section Title',
+      type: 'string',
+      fieldset: 'testimonials',
+      initialValue: 'What Clients Say',
+    }),
+    defineField({
+      name: 'testimonialsSubtitle',
+      title: 'Subtitle',
+      type: 'text',
+      fieldset: 'testimonials',
+      rows: 2,
+      initialValue: 'Real experiences from people who\'ve found relief and relaxation',
     }),
 
     // CTA Section
