@@ -138,6 +138,13 @@ export default defineType({
 
     // Testimonials Section
     defineField({
+      name: 'testimonialsEnabled',
+      title: 'Show Testimonials Section',
+      type: 'boolean',
+      fieldset: 'testimonials',
+      initialValue: true,
+    }),
+    defineField({
       name: 'testimonialsEyebrow',
       title: 'Eyebrow Text',
       type: 'string',

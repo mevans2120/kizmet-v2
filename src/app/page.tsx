@@ -43,7 +43,9 @@ export default async function HomePage() {
       <Hero data={homepage} />
       <ServicesPreview services={services} data={homepage} />
       <AboutPreview data={homepage} aboutData={aboutPage} />
-      <Testimonials data={homepage} testimonials={testimonials} />
+      {homepage?.testimonialsEnabled !== false && (
+        <Testimonials data={homepage} testimonials={testimonials} />
+      )}
       <CTASection data={homepage} />
       <Footer siteSettings={siteSettings} footerSettings={footerSettings} />
       {isDraft && <VisualEditing />}
