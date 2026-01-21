@@ -1,5 +1,6 @@
 import siteSettings from './siteSettings'
 import homepageSettings from './homepageSettings'
+import servicesPageSettings from './servicesPageSettings'
 import aboutPage from './aboutPage'
 import policiesPage from './policiesPage'
 import bookPage from './bookPage'
@@ -14,6 +15,7 @@ export const schemaTypes = [
   // Documents
   siteSettings,
   homepageSettings,
+  servicesPageSettings,
   aboutPage,
   policiesPage,
   bookPage,

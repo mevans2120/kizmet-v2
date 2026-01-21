@@ -17,8 +17,21 @@ interface Service {
   bookingUrl?: string;
 }
 
+interface ServicesPageSettings {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  sectionTitle?: string;
+  bookButtonText?: string;
+  ctaHeading?: string;
+  ctaDescription?: string;
+  ctaButtonText?: string;
+  ctaButtonLink?: string;
+}
+
 interface ServicesProps {
   services?: Service[];
+  servicesPageSettings?: ServicesPageSettings;
   siteSettings?: any;
   footerSettings?: any;
 }
@@ -54,8 +67,19 @@ const fallbackServices: Service[] = [
   },
 ];
 
-const Services = ({ services, siteSettings, footerSettings }: ServicesProps) => {
+const Services = ({ services, servicesPageSettings, siteSettings, footerSettings }: ServicesProps) => {
   const displayServices = services && services.length > 0 ? services : fallbackServices;
+
+  // CMS content with fallbacks
+  const eyebrow = servicesPageSettings?.eyebrow || "What I Offer";
+  const pageTitle = servicesPageSettings?.title || "Services & Pricing";
+  const pageDescription = servicesPageSettings?.description || "Every massage is customized to your individual needs. Let me know your goals and I'll create the perfect treatment for you.";
+  const sectionTitle = servicesPageSettings?.sectionTitle || "Massage Sessions";
+  const bookButtonText = servicesPageSettings?.bookButtonText || "Book";
+  const ctaHeading = servicesPageSettings?.ctaHeading || "Ready to Feel Your Best?";
+  const ctaDescription = servicesPageSettings?.ctaDescription || "Not sure which session length is right for you? I'm happy to help you choose.";
+  const ctaButtonText = servicesPageSettings?.ctaButtonText || "Book Your Session";
+  const ctaButtonLink = servicesPageSettings?.ctaButtonLink || "/book";
 
   return (
     <div className="min-h-screen bg-background">
@@ -66,14 +90,13 @@ const Services = ({ services, siteSettings, footerSettings }: ServicesProps) => 
         <section className="py-16 bg-card">
           <div className="container mx-auto px-6 text-center">
             <p className="font-body text-sm uppercase tracking-[0.2em] text-primary mb-4">
-              What I Offer
+              {eyebrow}
             </p>
             <h1 className="font-heading text-5xl md:text-6xl font-medium text-secondary-foreground mb-6">
-              Services & Pricing
+              {pageTitle}
             </h1>
             <p className="font-body text-muted-foreground max-w-2xl mx-auto text-xl">
-              Every massage is customized to your individual needs.
-              Let me know your goals and I'll create the perfect treatment for you.
+              {pageDescription}
             </p>
           </div>
         </section>
@@ -83,7 +106,7 @@ const Services = ({ services, siteSettings, footerSettings }: ServicesProps) => 
           <div className="container mx-auto px-6">
             <div className="mb-16">
               <h2 className="font-heading text-3xl font-medium text-secondary-foreground mb-8 pb-4 border-b border-border">
-                Massage Sessions
+                {sectionTitle}
               </h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {displayServices.map((service) => (
@@ -144,7 +167,7 @@ const Services = ({ services, siteSettings, footerSettings }: ServicesProps) => 
                     {service.bookingUrl && (
                       <div className="px-6 pb-6 mt-auto flex justify-end">
                         <Button variant="outline" size="sm" asChild>
-                          <Link href={`/book?service=${service.duration.split(' ')[0]}`}>Book</Link>
+                          <Link href={`/book?service=${service.duration.split(' ')[0]}`}>{bookButtonText}</Link>
                         </Button>
                       </div>
                     )}
@@ -159,13 +182,13 @@ const Services = ({ services, siteSettings, footerSettings }: ServicesProps) => 
         <section className="py-16 bg-card">
           <div className="container mx-auto px-6 text-center">
             <h2 className="font-heading text-3xl font-medium text-secondary-foreground mb-4">
-              Ready to Feel Your Best?
+              {ctaHeading}
             </h2>
             <p className="font-body text-muted-foreground mb-8 max-w-lg mx-auto">
-              Not sure which session length is right for you? I'm happy to help you choose.
+              {ctaDescription}
             </p>
             <Button variant="hero" size="xl" asChild>
-              <Link href="/book">Book Your Session</Link>
+              <Link href={ctaButtonLink}>{ctaButtonText}</Link>
             </Button>
           </div>
         </section>

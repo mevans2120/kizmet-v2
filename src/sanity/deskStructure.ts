@@ -4,6 +4,7 @@ import { StructureBuilder } from 'sanity/structure'
 const singletonTypes = new Set([
   'siteSettings',
   'homepageSettings',
+  'servicesPageSettings',
   'aboutPage',
   'policiesPage',
   'bookPage',
@@ -24,6 +25,7 @@ export const deskStructure = (S: StructureBuilder) =>
       // Singletons at top
       singletonItem(S, 'siteSettings', 'Site Settings'),
       singletonItem(S, 'homepageSettings', 'Homepage'),
+      singletonItem(S, 'servicesPageSettings', 'Services Page'),
       singletonItem(S, 'aboutPage', 'About Page'),
       singletonItem(S, 'policiesPage', 'Policies Page'),
       singletonItem(S, 'bookPage', 'Book Page'),

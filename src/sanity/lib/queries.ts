@@ -57,6 +57,29 @@ export const HOMEPAGE_SETTINGS_QUERY = `*[_type == "homepageSettings"][0] {
   }
 }`
 
+// Services Page Settings
+export const SERVICES_PAGE_SETTINGS_QUERY = `*[_type == "servicesPageSettings"][0] {
+  eyebrow,
+  title,
+  description,
+  sectionTitle,
+  bookButtonText,
+  ctaHeading,
+  ctaDescription,
+  ctaButtonText,
+  ctaButtonLink,
+  seo {
+    metaTitle,
+    metaDescription,
+    ogImage {
+      asset-> { _id, url },
+      hotspot,
+      crop
+    },
+    noIndex
+  }
+}`
+
 // Services
 export const ALL_SERVICES_QUERY = `*[_type == "service"] | order(order asc) {
   _id,
