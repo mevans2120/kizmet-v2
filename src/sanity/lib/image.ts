@@ -62,3 +62,24 @@ export function getHeroImageUrl(
     .quality(85)
     .url()
 }
+
+/**
+ * Sanity file asset structure (from expanded query projection)
+ */
+export interface SanityFileAsset {
+  asset?: {
+    _id?: string
+    url?: string
+    mimeType?: string
+  }
+}
+
+/**
+ * Get URL for a Sanity-hosted video file.
+ * Returns null if no valid URL is found.
+ *
+ * @param file - Sanity file object with expanded asset reference
+ */
+export function getVideoUrl(file: SanityFileAsset | null | undefined): string | null {
+  return file?.asset?.url ?? null
+}

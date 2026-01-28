@@ -1,6 +1,10 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { getHeroImageUrl } from "@/sanity/lib/image";
+import { getHeroImageUrl, getVideoUrl, SanityFileAsset } from "@/sanity/lib/image";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import heroImage from "@/assets/hero-spa.jpg";
 
 interface HeroProps {
@@ -11,11 +15,26 @@ interface HeroProps {
     heroCtaLink?: string;
     heroSecondaryCta?: string;
     heroSecondaryCtaLink?: string;
-    heroImage?: any;
+    heroImage?: SanityImageSource;
+    heroMediaType?: 'image' | 'video';
+    heroVideo?: SanityFileAsset;
+    heroVideoPoster?: SanityImageSource;
   };
 }
 
 const Hero = ({ data }: HeroProps) => {
+  // Respect user's reduced motion preference
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
   // Use Sanity data or fallback to defaults
   const headline = data?.heroHeadline || "Kizmet";
   const subheadline = data?.heroSubheadline || "Destiny Pugh offers therapeutic massage in Port Angeles. Reconnect with your body and find your balance.";
@@ -29,13 +48,39 @@ const Hero = ({ data }: HeroProps) => {
     ? getHeroImageUrl(data.heroImage, 1920, 1080)
     : heroImage.src;
 
+  // Video URL from Sanity file asset
+  const videoUrl = getVideoUrl(data?.heroVideo);
+
+  // Poster image: videoPoster -> heroImage -> local fallback
+  const posterUrl = data?.heroVideoPoster
+    ? getHeroImageUrl(data.heroVideoPoster, 1920, 1080)
+    : backgroundImage;
+
+  // Show video only if: video mode selected, video exists, and user hasn't requested reduced motion
+  const showVideo = data?.heroMediaType === 'video' && videoUrl && !prefersReducedMotion;
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-top bg-no-repeat bg-[length:auto_130%] md:bg-[length:135%]"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
+      {/* Background Media */}
+      <div className="absolute inset-0">
+        {showVideo ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={posterUrl}
+            className="h-full w-full object-cover"
+          >
+            <source src={videoUrl} type="video/mp4" />
+          </video>
+        ) : (
+          <div
+            className="h-full w-full bg-top bg-no-repeat bg-[length:auto_130%] md:bg-[length:135%]"
+            style={{ backgroundImage: `url(${backgroundImage})` }}
+          />
+        )}
+        {/* Overlay for text contrast */}
         <div className="absolute inset-0 bg-background/60" />
       </div>
 

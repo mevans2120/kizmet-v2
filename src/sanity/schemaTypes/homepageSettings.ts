@@ -20,6 +20,42 @@ export default defineType({
       type: 'image',
       fieldset: 'hero',
       options: { hotspot: true },
+      description: 'Used when media type is "Image", or as fallback for video poster.',
+    }),
+    defineField({
+      name: 'heroMediaType',
+      title: 'Background Media Type',
+      type: 'string',
+      fieldset: 'hero',
+      options: {
+        list: [
+          { title: 'Image', value: 'image' },
+          { title: 'Video', value: 'video' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'image',
+      description: 'Choose whether to display a static image or looping video background.',
+    }),
+    defineField({
+      name: 'heroVideo',
+      title: 'Hero Background Video',
+      type: 'file',
+      fieldset: 'hero',
+      options: {
+        accept: 'video/mp4,video/webm',
+      },
+      description: 'Upload a short looping video (MP4 recommended, under 15MB). Video will be muted and loop automatically.',
+      hidden: ({ parent }) => parent?.heroMediaType !== 'video',
+    }),
+    defineField({
+      name: 'heroVideoPoster',
+      title: 'Video Poster Image',
+      type: 'image',
+      fieldset: 'hero',
+      options: { hotspot: true },
+      description: 'Shown while video loads. If not set, falls back to the Hero Background Image.',
+      hidden: ({ parent }) => parent?.heroMediaType !== 'video',
     }),
     defineField({
       name: 'heroHeadline',
