@@ -45,7 +45,7 @@ export default defineType({
       options: {
         accept: 'video/mp4,video/webm',
       },
-      description: 'Upload a short looping video (MP4 recommended, under 15MB). Video will be muted and loop automatically.',
+      description: 'Upload a short video (MP4 recommended, under 15MB). Video will be muted.',
       hidden: ({ parent }) => parent?.heroMediaType !== 'video',
     }),
     defineField({
@@ -55,6 +55,22 @@ export default defineType({
       fieldset: 'hero',
       options: { hotspot: true },
       description: 'Shown while video loads. If not set, falls back to the Hero Background Image.',
+      hidden: ({ parent }) => parent?.heroMediaType !== 'video',
+    }),
+    defineField({
+      name: 'heroVideoPlayback',
+      title: 'Video Playback Mode',
+      type: 'string',
+      fieldset: 'hero',
+      options: {
+        list: [
+          { title: 'Loop continuously', value: 'loop' },
+          { title: 'Play once (pause on last frame)', value: 'playOnce' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'loop',
+      description: 'Choose whether the video loops or plays once and stops.',
       hidden: ({ parent }) => parent?.heroMediaType !== 'video',
     }),
     defineField({

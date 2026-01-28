@@ -19,6 +19,7 @@ interface HeroProps {
     heroMediaType?: 'image' | 'video';
     heroVideo?: SanityFileAsset;
     heroVideoPoster?: SanityImageSource;
+    heroVideoPlayback?: 'loop' | 'playOnce';
   };
 }
 
@@ -67,7 +68,7 @@ const Hero = ({ data }: HeroProps) => {
           <video
             autoPlay
             muted
-            loop
+            loop={data?.heroVideoPlayback !== 'playOnce'}
             playsInline
             poster={posterUrl}
             className="h-full w-full object-cover"
