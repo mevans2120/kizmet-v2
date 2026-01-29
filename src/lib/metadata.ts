@@ -46,6 +46,7 @@ export interface SiteSettings {
       longitude: number
     }
     googleMapsUrl?: string
+    googlePlaceId?: string
   }
 }
 
@@ -92,7 +93,8 @@ const SITE_SETTINGS_SEO_QUERY = `*[_type == "siteSettings"][0] {
       latitude,
       longitude
     },
-    googleMapsUrl
+    googleMapsUrl,
+    googlePlaceId
   }
 }`
 

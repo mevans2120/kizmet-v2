@@ -66,6 +66,22 @@ interface ServiceSchema {
   }
 }
 
+interface PersonSchema {
+  '@context': 'https://schema.org'
+  '@type': 'Person'
+  '@id': string
+  name: string
+  jobTitle?: string
+  description?: string
+  image?: string
+  worksFor: {
+    '@type': 'LocalBusiness'
+    '@id': string
+    name: string
+  }
+  knowsAbout?: string[]
+}
+
 // ============================================================================
 // Constants
 // ============================================================================
@@ -155,8 +171,11 @@ export function generateLocalBusinessSchema(
     schema.priceRange = settings.businessInfo.priceRange
   }
 
-  // Add social profiles
+  // Add social profiles and Google Business Profile
   const sameAs: string[] = []
+  if (settings?.businessInfo?.googlePlaceId) {
+    sameAs.push(`https://www.google.com/maps/place/?q=place_id:${settings.businessInfo.googlePlaceId}`)
+  }
   if (settings?.seo?.twitterHandle) {
     sameAs.push(`https://twitter.com/${settings.seo.twitterHandle}`)
   }
@@ -208,6 +227,53 @@ export function generateSiteSchemaGraph(settings: SiteSettings | null): {
       generateWebSiteSchema(settings),
     ],
   }
+}
+
+/**
+ * Generate Person schema for therapist/staff
+ */
+export function generateTherapistSchema(
+  therapist: {
+    name: string
+    role?: string
+    bio?: string
+    photoUrl?: string
+    credentials?: string[]
+  },
+  settings: SiteSettings | null
+): PersonSchema {
+  const siteUrl = settings?.seo?.siteUrl || DEFAULT_SITE_URL
+  const businessName = settings?.brandName || DEFAULT_BUSINESS_NAME
+
+  const schema: PersonSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    '@id': `${siteUrl}/about#therapist`,
+    name: therapist.name,
+    worksFor: {
+      '@type': 'LocalBusiness',
+      '@id': `${siteUrl}/#localbusiness`,
+      name: businessName,
+    },
+  }
+
+  if (therapist.role) {
+    schema.jobTitle = therapist.role
+  }
+
+  if (therapist.bio) {
+    schema.description = therapist.bio
+  }
+
+  if (therapist.photoUrl) {
+    schema.image = therapist.photoUrl
+  }
+
+  if (therapist.credentials && therapist.credentials.length > 0) {
+    schema.knowsAbout = therapist.credentials
+  }
+
+  return schema
 }
 
 /**

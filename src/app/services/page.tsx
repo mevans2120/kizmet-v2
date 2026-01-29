@@ -7,6 +7,7 @@ import ServicesContent from '@/page-content/Services'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { ALL_SERVICES_QUERY, SERVICES_PAGE_SETTINGS_QUERY, SITE_SETTINGS_QUERY, FOOTER_SETTINGS_QUERY } from '@/sanity/lib/queries'
 import { generatePageMetadata } from '@/lib/metadata'
+import { StructuredData, generateServiceSchema } from '@/lib/structured-data'
 
 // Dynamic metadata from CMS
 export async function generateMetadata(): Promise<Metadata> {
@@ -29,8 +30,27 @@ export default async function ServicesPage() {
     sanityFetch<any>(FOOTER_SETTINGS_QUERY),
   ])
 
+  // Get site URL for service schemas
+  const siteUrl = siteSettings?.seo?.siteUrl || 'https://kizmetmassage.com'
+
+  // Generate schema for each service
+  const serviceSchemas =
+    services?.map((service: { name: string; description?: string; price?: string }) =>
+      generateServiceSchema(
+        {
+          name: service.name,
+          description: service.description,
+          price: service.price,
+        },
+        siteUrl
+      )
+    ) || []
+
   return (
     <>
+      {serviceSchemas.map((schema: object, index: number) => (
+        <StructuredData key={index} data={schema} />
+      ))}
       <ServicesContent
         services={services}
         servicesPageSettings={servicesPageSettings}

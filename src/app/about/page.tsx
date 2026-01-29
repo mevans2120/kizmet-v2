@@ -7,6 +7,8 @@ import AboutContent from '@/page-content/About'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { ABOUT_PAGE_QUERY, SITE_SETTINGS_QUERY, FOOTER_SETTINGS_QUERY } from '@/sanity/lib/queries'
 import { generatePageMetadata } from '@/lib/metadata'
+import { StructuredData, generateTherapistSchema } from '@/lib/structured-data'
+import { getCroppedImageUrl } from '@/sanity/lib/image'
 
 // Dynamic metadata from CMS
 export async function generateMetadata(): Promise<Metadata> {
@@ -28,8 +30,23 @@ export default async function AboutPage() {
     sanityFetch<any>(FOOTER_SETTINGS_QUERY),
   ])
 
+  // Generate therapist schema for structured data
+  const therapistSchema = generateTherapistSchema(
+    {
+      name: 'Destiny',
+      role: 'Licensed Massage Therapist',
+      bio: aboutData?.intro,
+      photoUrl: aboutData?.heroImage
+        ? getCroppedImageUrl(aboutData.heroImage, 800, 1000)
+        : undefined,
+      credentials: aboutData?.credentials,
+    },
+    siteSettings
+  )
+
   return (
     <>
+      <StructuredData data={therapistSchema} />
       <AboutContent
         data={aboutData}
         siteSettings={siteSettings}

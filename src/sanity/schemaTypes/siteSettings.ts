@@ -208,6 +208,12 @@ export default defineType({
           type: 'url',
           description: 'Link to your Google Maps listing',
         }),
+        defineField({
+          name: 'googlePlaceId',
+          title: 'Google Place ID',
+          type: 'string',
+          description: 'Find yours at: developers.google.com/maps/documentation/places/web-service/place-id',
+        }),
       ],
     }),
   ],
