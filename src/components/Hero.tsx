@@ -119,11 +119,11 @@ const Hero = ({ data }: HeroProps) => {
         </div>
       </div>
 
-      {/* Fade Edge - subtle scroll hint */}
+      {/* Fade Edge - subtle scroll hint, fades to card color to match services section */}
       <div
         className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none z-20"
         style={{
-          background: 'linear-gradient(to bottom, transparent 0%, hsl(var(--background) / 0.2) 20%, hsl(var(--background) / 0.5) 40%, hsl(var(--background) / 0.8) 70%, hsl(var(--background)) 100%)'
+          background: 'linear-gradient(to bottom, transparent 0%, hsl(var(--card) / 0.2) 20%, hsl(var(--card) / 0.5) 40%, hsl(var(--card) / 0.8) 70%, hsl(var(--card)) 100%)'
         }}
       />
     </section>
