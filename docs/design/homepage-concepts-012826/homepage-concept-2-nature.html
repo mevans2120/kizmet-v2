@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kizmet Massage - Concept 2: Mountain & Water</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Nature-forward palette */
+      --brown-900: #3d352c;
+      --brown-700: #5a3d2b;
+      --brown-500: #8b6b4a;
+
+      --teal-700: #2a6a5a;
+      --teal-500: #4a8a7a;
+      --teal-300: #7ab4a4;
+      --teal-100: #d4e8e2;
+
+      --forest-600: #4a7a5a;
+      --forest-500: #5a8a6a;
+
+      --sun-500: #d4956a;
+      --sun-400: #e0a87a;
+
+      --cream-50: #faf8f5;
+      --cream-100: #f7f5f2;
+      --cream-200: #f0ebe5;
+      --cream-300: #e8ddd2;
+
+      --text-primary: var(--brown-700);
+      --text-secondary: var(--brown-900);
+      --text-muted: #6b5c4d;
+      --text-on-dark: var(--cream-50);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background: var(--cream-100);
+      color: var(--text-secondary);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    /* Navigation - Transparent on hero */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s;
+    }
+
+    nav.scrolled {
+      background: rgba(247, 245, 242, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 16px 40px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo-mark {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-logo-mark img {
+      width: 100%;
+      height: auto;
+    }
+
+    .nav-logo-text {
+      font-family: 'Fraunces', serif;
+      line-height: 1.1;
+    }
+
+    .nav-logo-text span:first-child {
+      display: block;
+      font-size: 22px;
+      color: var(--text-secondary);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-logo-text span:last-child {
+      display: block;
+      font-size: 18px;
+      color: var(--teal-500);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--teal-700);
+    }
+
+    .nav-cta {
+      background: var(--teal-700);
+      color: var(--cream-50);
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--teal-500);
+      transform: translateY(-1px);
+    }
+
+    /* Hero - Full-bleed nature imagery */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      /* Simulated mountain/water landscape */
+      background:
+        /* Sky gradient */
+        linear-gradient(to bottom,
+          #b8d4e3 0%,
+          #d4e0c8 30%,
+          #c8dcc8 50%,
+          #9ab89a 70%,
+          #6a9a7a 85%,
+          #4a7a6a 100%
+        );
+    }
+
+    .hero-mountain-layer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+    }
+
+    /* SVG Mountain silhouette */
+    .hero-mountains {
+      position: absolute;
+      bottom: 200px;
+      left: 0;
+      right: 0;
+      height: 400px;
+    }
+
+    .hero-water {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 250px;
+      background: linear-gradient(to bottom,
+        rgba(74, 138, 122, 0.4) 0%,
+        rgba(42, 106, 90, 0.6) 50%,
+        rgba(42, 106, 90, 0.8) 100%
+      );
+    }
+
+    .hero-water::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(to bottom,
+        rgba(255,255,255,0.2) 0%,
+        transparent 100%
+      );
+    }
+
+    .hero-sun {
+      position: absolute;
+      top: 15%;
+      right: 20%;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, var(--sun-400) 0%, var(--sun-500) 50%, transparent 70%);
+      border-radius: 50%;
+      box-shadow: 0 0 80px var(--sun-400);
+    }
+
+    .hero-sun::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(circle, rgba(224, 168, 122, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      padding: 0 40px 80px;
+    }
+
+    .hero-card {
+      background: rgba(250, 248, 245, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 60px;
+      max-width: 700px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-eyebrow {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--teal-500);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-title-kizmet {
+      color: var(--text-secondary);
+    }
+
+    .hero-title-massage {
+      color: var(--teal-700);
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--teal-700);
+      color: var(--cream-50);
+      padding: 16px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(42, 106, 90, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--teal-500);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(42, 106, 90, 0.35);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--teal-700);
+      padding: 16px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+      border: 2px solid var(--teal-700);
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background: var(--teal-700);
+      color: var(--cream-50);
+    }
+
+    /* Location Badge */
+    .hero-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      padding: 8px 16px;
+      background: var(--teal-100);
+      border-radius: 20px;
+      font-size: 14px;
+      color: var(--teal-700);
+    }
+
+    .hero-location svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Services Section */
+    .services {
+      padding: 100px 40px;
+      background: var(--cream-100);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 60px;
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--teal-500);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(36px, 5vw, 48px);
+      font-weight: 400;
+      color: var(--text-secondary);
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 18px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s;
+      border: 1px solid var(--cream-300);
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(42, 106, 90, 0.12);
+    }
+
+    .service-image {
+      height: 140px;
+      background: linear-gradient(135deg, var(--teal-100) 0%, var(--teal-300) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--teal-700);
+    }
+
+    .service-content {
+      padding: 28px;
+    }
+
+    .service-name {
+      font-family: 'Fraunces', serif;
+      font-size: 26px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      transition: color 0.3s;
+    }
+
+    .service-card:hover .service-name {
+      color: var(--teal-700);
+    }
+
+    .service-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .service-price {
+      color: var(--sun-500);
+      font-weight: 600;
+    }
+
+    .service-desc {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .service-book {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 10px 20px;
+      background: var(--teal-100);
+      color: var(--teal-700);
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .service-book:hover {
+      background: var(--teal-700);
+      color: white;
+    }
+
+    .services-cta {
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    /* About Preview - Landscape image */
+    .about {
+      padding: 0;
+      position: relative;
+    }
+
+    .about-image-full {
+      height: 400px;
+      background: linear-gradient(135deg, var(--forest-600) 0%, var(--teal-500) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .about-content-card {
+      max-width: 800px;
+      margin: -100px auto 0;
+      padding: 0 40px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .about-card {
+      background: white;
+      border-radius: 24px;
+      padding: 48px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .about-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cream-200) 0%, var(--cream-300) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .about-text .eyebrow {
+      text-align: left;
+      margin-bottom: 12px;
+    }
+
+    .about-quote {
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      font-style: italic;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .about-attribution {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .about-attribution strong {
+      color: var(--teal-700);
+      font-weight: 600;
+    }
+
+    .btn-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--teal-700);
+      text-decoration: none;
+      font-weight: 500;
+      transition: gap 0.2s;
+    }
+
+    .btn-text:hover {
+      gap: 12px;
+    }
+
+    /* Testimonials - Water-inspired */
+    .testimonials {
+      padding: 120px 40px 100px;
+      background: linear-gradient(to bottom, var(--cream-100) 0%, var(--teal-100) 100%);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 8px 30px rgba(42, 106, 90, 0.08);
+      transition: all 0.3s;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(42, 106, 90, 0.12);
+    }
+
+    .testimonial-quote-icon {
+      color: var(--teal-300);
+      margin-bottom: 12px;
+    }
+
+    .testimonial-text {
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--cream-300);
+    }
+
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--teal-100) 0%, var(--teal-300) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--teal-700);
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      color: var(--teal-700);
+      font-size: 14px;
+    }
+
+    .testimonial-location {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* CTA Section - Mountain silhouette */
+    .cta {
+      padding: 100px 40px;
+      background: var(--teal-700);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 200 L0 150 Q200 80 400 120 T600 100 T800 140 T1000 90 T1200 130 L1200 200 Z' fill='%232a5a4a' opacity='0.5'/%3E%3C/svg%3E") no-repeat bottom center;
+      background-size: cover;
+    }
+
+    .cta::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 120 L0 80 Q150 40 300 70 T600 50 T900 80 T1200 60 L1200 120 Z' fill='%232a5a4a' opacity='0.7'/%3E%3C/svg%3E") no-repeat bottom center;
+      background-size: cover;
+    }
+
+    .cta-content {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 400;
+      color: var(--cream-50);
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+    }
+
+    .cta-text {
+      font-size: 20px;
+      color: rgba(250, 248, 245, 0.8);
+      margin-bottom: 40px;
+    }
+
+    .btn-light {
+      background: var(--cream-50);
+      color: var(--teal-700);
+      padding: 18px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .btn-light:hover {
+      background: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer */
+    footer {
+      padding: 60px 40px 40px;
+      background: var(--cream-200);
+      border-top: 1px solid var(--cream-300);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto 40px;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-top: 16px;
+    }
+
+    .footer-heading {
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--teal-700);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--cream-300);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .about-text .eyebrow {
+        text-align: center;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-card {
+        padding: 40px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        padding: 12px 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-content {
+        padding: 0 20px 60px;
+      }
+
+      .hero-card {
+        padding: 32px;
+      }
+
+      .services,
+      .testimonials,
+      .cta {
+        padding: 60px 20px;
+      }
+
+      .about-content-card {
+        padding: 0 20px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Design Notes */
+    .design-notes {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--teal-700);
+      color: var(--cream-100);
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-size: 13px;
+      max-width: 300px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
+    .design-notes h4 {
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: var(--sun-400);
+    }
+
+    .design-notes ul {
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    .design-notes li {
+      margin-bottom: 4px;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-logo-mark"><img src="logo-mark.png" alt="Kizmet"></div>
+      <div class="nav-logo-text">
+        <span>Kizmet</span>
+        <span>Massage</span>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">Services</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Policies</a></li>
+    </ul>
+    <a href="#" class="nav-cta">Book Now</a>
+  </nav>
+
+  <!-- Hero - Nature immersive -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-sun"></div>
+    </div>
+    <div class="hero-water"></div>
+    <div class="hero-content">
+      <div class="hero-card">
+        <p class="hero-eyebrow">Therapeutic Massage</p>
+        <h1 class="hero-title">
+          <span class="hero-title-kizmet">Kizmet</span>
+          <span class="hero-title-massage">Massage</span>
+        </h1>
+        <p class="hero-subtitle">Reconnect with your body and find your balance through personalized therapeutic massage, surrounded by the natural beauty of the Pacific Northwest.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn-primary">Book Your Session</a>
+          <a href="#" class="btn-secondary">View Services</a>
+        </div>
+        <div class="hero-location">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          Port Angeles, Washington
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services">
+    <div class="section-header">
+      <p class="eyebrow">Offerings</p>
+      <h2 class="section-title">Signature Services</h2>
+      <p class="section-subtitle">Each session is tailored to your individual needs</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-image">[Mountain Icon]</div>
+        <div class="service-content">
+          <h3 class="service-name">30 Minute Session</h3>
+          <div class="service-meta">
+            <span>30 min</span>
+            <span class="service-price">$60</span>
+          </div>
+          <p class="service-desc">Targeted work on a single area of concern using focused pressure and trigger point techniques.</p>
+          <a href="#" class="service-book">Book</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-image">[Water Icon]</div>
+        <div class="service-content">
+          <h3 class="service-name">60 Minute Session</h3>
+          <div class="service-meta">
+            <span>60 min</span>
+            <span class="service-price">$100</span>
+          </div>
+          <p class="service-desc">A complete full-body treatment combining Swedish strokes and deeper pressure. Most popular.</p>
+          <a href="#" class="service-book">Book</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-image">[Sun Icon]</div>
+        <div class="service-content">
+          <h3 class="service-name">90 Minute Session</h3>
+          <div class="service-meta">
+            <span>90 min</span>
+            <span class="service-price">$145</span>
+          </div>
+          <p class="service-desc">An unhurried session with detailed work, hot towels, and optional aromatherapy.</p>
+          <a href="#" class="service-book">Book</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="services-cta">
+      <a href="#" class="btn-secondary">Learn More</a>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="about">
+    <div class="about-image-full">[Full-width PNW landscape photo placeholder]</div>
+    <div class="about-content-card">
+      <div class="about-card">
+        <div class="about-avatar">[Photo]</div>
+        <div class="about-text">
+          <p class="eyebrow">Meet Your Therapist</p>
+          <blockquote class="about-quote">"In my family, healing was never something you learned from a textbook. It was passed down through touch, through presence, through care."</blockquote>
+          <p class="about-attribution">— <strong>Destiny</strong>, Third-Generation Healer</p>
+          <a href="#" class="btn-text">
+            Read My Story
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="section-header">
+      <p class="eyebrow">Kind Words</p>
+      <h2 class="section-title">What Clients Say</h2>
+      <p class="section-subtitle">Real experiences from people who've found relief</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <svg class="testimonial-quote-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+        </svg>
+        <p class="testimonial-text">Destiny has magic hands. I came in with terrible back pain and left feeling like a new person. She really listens.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SM</div>
+          <div>
+            <div class="testimonial-name">Sarah M.</div>
+            <div class="testimonial-location">Port Angeles</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <svg class="testimonial-quote-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+        </svg>
+        <p class="testimonial-text">The most relaxing massage I've ever had. The space is peaceful and Destiny makes you feel at ease.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">JR</div>
+          <div>
+            <div class="testimonial-name">James R.</div>
+            <div class="testimonial-location">Sequim</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-content">
+      <h2 class="cta-title">It's Time to Feel Good</h2>
+      <p class="cta-text">Book your first session and experience the transformative power of therapeutic massage.</p>
+      <a href="#" class="btn-light">Book Your Appointment</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <div class="nav-logo-mark"><img src="logo-mark.png" alt="Kizmet"></div>
+          <div class="nav-logo-text">
+            <span>Kizmet</span>
+            <span>Massage</span>
+          </div>
+        </div>
+        <p>Therapeutic massage in Port Angeles, Washington. Reconnect with your body surrounded by the natural beauty of the Pacific Northwest.</p>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#">Services</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Policies</a></li>
+          <li><a href="#">Book Now</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Location</h4>
+        <ul class="footer-links">
+          <li><a href="#">123 Main Street</a></li>
+          <li><a href="#">Port Angeles, WA</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-heading">Your Therapist</h4>
+        <ul class="footer-links">
+          <li><a href="#">Destiny Pugh, LMT</a></li>
+          <li><a href="#">Read Her Story</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Kizmet Massage. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Design Notes -->
+  <div class="design-notes">
+    <h4>Concept 2: Mountain & Water</h4>
+    <ul>
+      <li>Nature-immersive hero with landscape</li>
+      <li>Teal/green palette from color logo</li>
+      <li>PNW location emphasized</li>
+      <li>Full-bleed imagery</li>
+      <li>Card-based hero for text legibility</li>
+    </ul>
+  </div>
+</body>
+</html>

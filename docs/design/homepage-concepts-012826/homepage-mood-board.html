@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kizmet Massage - Homepage Concepts Mood Board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background: #f7f5f2;
+      color: #3d352c;
+      padding: 60px 40px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 48px;
+      font-weight: 400;
+      color: #5a3d2b;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: #5a3d2b;
+      margin: 60px 0 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #d4c4b0;
+    }
+
+    h3 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 24px;
+      font-weight: 400;
+      color: #5a3d2b;
+      margin: 32px 0 16px;
+    }
+
+    p {
+      color: #6b5c4d;
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    .intro {
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    /* Logo Analysis */
+    .logo-analysis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin: 32px 0;
+    }
+
+    .logo-card {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 4px 20px rgba(90, 61, 43, 0.08);
+    }
+
+    .logo-card img {
+      width: 100%;
+      max-width: 300px;
+      display: block;
+      margin: 0 auto 24px;
+    }
+
+    .logo-placeholder {
+      width: 100%;
+      max-width: 300px;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #f5f0eb 0%, #e8ddd2 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-family: 'Fraunces', serif;
+      font-size: 24px;
+      color: #5a3d2b;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .logo-features {
+      list-style: none;
+    }
+
+    .logo-features li {
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+      color: #6b5c4d;
+    }
+
+    .logo-features li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 16px;
+      width: 8px;
+      height: 8px;
+      background: #c17f59;
+      border-radius: 50%;
+    }
+
+    /* Color Palette */
+    .color-section {
+      margin: 40px 0;
+    }
+
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+
+    .color-swatch {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .color-preview {
+      height: 100px;
+      display: flex;
+      align-items: flex-end;
+      padding: 12px;
+    }
+
+    .color-info {
+      background: white;
+      padding: 16px;
+    }
+
+    .color-name {
+      font-weight: 600;
+      color: #3d352c;
+      margin-bottom: 4px;
+    }
+
+    .color-hex {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #8a7b6a;
+    }
+
+    .color-usage {
+      font-size: 13px;
+      color: #a09080;
+      margin-top: 8px;
+    }
+
+    /* Typography */
+    .type-samples {
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      margin: 24px 0;
+      box-shadow: 0 4px 20px rgba(90, 61, 43, 0.08);
+    }
+
+    .type-sample {
+      padding: 24px 0;
+      border-bottom: 1px solid #e8e0d8;
+    }
+
+    .type-sample:last-child {
+      border-bottom: none;
+    }
+
+    .type-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #a09080;
+      margin-bottom: 12px;
+    }
+
+    .type-demo {
+      font-family: 'Fraunces', Georgia, serif;
+    }
+
+    .type-demo.heading-hero {
+      font-size: 72px;
+      font-weight: 400;
+      color: #5a3d2b;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .type-demo.heading-section {
+      font-size: 40px;
+      font-weight: 400;
+      color: #5a3d2b;
+      letter-spacing: -0.01em;
+    }
+
+    .type-demo.body-text {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
+      color: #6b5c4d;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .type-demo.eyebrow {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #5a725c;
+      font-weight: 500;
+    }
+
+    /* Concept Cards */
+    .concepts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .concept-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(90, 61, 43, 0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .concept-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(90, 61, 43, 0.12);
+    }
+
+    .concept-preview {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+    }
+
+    .concept-preview.warm {
+      background: linear-gradient(135deg, #f7f3ef 0%, #e8ddd2 100%);
+      color: #5a3d2b;
+    }
+
+    .concept-preview.nature {
+      background: linear-gradient(135deg, #e8f0e8 0%, #c5d4c5 50%, #5a8a6e 100%);
+      color: white;
+    }
+
+    .concept-preview.earth {
+      background: linear-gradient(135deg, #3d352c 0%, #5a3d2b 50%, #8b6b4a 100%);
+      color: #f5f0eb;
+    }
+
+    .concept-info {
+      padding: 24px;
+    }
+
+    .concept-title {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      color: #5a3d2b;
+      margin-bottom: 8px;
+    }
+
+    .concept-desc {
+      font-size: 14px;
+      color: #8a7b6a;
+      line-height: 1.6;
+    }
+
+    .concept-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      background: #f5f0eb;
+      border-radius: 20px;
+      color: #6b5c4d;
+    }
+
+    /* Design Principles */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 32px 0;
+    }
+
+    .principle-card {
+      background: white;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 2px 12px rgba(90, 61, 43, 0.06);
+    }
+
+    .principle-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #5a725c 0%, #7a9a7c 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 24px;
+    }
+
+    .principle-title {
+      font-family: 'Fraunces', serif;
+      font-size: 18px;
+      color: #5a3d2b;
+      margin-bottom: 8px;
+    }
+
+    .principle-desc {
+      font-size: 14px;
+      color: #8a7b6a;
+      line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .logo-analysis,
+      .concepts-grid,
+      .principles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .type-demo.heading-hero {
+        font-size: 48px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Kizmet Massage Homepage Concepts</h1>
+    <div class="intro">
+      <p>Exploring homepage redesign directions based on the new logo featuring hands cradling mountains, water, and a rising sun. The goal is to create a warm, grounded aesthetic that emphasizes real text typography while honoring the existing site structure that works well.</p>
+    </div>
+
+    <h2>Logo Analysis</h2>
+    <div class="logo-analysis">
+      <div class="logo-card">
+        <div class="logo-placeholder">
+          Monochrome Logo<br>
+          <span style="font-size: 14px; opacity: 0.7;">Hands + Mountains + Sun</span>
+        </div>
+        <h3 style="margin-top: 0;">Version A: Monochrome Brown</h3>
+        <ul class="logo-features">
+          <li>Elegant single-color treatment in warm brown (#5a3d2b)</li>
+          <li>Script "Kizmet" with sophisticated flourishes</li>
+          <li>"MASSAGE" in clean sans-serif, letterspaced</li>
+          <li>Hands create bowl shape holding natural scene</li>
+          <li>Sun with radiating lines suggests dawn/renewal</li>
+          <li>Water reflection adds depth and tranquility</li>
+        </ul>
+      </div>
+
+      <div class="logo-card">
+        <div class="logo-placeholder" style="background: linear-gradient(135deg, #e8f5f0 0%, #d4e8df 100%);">
+          Color Logo<br>
+          <span style="font-size: 14px; opacity: 0.7;">Teal Water + Green Hills</span>
+        </div>
+        <h3 style="margin-top: 0;">Version B: Full Color</h3>
+        <ul class="logo-features">
+          <li>Teal/green water tones add vitality</li>
+          <li>Warm orange sun provides focal contrast</li>
+          <li>Moon and birds add whimsy and movement</li>
+          <li>Snow-capped mountains suggest the PNW setting</li>
+          <li>More illustrative, storybook quality</li>
+          <li>Decorative dashes around "MASSAGE"</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Color Palette</h2>
+    <p>Derived from the logo's warm earth tones, with the existing sage green retained as an accent. The palette shifts from cool sage to warm brown as the primary brand color.</p>
+
+    <h3>Primary Colors (from Logo)</h3>
+    <div class="palette-grid">
+      <div class="color-swatch">
+        <div class="color-preview" style="background: #5a3d2b;">
+          <span style="color: white; font-size: 12px;">Primary</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Espresso Brown</div>
+          <div class="color-hex">#5a3d2b</div>
+          <div class="color-usage">Headlines, logo text, primary actions</div>
+        </div>
+      </div>
+
+      <div class="color-swatch">
+        <div class="color-preview" style="background: #8b6b4a;">
+          <span style="color: white; font-size: 12px;">Secondary</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Warm Umber</div>
+          <div class="color-hex">#8b6b4a</div>
+          <div class="color-usage">Borders, subtle accents, secondary text</div>
+        </div>
+      </div>
+
+      <div class="color-swatch">
+        <div class="color-preview" style="background: #c17f59;">
+          <span style="color: white; font-size: 12px;">Accent</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Terracotta Sun</div>
+          <div class="color-hex">#c17f59</div>
+          <div class="color-usage">CTAs, highlights, sun motif references</div>
+        </div>
+      </div>
+
+      <div class="color-swatch">
+        <div class="color-preview" style="background: #5a725c;">
+          <span style="color: white; font-size: 12px;">Legacy Accent</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Sage Green</div>
+          <div class="color-hex">#5a725c</div>
+          <div class="color-usage">Eyebrows, nature references, preserved from current site</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Background & Neutral Tones</h3>
+    <div class="palette-grid">
+      <div class="color-swatch">
+        <div class="color-preview" style="background: #f7f5f2; border: 1px solid #e8e0d8;">
+          <span style="color: #5a3d2b; font-size: 12px;">Background</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Warm Cream</div>
+          <div class="color-hex">#f7f5f2</div>
+          <div class="color-usage">Page background, maintains warmth</div>
+        </div>
+      </div>
+
+      <div class="color-swatch">
+        <div class="color-preview" style="background: #f0ebe5; border: 1px solid #e8e0d8;">
+          <span style="color: #5a3d2b; font-size: 12px;">Card</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Soft Linen</div>
+          <div class="color-hex">#f0ebe5</div>
+          <div class="color-usage">Card backgrounds, section dividers</div>
+        </div>
+      </div>
+
+      <div class="color-swatch">
+        <div class="color-preview" style="background: #e8ddd2; border: 1px solid #d4c4b0;">
+          <span style="color: #5a3d2b; font-size: 12px;">Muted</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Sand</div>
+          <div class="color-hex">#e8ddd2</div>
+          <div class="color-usage">Borders, dividers, subtle backgrounds</div>
+        </div>
+      </div>
+
+      <div class="color-swatch">
+        <div class="color-preview" style="background: #3d352c;">
+          <span style="color: #f7f5f2; font-size: 12px;">Dark</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Deep Earth</div>
+          <div class="color-hex">#3d352c</div>
+          <div class="color-usage">Dark mode background, footer option</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>From Color Logo (Optional Accents)</h3>
+    <div class="palette-grid">
+      <div class="color-swatch">
+        <div class="color-preview" style="background: #4a8a7a;">
+          <span style="color: white; font-size: 12px;">Teal Water</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Lake Teal</div>
+          <div class="color-hex">#4a8a7a</div>
+          <div class="color-usage">Water imagery, calm accents</div>
+        </div>
+      </div>
+
+      <div class="color-swatch">
+        <div class="color-preview" style="background: #6a9a6a;">
+          <span style="color: white; font-size: 12px;">Forest</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Mountain Green</div>
+          <div class="color-hex">#6a9a6a</div>
+          <div class="color-usage">Nature references, PNW vibes</div>
+        </div>
+      </div>
+
+      <div class="color-swatch">
+        <div class="color-preview" style="background: #d4956a;">
+          <span style="color: white; font-size: 12px;">Warm Sun</span>
+        </div>
+        <div class="color-info">
+          <div class="color-name">Golden Hour</div>
+          <div class="color-hex">#d4956a</div>
+          <div class="color-usage">Highlights, warmth, hover states</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Typography</h2>
+    <p>Maintaining Fraunces for headings and Plus Jakarta Sans for body text, but shifting the color treatment to match the logo's warm brown tones.</p>
+
+    <div class="type-samples">
+      <div class="type-sample">
+        <div class="type-label">Hero Headline / Fraunces 72px</div>
+        <div class="type-demo heading-hero">Kizmet Massage</div>
+      </div>
+
+      <div class="type-sample">
+        <div class="type-label">Section Heading / Fraunces 40px</div>
+        <div class="type-demo heading-section">Signature Services</div>
+      </div>
+
+      <div class="type-sample">
+        <div class="type-label">Eyebrow / Plus Jakarta Sans 13px, Uppercase, 0.2em tracking</div>
+        <div class="type-demo eyebrow">Meet Your Therapist</div>
+      </div>
+
+      <div class="type-sample">
+        <div class="type-label">Body Text / Plus Jakarta Sans 18px</div>
+        <div class="type-demo body-text">Destiny Pugh offers therapeutic massage in Port Angeles. Reconnect with your body and find your balance through personalized treatments designed for your unique needs.</div>
+      </div>
+    </div>
+
+    <h2>Three Concept Directions</h2>
+    <p>Each concept maintains the existing page structure (Hero, Services, About Preview, Testimonials, CTA) but explores different visual treatments inspired by the new logo.</p>
+
+    <div class="concepts-grid">
+      <div class="concept-card">
+        <div class="concept-preview warm">
+          Warm & Familiar
+        </div>
+        <div class="concept-info">
+          <div class="concept-title">1. Faithful Evolution</div>
+          <div class="concept-desc">Keeps the existing layout structure but shifts the color palette to warm browns from the logo. The safest evolution path - familiar to returning visitors but refreshed.</div>
+          <div class="concept-tags">
+            <span class="tag">Same structure</span>
+            <span class="tag">Warm browns</span>
+            <span class="tag">Logo as hero focal</span>
+            <span class="tag">Minimal risk</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-preview nature">
+          Nature Immersive
+        </div>
+        <div class="concept-info">
+          <div class="concept-title">2. Mountain & Water</div>
+          <div class="concept-desc">Leans into the logo's landscape imagery with more environmental photography and the color palette. Hero features the mountain/water scene more prominently.</div>
+          <div class="concept-tags">
+            <span class="tag">PNW imagery</span>
+            <span class="tag">Teal accents</span>
+            <span class="tag">Nature-forward</span>
+            <span class="tag">Full-bleed photos</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="concept-card">
+        <div class="concept-preview earth">
+          Grounded Luxury
+        </div>
+        <div class="concept-info">
+          <div class="concept-title">3. Earthy Elegance</div>
+          <div class="concept-desc">Dark, rich earth tones create a more luxurious, spa-like atmosphere. The logo's browns become the dominant mood with cream text for contrast.</div>
+          <div class="concept-tags">
+            <span class="tag">Dark mode</span>
+            <span class="tag">Premium feel</span>
+            <span class="tag">Bold contrast</span>
+            <span class="tag">Sophisticated</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2>Design Principles</h2>
+    <div class="principles-grid">
+      <div class="principle-card">
+        <div class="principle-icon">T</div>
+        <div class="principle-title">Real Text, Not Images</div>
+        <div class="principle-desc">All text is live HTML/CSS, never rendered as images. This ensures accessibility, SEO, and easy CMS editing. The logo image is used only for the mark, not the wordmark.</div>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-icon">H</div>
+        <div class="principle-title">Hands = Healing</div>
+        <div class="principle-desc">The logo's cupped hands motif can be echoed in subtle ways - rounded corners, cradling layouts, protective negative space around content.</div>
+      </div>
+
+      <div class="principle-card">
+        <div class="principle-icon">W</div>
+        <div class="principle-title">Warmth Over Cool</div>
+        <div class="principle-desc">Shifting from the current sage-forward palette to a warmer brown-forward palette that matches the logo. Sage remains as a supporting accent.</div>
+      </div>
+    </div>
+
+    <h2>Implementation Notes</h2>
+    <div style="background: white; border-radius: 12px; padding: 28px; margin: 24px 0;">
+      <h3 style="margin-top: 0;">Key Changes from Current Site</h3>
+      <ul style="color: #6b5c4d; line-height: 2;">
+        <li><strong>Primary color:</strong> Sage green (#5a725c) → Espresso brown (#5a3d2b)</li>
+        <li><strong>Accent:</strong> Terracotta (#c17f59) becomes more prominent</li>
+        <li><strong>Hero:</strong> "Kizmet Massage" rendered as text, logo mark as supporting element</li>
+        <li><strong>Logo placement:</strong> Navigation can use the mark (hands only) + text wordmark</li>
+        <li><strong>Warmth:</strong> All grays shift warmer (from cool to warm undertones)</li>
+        <li><strong>Preserved:</strong> Overall page structure, section flow, component layouts</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
