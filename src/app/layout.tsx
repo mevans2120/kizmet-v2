@@ -12,7 +12,7 @@ const fraunces = Fraunces({
   subsets: ['latin'],
   variable: '--font-fraunces',
   display: 'swap',
-  axes: ['opsz'],
+  axes: ['opsz', 'WONK', 'SOFT'],
 })
 
 const plusJakarta = Plus_Jakarta_Sans({

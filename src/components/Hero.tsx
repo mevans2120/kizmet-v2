@@ -89,11 +89,18 @@ const Hero = ({ data }: HeroProps) => {
       <div className="relative z-10 container mx-auto px-6 text-center">
         <div className="max-w-3xl mx-auto">
           <div className="mb-6">
-            <h1 className="font-heading text-5xl md:text-8xl leading-none flex items-baseline justify-center gap-2 md:gap-6">
-              <span className="text-secondary-foreground font-medium tracking-tighter">
-                Kizmet
+            {/* Hands Logo Mark */}
+            <img
+              src="/Kizmet-Hands.svg"
+              alt=""
+              className="w-48 md:w-56 h-auto mx-auto -mb-4"
+              aria-hidden="true"
+            />
+            <h1 className="font-heading text-center">
+              <span className="hero-title-kizmet text-5xl md:text-8xl tracking-tighter text-secondary-foreground">
+                <span className="text-6xl md:text-9xl">K</span>izmet
               </span>
-              <span className="text-primary tracking-tighter">
+              <span className="hero-title-massage text-primary font-medium">
                 Massage
               </span>
             </h1>
