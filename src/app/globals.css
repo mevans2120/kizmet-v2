@@ -248,10 +248,6 @@
   }
 
   /* === NAV LOGO STACKED (like hero) === */
-  .nav-logo-text {
-    margin-left: -8px;  /* Pull text closer to hands */
-  }
-
   .nav-logo-kizmet {
     @apply block font-heading text-2xl tracking-tighter font-light;  /* was text-xl */
     font-variation-settings: 'WONK' 1, 'SOFT' 100, 'opsz' 144, 'wght' 300;
@@ -262,25 +258,11 @@
   }
 
   .nav-logo-massage {
-    @apply flex items-center justify-center gap-2 uppercase -mt-1;
-    font-size: 0.625rem;  /* was 0.5rem */
+    @apply block uppercase;
+    margin-top: -0.3rem;
+    font-size: 0.625rem;
     letter-spacing: 0.15em;
     font-variation-settings: 'WONK' 0, 'opsz' 24;
-  }
-
-  .nav-logo-massage::before,
-  .nav-logo-massage::after {
-    content: '';
-    width: 0.75rem;
-    height: 1px;
-  }
-
-  .nav-logo-massage::before {
-    background: linear-gradient(to left, hsl(var(--primary)), transparent);
-  }
-
-  .nav-logo-massage::after {
-    background: linear-gradient(to right, hsl(var(--primary)), transparent);
   }
 }
 
