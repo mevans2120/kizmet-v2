@@ -88,7 +88,7 @@ const Hero = ({ data }: HeroProps) => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center">
         <div className="max-w-3xl mx-auto">
-          <div className="mb-6">
+          <div className="mb-6 animate-fade-in-slow">
             {/* Hands Logo Mark */}
             <img
               src="/Kizmet-Hands.svg"
