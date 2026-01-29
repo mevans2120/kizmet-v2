@@ -2,12 +2,17 @@ import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 
+export const alt = 'Kizmet Massage'
+
 export const size = {
-  width: 32,
-  height: 32,
+  width: 1200,
+  height: 630,
 }
 
 export const contentType = 'image/png'
+
+// Fraunces font from jsDelivr CDN (fontsource)
+const fontUrl = 'https://cdn.jsdelivr.net/fontsource/fonts/fraunces@latest/latin-300-normal.ttf'
 
 // SVG path data extracted from Kizmet-Hands.svg
 const HANDS_PATHS = [
@@ -25,7 +30,10 @@ const HANDS_PATHS = [
   'M120.781 64.8603C122.941 65.672 125.217 65.5259 126.04 67.8504C123.209 70.0883 108.936 66.3352 105.42 61.9116C111.153 60.8606 115.617 63.9052 120.781 64.8603Z',
 ]
 
-export default function Icon() {
+export default async function TwitterImage() {
+  // Load Fraunces font
+  const fraunces = await fetch(fontUrl).then((res) => res.arrayBuffer())
+
   return new ImageResponse(
     (
       <div
@@ -33,15 +41,16 @@ export default function Icon() {
           width: '100%',
           height: '100%',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(145deg, #faf8f5 0%, #f0ebe4 50%, #e8e3dc 100%)',
-          borderRadius: '50%',
+          background: 'linear-gradient(180deg, #faf8f5 0%, #f0ebe4 100%)',
         }}
       >
+        {/* Hands Logo */}
         <svg
-          width="24"
-          height="18"
+          width="140"
+          height="103"
           viewBox="0 0 338 250"
           fill="none"
         >
@@ -49,8 +58,71 @@ export default function Icon() {
             <path key={i} d={d} fill="#4D4033" />
           ))}
         </svg>
+
+        {/* Kizmet Text */}
+        <div
+          style={{
+            display: 'flex',
+            fontFamily: 'Fraunces',
+            fontSize: 60,
+            fontWeight: 300,
+            color: '#3d3426',
+            marginTop: -10,
+            letterSpacing: '-0.02em',
+          }}
+        >
+          <span style={{ fontSize: 80 }}>K</span>
+          <span>izmet</span>
+        </div>
+
+        {/* MASSAGE with decorative lines */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 12,
+            marginTop: 4,
+          }}
+        >
+          <div
+            style={{
+              width: 24,
+              height: 1,
+              background: 'linear-gradient(to left, #5a725c, transparent)',
+            }}
+          />
+          <span
+            style={{
+              fontFamily: 'Fraunces',
+              fontSize: 18,
+              fontWeight: 400,
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              color: '#5a725c',
+            }}
+          >
+            Massage
+          </span>
+          <div
+            style={{
+              width: 24,
+              height: 1,
+              background: 'linear-gradient(to right, #5a725c, transparent)',
+            }}
+          />
+        </div>
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      fonts: [
+        {
+          name: 'Fraunces',
+          data: fraunces,
+          style: 'normal',
+          weight: 300,
+        },
+      ],
+    }
   )
 }
