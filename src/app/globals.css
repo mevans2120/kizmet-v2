@@ -201,6 +201,87 @@
   .text-logo-initial-lg {
     @apply text-4xl;
   }
+
+  /* === FRAUNCES WONK VARIATIONS === */
+  .font-wonky {
+    font-variation-settings: 'WONK' 1, 'opsz' 144;
+  }
+
+  .font-wonky-sm {
+    font-variation-settings: 'WONK' 1, 'opsz' 48;
+  }
+
+  .font-steady {
+    font-variation-settings: 'WONK' 0, 'opsz' 144;
+  }
+
+  .font-steady-sm {
+    font-variation-settings: 'WONK' 0, 'opsz' 24;
+  }
+
+  /* === HERO TITLE STACKED LAYOUT === */
+  .hero-title-kizmet {
+    @apply block font-light;
+    font-variation-settings: 'WONK' 1, 'SOFT' 100, 'opsz' 144, 'wght' 300;
+  }
+
+  .hero-title-massage {
+    @apply flex items-center justify-center gap-4 uppercase mt-2;
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    letter-spacing: 0.2em;
+    font-variation-settings: 'WONK' 0, 'opsz' 24;
+  }
+
+  .hero-title-massage::before,
+  .hero-title-massage::after {
+    content: '';
+    width: 1.5rem;
+    height: 1px;
+  }
+
+  .hero-title-massage::before {
+    background: linear-gradient(to left, hsl(var(--primary)), transparent);
+  }
+
+  .hero-title-massage::after {
+    background: linear-gradient(to right, hsl(var(--primary)), transparent);
+  }
+
+  /* === NAV LOGO STACKED (like hero) === */
+  .nav-logo-text {
+    margin-left: -8px;  /* Pull text closer to hands */
+  }
+
+  .nav-logo-kizmet {
+    @apply block font-heading text-2xl tracking-tighter font-light;  /* was text-xl */
+    font-variation-settings: 'WONK' 1, 'SOFT' 100, 'opsz' 144, 'wght' 300;
+  }
+
+  .nav-logo-k {
+    @apply text-3xl;  /* was text-2xl - bigger drop cap */
+  }
+
+  .nav-logo-massage {
+    @apply flex items-center justify-center gap-2 uppercase -mt-1;
+    font-size: 0.625rem;  /* was 0.5rem */
+    letter-spacing: 0.15em;
+    font-variation-settings: 'WONK' 0, 'opsz' 24;
+  }
+
+  .nav-logo-massage::before,
+  .nav-logo-massage::after {
+    content: '';
+    width: 0.75rem;
+    height: 1px;
+  }
+
+  .nav-logo-massage::before {
+    background: linear-gradient(to left, hsl(var(--primary)), transparent);
+  }
+
+  .nav-logo-massage::after {
+    background: linear-gradient(to right, hsl(var(--primary)), transparent);
+  }
 }
 
 @keyframes fadeIn {

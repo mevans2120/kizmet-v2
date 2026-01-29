@@ -32,14 +32,22 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/65 backdrop-blur-sm border-b border-border">
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <Link href="/" className="flex flex-col">
-            <span className="text-logo text-secondary-foreground font-medium">
-              <span className="text-logo-initial">K</span>izmet
-            </span>
-            {/* -mt-4 is intentional: K and M should touch vertically */}
-            <span className="text-logo text-primary -mt-4">
-              <span className="text-logo-initial">M</span>assage
-            </span>
+          <Link href="/" className="flex items-center gap-3">
+            {/* Hands Logo Mark */}
+            <img
+              src="/Kizmet-Hands.svg"
+              alt=""
+              className="w-12 h-12"
+              aria-hidden="true"
+            />
+            <div className="flex flex-col text-center nav-logo-text">
+              <span className="nav-logo-kizmet text-secondary-foreground">
+                <span className="nav-logo-k">K</span>izmet
+              </span>
+              <span className="nav-logo-massage text-primary font-medium">
+                Massage
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
