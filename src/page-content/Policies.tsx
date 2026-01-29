@@ -10,6 +10,9 @@ interface PolicyItem {
 interface PoliciesData {
   pageTitle?: string;
   pageDescription?: string;
+  eyebrow?: string;
+  questionsHeading?: string;
+  questionsDescription?: string;
   policies?: PolicyItem[];
 }
 
@@ -77,6 +80,11 @@ const Policies = ({ data, siteSettings, footerSettings }: PoliciesProps) => {
   const pageDescription = data?.pageDescription || "I appreciate your understanding and cooperation with these policies. They help me provide the best possible experience for all clients.";
   const policies = data?.policies && data.policies.length > 0 ? data.policies : fallbackPolicies;
 
+  // New CMS fields with fallbacks
+  const eyebrow = data?.eyebrow || "Important Information";
+  const questionsHeading = data?.questionsHeading || "Questions?";
+  const questionsDescription = data?.questionsDescription || "If you have any questions about our policies or need to discuss special circumstances, please don't hesitate to reach out.";
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation siteSettings={siteSettings} />
@@ -86,7 +94,7 @@ const Policies = ({ data, siteSettings, footerSettings }: PoliciesProps) => {
         <section className="py-16 bg-card">
           <div className="container mx-auto px-6 text-center">
             <p className="font-body text-sm uppercase tracking-[0.2em] text-primary mb-4">
-              Important Information
+              {eyebrow}
             </p>
             <h1 className="font-heading text-5xl md:text-6xl font-medium text-secondary-foreground mb-6">
               {pageTitle}
@@ -130,11 +138,10 @@ const Policies = ({ data, siteSettings, footerSettings }: PoliciesProps) => {
         <section className="py-16 bg-card">
           <div className="container mx-auto px-6 text-center max-w-2xl">
             <h2 className="font-heading text-3xl font-medium text-secondary-foreground mb-4">
-              Questions?
+              {questionsHeading}
             </h2>
             <p className="font-body text-muted-foreground mb-6">
-              If you have any questions about our policies or need to discuss
-              special circumstances, please don't hesitate to reach out.
+              {questionsDescription}
             </p>
             <p className="font-body text-foreground">
               <a href={`mailto:${siteSettings?.email || "hello@kizmetwellness.com"}`} className="text-primary hover:underline">

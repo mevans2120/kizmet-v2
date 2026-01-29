@@ -23,6 +23,8 @@ interface ServicesPageSettings {
   description?: string;
   sectionTitle?: string;
   bookButtonText?: string;
+  techniquesLabel?: string;
+  bestForLabel?: string;
   ctaHeading?: string;
   ctaDescription?: string;
   ctaButtonText?: string;
@@ -76,6 +78,8 @@ const Services = ({ services, servicesPageSettings, siteSettings, footerSettings
   const pageDescription = servicesPageSettings?.description || "Every massage is customized to your individual needs. Let me know your goals and I'll create the perfect treatment for you.";
   const sectionTitle = servicesPageSettings?.sectionTitle || "Massage Sessions";
   const bookButtonText = servicesPageSettings?.bookButtonText || "Book";
+  const techniquesLabel = servicesPageSettings?.techniquesLabel || "Techniques";
+  const bestForLabel = servicesPageSettings?.bestForLabel || "Best For";
   const ctaHeading = servicesPageSettings?.ctaHeading || "Ready to Feel Your Best?";
   const ctaDescription = servicesPageSettings?.ctaDescription || "Not sure which session length is right for you? I'm happy to help you choose.";
   const ctaButtonText = servicesPageSettings?.ctaButtonText || "Book Your Session";
@@ -138,7 +142,7 @@ const Services = ({ services, servicesPageSettings, siteSettings, footerSettings
                       {service.techniques && service.techniques.length > 0 && (
                         <div className="mt-4">
                           <p className="text-xs uppercase tracking-caps text-foreground font-medium mb-2">
-                            Techniques
+                            {techniquesLabel}
                           </p>
                           <div className="flex flex-wrap gap-2">
                             {service.techniques.map((t) => (
@@ -152,7 +156,7 @@ const Services = ({ services, servicesPageSettings, siteSettings, footerSettings
                       {service.bestFor && service.bestFor.length > 0 && (
                         <div className="mt-3">
                           <p className="text-xs uppercase tracking-caps text-foreground font-medium mb-2">
-                            Best For
+                            {bestForLabel}
                           </p>
                           <div className="flex flex-wrap gap-2">
                             {service.bestFor.map((b) => (

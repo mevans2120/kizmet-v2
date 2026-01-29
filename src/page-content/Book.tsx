@@ -17,10 +17,22 @@ interface Service {
   bookingUrl?: string;
 }
 
+interface PolicyPreview {
+  title: string;
+  summary?: string;
+}
+
 interface BookData {
   eyebrow?: string;
   headline?: string;
   description?: string;
+  sessionSelectorLabel?: string;
+  callLabel?: string;
+  emailLabel?: string;
+  locationLabel?: string;
+  policiesHeading?: string;
+  viewPoliciesLinkText?: string;
+  policyPreviews?: PolicyPreview[];
 }
 
 interface BookProps {
@@ -29,6 +41,13 @@ interface BookProps {
   siteSettings?: any;
   footerSettings?: any;
 }
+
+// Default policy previews
+const defaultPolicyPreviews: PolicyPreview[] = [
+  { title: 'Cancellation', summary: '24 hours notice required. Late cancellations subject to 50% fee.' },
+  { title: 'Arrival', summary: 'Please arrive 5 minutes early. New clients: 10-15 minutes for paperwork.' },
+  { title: 'Payment', summary: 'Payment due at time of service. Cash, card, and mobile payments accepted.' },
+];
 
 const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
   // Filter to only services with booking URLs
@@ -70,9 +89,21 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
     })();
   }, []);
 
+  // Header content with fallbacks
   const eyebrow = data?.eyebrow || "Schedule Your Visit";
   const headline = data?.headline || "Book an Appointment";
   const description = data?.description || "Select your service and choose a time that works for you.";
+
+  // New CMS fields with fallbacks
+  const sessionSelectorLabel = data?.sessionSelectorLabel || "Select your session:";
+  const callLabel = data?.callLabel || "Call";
+  const emailLabel = data?.emailLabel || "Email";
+  const locationLabel = data?.locationLabel || "Location";
+  const policiesHeading = data?.policiesHeading || "Before Your Visit";
+  const viewPoliciesLinkText = data?.viewPoliciesLinkText || "View All Policies";
+  const policyPreviews = data?.policyPreviews && data.policyPreviews.length > 0
+    ? data.policyPreviews
+    : defaultPolicyPreviews;
 
   const phone = siteSettings?.phone;
   const email = siteSettings?.email;
@@ -139,7 +170,7 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
             <div className="bg-card border border-border rounded-xl overflow-hidden mb-8">
               {/* Service Selector */}
               <div className="p-6 border-b border-border">
-                <p className="font-body text-sm text-muted-foreground mb-3">Select your session:</p>
+                <p className="font-body text-sm text-muted-foreground mb-3">{sessionSelectorLabel}</p>
                 <div className="flex flex-wrap gap-3">
                   {bookableServices.map((service) => (
                     <Button
@@ -182,7 +213,7 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
                     <Phone className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-body text-xs text-muted-foreground">Call</p>
+                    <p className="font-body text-xs text-muted-foreground">{callLabel}</p>
                     <p className="font-body text-sm font-medium text-foreground">{phone}</p>
                   </div>
                 </a>
@@ -196,7 +227,7 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
                     <Mail className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-body text-xs text-muted-foreground">Email</p>
+                    <p className="font-body text-xs text-muted-foreground">{emailLabel}</p>
                     <p className="font-body text-sm font-medium text-foreground">{email}</p>
                   </div>
                 </a>
@@ -207,7 +238,7 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
                     <MapPin className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <p className="font-body text-xs text-muted-foreground">Location</p>
+                    <p className="font-body text-xs text-muted-foreground">{locationLabel}</p>
                     <p className="font-body text-sm font-medium text-foreground">
                       {address.street}, {address.city}
                     </p>
@@ -221,43 +252,29 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
               <div className="p-4 border-b border-border flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <FileText className="w-5 h-5 text-primary" />
-                  <h3 className="font-heading text-lg font-medium text-secondary-foreground">Before Your Visit</h3>
+                  <h3 className="font-heading text-lg font-medium text-secondary-foreground">{policiesHeading}</h3>
                 </div>
                 <Link
                   href="/policies#cancellation"
                   className="font-body text-sm text-primary hover:underline"
                 >
-                  View All Policies
+                  {viewPoliciesLinkText}
                 </Link>
               </div>
               <div className="p-6 space-y-4">
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center text-xs font-medium">1</span>
-                    <h4 className="font-body text-sm font-semibold text-foreground">Cancellation</h4>
+                {policyPreviews.map((policy, index) => (
+                  <div key={policy.title}>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center text-xs font-medium">{index + 1}</span>
+                      <h4 className="font-body text-sm font-semibold text-foreground">{policy.title}</h4>
+                    </div>
+                    {policy.summary && (
+                      <p className="font-body text-sm text-muted-foreground pl-7">
+                        {policy.summary}
+                      </p>
+                    )}
                   </div>
-                  <p className="font-body text-sm text-muted-foreground pl-7">
-                    24 hours notice required. Late cancellations subject to 50% fee.
-                  </p>
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center text-xs font-medium">2</span>
-                    <h4 className="font-body text-sm font-semibold text-foreground">Arrival</h4>
-                  </div>
-                  <p className="font-body text-sm text-muted-foreground pl-7">
-                    Please arrive 5 minutes early. New clients: 10-15 minutes for paperwork.
-                  </p>
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center text-xs font-medium">3</span>
-                    <h4 className="font-body text-sm font-semibold text-foreground">Payment</h4>
-                  </div>
-                  <p className="font-body text-sm text-muted-foreground pl-7">
-                    Payment due at time of service. Cash, card, and mobile payments accepted.
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
           </div>

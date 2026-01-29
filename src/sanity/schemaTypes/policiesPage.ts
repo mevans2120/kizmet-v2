@@ -5,13 +5,24 @@ export default defineType({
   title: 'Policies Page',
   type: 'document',
   fieldsets: [
+    { name: 'header', title: 'Page Header' },
+    { name: 'questions', title: 'Questions Section' },
     { name: 'seo', title: 'SEO Settings' },
   ],
   fields: [
     defineField({
+      name: 'eyebrow',
+      title: 'Eyebrow Text',
+      type: 'string',
+      fieldset: 'header',
+      initialValue: 'Important Information',
+      description: 'Small text above the page title',
+    }),
+    defineField({
       name: 'pageTitle',
       title: 'Page Title',
       type: 'string',
+      fieldset: 'header',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -19,6 +30,7 @@ export default defineType({
       title: 'Page Description',
       type: 'text',
       rows: 2,
+      fieldset: 'header',
       description: 'Introductory text at the top of the page',
     }),
     defineField({
@@ -48,6 +60,24 @@ export default defineType({
           },
         },
       ],
+    }),
+
+    // Questions Section
+    defineField({
+      name: 'questionsHeading',
+      title: 'Questions Heading',
+      type: 'string',
+      fieldset: 'questions',
+      initialValue: 'Questions?',
+    }),
+    defineField({
+      name: 'questionsDescription',
+      title: 'Questions Description',
+      type: 'text',
+      rows: 2,
+      fieldset: 'questions',
+      initialValue:
+        "If you have any questions about our policies or need to discuss special circumstances, please don't hesitate to reach out.",
     }),
 
     // SEO

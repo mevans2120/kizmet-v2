@@ -77,6 +77,8 @@ export const SERVICES_PAGE_SETTINGS_QUERY = `*[_type == "servicesPageSettings"][
   description,
   sectionTitle,
   bookButtonText,
+  techniquesLabel,
+  bestForLabel,
   ctaHeading,
   ctaDescription,
   ctaButtonText,
@@ -186,4 +188,12 @@ export const BOOK_PAGE_QUERY = `*[_type == "bookPage"][0] {
     },
     noIndex
   }
+}`
+
+// 404 Page
+export const NOT_FOUND_PAGE_QUERY = `*[_type == "notFoundPage"][0] {
+  heading,
+  message,
+  buttonText,
+  buttonLink
 }`

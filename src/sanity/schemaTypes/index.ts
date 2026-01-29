@@ -5,6 +5,7 @@ import aboutPage from './aboutPage'
 import policiesPage from './policiesPage'
 import bookPage from './bookPage'
 import footerSettings from './footerSettings'
+import notFoundPage from './notFoundPage'
 import service from './service'
 import testimonial from './testimonial'
 
@@ -20,6 +21,7 @@ export const schemaTypes = [
   policiesPage,
   bookPage,
   footerSettings,
+  notFoundPage,
   service,
   testimonial,
   // Objects

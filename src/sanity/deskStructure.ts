@@ -9,6 +9,7 @@ const singletonTypes = new Set([
   'policiesPage',
   'bookPage',
   'footerSettings',
+  'notFoundPage',
 ])
 
 // Helper to create singleton items
@@ -30,6 +31,7 @@ export const deskStructure = (S: StructureBuilder) =>
       singletonItem(S, 'policiesPage', 'Policies Page'),
       singletonItem(S, 'bookPage', 'Book Page'),
       singletonItem(S, 'footerSettings', 'Footer'),
+      singletonItem(S, 'notFoundPage', '404 Page'),
 
       S.divider(),
 

@@ -134,6 +134,38 @@ export default defineType({
       fieldset: 'services',
       rows: 2,
     }),
+    defineField({
+      name: 'servicesEyebrow',
+      title: 'Services Eyebrow',
+      type: 'string',
+      fieldset: 'services',
+      initialValue: 'OFFERINGS',
+      description: 'Small uppercase text above the services heading',
+    }),
+    defineField({
+      name: 'servicesBookButtonText',
+      title: 'Service Card Book Button',
+      type: 'string',
+      fieldset: 'services',
+      initialValue: 'Book',
+      description: 'Text for the book button on service cards',
+    }),
+    defineField({
+      name: 'servicesLearnMoreText',
+      title: 'Learn More Button Text',
+      type: 'string',
+      fieldset: 'services',
+      initialValue: 'Learn More',
+      description: 'Text for the "Learn More" CTA button',
+    }),
+    defineField({
+      name: 'servicesLearnMoreLink',
+      title: 'Learn More Button Link',
+      type: 'string',
+      fieldset: 'services',
+      initialValue: '/services',
+      description: 'URL for the Learn More button',
+    }),
 
     // About Preview Section
     defineField({

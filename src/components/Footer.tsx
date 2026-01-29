@@ -14,14 +14,26 @@ interface FooterProps {
   footerSettings?: {
     brandDescription?: string;
     therapistName?: string;
+    quickLinksHeading?: string;
+    locationHeading?: string;
+    therapistHeading?: string;
+    copyrightText?: string;
   };
 }
 
 const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
-  const brandName = siteSettings?.brandName || "Kizmet";
   const brandDescription = footerSettings?.brandDescription || "Nurturing your body and mind through the healing power of touch.";
   const therapistName = footerSettings?.therapistName || "Destiny";
   const address = siteSettings?.address;
+
+  // Section headings with fallbacks
+  const quickLinksHeading = footerSettings?.quickLinksHeading || "Quick Links";
+  const locationHeading = footerSettings?.locationHeading || "Location";
+  const therapistHeading = footerSettings?.therapistHeading || "Your Therapist";
+
+  // Copyright with year replacement
+  const copyrightTemplate = footerSettings?.copyrightText || "© {year} Kizmet Massage. All rights reserved.";
+  const copyrightText = copyrightTemplate.replace('{year}', new Date().getFullYear().toString());
 
   return (
     <footer className="bg-card border-t border-border py-12">
@@ -40,7 +52,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
 
           <div>
             <h4 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
-              Quick Links
+              {quickLinksHeading}
             </h4>
             <div className="flex flex-col gap-2">
               <Link href="/about" className="font-body text-base text-muted-foreground hover:text-foreground transition-colors">
@@ -60,7 +72,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
 
           <div>
             <h4 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
-              Location
+              {locationHeading}
             </h4>
             <div className="font-body text-base text-muted-foreground space-y-2">
               <p>{address?.street || "105 1/2 E 1st St"}</p>
@@ -70,7 +82,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
 
           <div>
             <h4 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
-              Your Therapist
+              {therapistHeading}
             </h4>
             <p className="font-body text-base text-muted-foreground">
               {therapistName}
@@ -80,7 +92,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
 
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="font-body text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Kizmet Massage. All rights reserved.
+            {copyrightText}
           </p>
         </div>
       </div>

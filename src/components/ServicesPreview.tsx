@@ -19,6 +19,10 @@ interface ServicesPreviewProps {
   data?: {
     servicesHeading?: string;
     servicesDescription?: string;
+    servicesEyebrow?: string;
+    servicesBookButtonText?: string;
+    servicesLearnMoreText?: string;
+    servicesLearnMoreLink?: string;
   };
 }
 
@@ -49,11 +53,17 @@ const ServicesPreview = ({ services, data }: ServicesPreviewProps) => {
   const heading = data?.servicesHeading || "Signature Services";
   const description = data?.servicesDescription || "Each session is tailored to your individual needs";
 
+  // New CMS fields with fallbacks
+  const eyebrow = data?.servicesEyebrow || "OFFERINGS";
+  const bookButtonText = data?.servicesBookButtonText || "Book";
+  const learnMoreText = data?.servicesLearnMoreText || "Learn More";
+  const learnMoreLink = data?.servicesLearnMoreLink || "/services";
+
   return (
     <section className="py-24 bg-card">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <p className="font-body text-sm uppercase tracking-[0.2em] text-primary mb-4">OFFERINGS</p>
+          <p className="font-body text-sm uppercase tracking-[0.2em] text-primary mb-4">{eyebrow}</p>
           <h2 className="font-heading text-5xl md:text-6xl font-medium text-secondary-foreground mb-4">
             {heading}
           </h2>
@@ -87,7 +97,7 @@ const ServicesPreview = ({ services, data }: ServicesPreviewProps) => {
               {service.bookingUrl && (
                 <div className="px-6 pb-6 mt-auto flex justify-end">
                   <Button variant="outline" size="sm" asChild>
-                    <Link href={`/book?service=${service.duration.split(' ')[0]}`}>Book</Link>
+                    <Link href={`/book?service=${service.duration.split(' ')[0]}`}>{bookButtonText}</Link>
                   </Button>
                 </div>
               )}
@@ -97,7 +107,7 @@ const ServicesPreview = ({ services, data }: ServicesPreviewProps) => {
 
         <div className="text-center">
           <Button variant="heroOutline" size="lg" asChild>
-            <Link href="/services">Learn More</Link>
+            <Link href={learnMoreLink}>{learnMoreText}</Link>
           </Button>
         </div>
       </div>

@@ -51,6 +51,22 @@ export default defineType({
       initialValue: 'Book',
       description: 'Text for the book button on each service card',
     }),
+    defineField({
+      name: 'techniquesLabel',
+      title: 'Techniques Label',
+      type: 'string',
+      fieldset: 'content',
+      initialValue: 'Techniques',
+      description: 'Label for the techniques section on service cards',
+    }),
+    defineField({
+      name: 'bestForLabel',
+      title: 'Best For Label',
+      type: 'string',
+      fieldset: 'content',
+      initialValue: 'Best For',
+      description: 'Label for the "best for" section on service cards',
+    }),
 
     // CTA Section
     defineField({
