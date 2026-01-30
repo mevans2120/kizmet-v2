@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Cal, { getCalApi } from "@calcom/embed-react";
+import { toast } from "sonner";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -108,6 +109,20 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
   const phone = siteSettings?.phone;
   const email = siteSettings?.email;
   const address = siteSettings?.address;
+  const businessInfo = siteSettings?.businessInfo;
+
+  // Build maps URL: prefer explicit URL, fall back to address search
+  const getMapsUrl = () => {
+    if (businessInfo?.googleMapsUrl) return businessInfo.googleMapsUrl;
+    if (address) {
+      const fullAddress = [address.street, address.city, address.state, address.zip]
+        .filter(Boolean)
+        .join(', ');
+      return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`;
+    }
+    return null;
+  };
+  const mapsUrl = getMapsUrl();
 
   // If no bookable services, show a message
   if (bookableServices.length === 0) {
@@ -215,13 +230,18 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
                   <div>
                     <p className="font-body text-xs text-muted-foreground">{callLabel}</p>
                     <p className="font-body text-sm font-medium text-foreground">{phone}</p>
+                    <p className="font-body text-xs text-muted-foreground/60">Tap to call</p>
                   </div>
                 </a>
               )}
               {email && (
-                <a
-                  href={`mailto:${email}`}
-                  className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-primary transition-colors"
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigator.clipboard.writeText(email);
+                    toast.success("Email copied to clipboard");
+                  }}
+                  className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-primary transition-colors text-left cursor-pointer"
                 >
                   <div className="w-10 h-10 bg-background rounded-lg flex items-center justify-center">
                     <Mail className="w-5 h-5 text-primary" />
@@ -229,11 +249,17 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
                   <div>
                     <p className="font-body text-xs text-muted-foreground">{emailLabel}</p>
                     <p className="font-body text-sm font-medium text-foreground">{email}</p>
+                    <p className="font-body text-xs text-muted-foreground/60">Tap to copy</p>
                   </div>
-                </a>
+                </button>
               )}
               {address && (
-                <div className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg">
+                <a
+                  href={mapsUrl || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 p-4 bg-card border border-border rounded-lg hover:border-primary transition-colors"
+                >
                   <div className="w-10 h-10 bg-background rounded-lg flex items-center justify-center">
                     <MapPin className="w-5 h-5 text-primary" />
                   </div>
@@ -242,8 +268,9 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
                     <p className="font-body text-sm font-medium text-foreground">
                       {address.street}, {address.city}
                     </p>
+                    <p className="font-body text-xs text-muted-foreground/60">Tap for directions</p>
                   </div>
-                </div>
+                </a>
               )}
             </div>
 
