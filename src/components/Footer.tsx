@@ -40,11 +40,23 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="font-heading text-3xl mb-4 flex flex-col">
-              <span className="text-logo-lg text-secondary-foreground font-medium"><span className="text-logo-initial-lg">K</span>izmet</span>
-              {/* -mt-4 is intentional: K and M should touch vertically */}
-              <span className="text-logo-lg text-primary -mt-4"><span className="text-logo-initial-lg">M</span>assage</span>
-            </h3>
+            <Link href="/" className="flex items-center gap-1 mb-4">
+              {/* Hands Logo Mark */}
+              <img
+                src="/Kizmet-Hands.svg"
+                alt=""
+                className="w-[55px] h-[55px] -mt-2"
+                aria-hidden="true"
+              />
+              <div className="flex flex-col text-center">
+                <span className="nav-logo-kizmet text-secondary-foreground">
+                  <span className="nav-logo-k">K</span>izmet
+                </span>
+                <span className="nav-logo-massage text-primary font-medium">
+                  Massage
+                </span>
+              </div>
+            </Link>
             <p className="font-body text-muted-foreground text-base leading-relaxed">
               {brandDescription}
             </p>
