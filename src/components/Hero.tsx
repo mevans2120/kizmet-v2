@@ -97,8 +97,8 @@ const Hero = ({ data }: HeroProps) => {
               aria-hidden="true"
             />
             <h1 className="font-heading text-center">
-              <span className="hero-title-kizmet text-5xl md:text-8xl tracking-tighter text-secondary-foreground">
-                <span className="text-6xl md:text-9xl">K</span>izmet
+              <span className="hero-title-kizmet text-8xl tracking-tighter text-secondary-foreground">
+                <span className="text-9xl">K</span>izmet
               </span>
               <span className="hero-title-massage text-primary font-medium">
                 Massage
