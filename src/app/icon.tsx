@@ -46,7 +46,7 @@ export default function Icon() {
           fill="none"
         >
           {HANDS_PATHS.map((d, i) => (
-            <path key={i} d={d} fill="#4D4033" />
+            <path key={i} d={d} fill="#2d2520" />
           ))}
         </svg>
       </div>
