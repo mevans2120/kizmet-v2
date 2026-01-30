@@ -75,6 +75,9 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
             size="icon"
             className="md:hidden h-14 w-14 [&_svg]:size-10"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
           >
             {isOpen ? <X /> : <Menu />}
           </Button>
@@ -82,7 +85,7 @@ const Navigation = ({ siteSettings }: NavigationProps) => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden mt-4 pb-4 animate-fade-in">
+          <div id="mobile-navigation" className="md:hidden mt-4 pb-4 animate-fade-in">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
