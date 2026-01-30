@@ -63,7 +63,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
           </div>
 
           <div>
-            <h4 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
+            <h3 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
               {quickLinksHeading}
             </h4>
             <div className="flex flex-col gap-2">
@@ -83,7 +83,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
           </div>
 
           <div>
-            <h4 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
+            <h3 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
               {locationHeading}
             </h4>
             <div className="font-body text-base text-muted-foreground space-y-2">
@@ -93,7 +93,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
           </div>
 
           <div>
-            <h4 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
+            <h3 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
               {therapistHeading}
             </h4>
             <p className="font-body text-base text-muted-foreground">

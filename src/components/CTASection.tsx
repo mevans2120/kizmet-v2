@@ -27,7 +27,7 @@ const CTASection = ({ data }: CTASectionProps) => {
           <h2 className="font-heading text-5xl md:text-6xl font-medium text-primary-foreground mb-6">
             {headline}
           </h2>
-          <p className="font-body text-primary-foreground/80 mb-10 text-xl">
+          <p className="font-body text-primary-foreground mb-10 text-xl">
             {description}
           </p>
           <Button

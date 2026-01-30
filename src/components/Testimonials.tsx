@@ -72,7 +72,7 @@ const Testimonials = ({ data, testimonials }: TestimonialsProps) => {
 
               {/* Author */}
               <div className="flex items-center gap-3 pt-4 border-t border-border">
-                <div className="w-9 h-9 rounded-full bg-sage-100 flex items-center justify-center font-heading font-medium text-primary text-sm flex-shrink-0">
+                <div className="w-9 h-9 rounded-full bg-sage-100 flex items-center justify-center font-heading font-medium text-secondary-foreground text-sm flex-shrink-0">
                   {getInitials(testimonial.authorName)}
                 </div>
                 <div className="flex flex-col min-w-0">
