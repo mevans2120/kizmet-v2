@@ -65,7 +65,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
           <div>
             <h3 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
               {quickLinksHeading}
-            </h4>
+            </h3>
             <div className="flex flex-col gap-2">
               <Link href="/about" className="font-body text-base text-muted-foreground hover:text-foreground transition-colors">
                 About
@@ -85,7 +85,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
           <div>
             <h3 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
               {locationHeading}
-            </h4>
+            </h3>
             <div className="font-body text-base text-muted-foreground space-y-2">
               <p>{address?.street || "105 1/2 E 1st St"}</p>
               <p>{address?.city || "Port Angeles"}, {address?.state || "WA"}</p>
@@ -95,7 +95,7 @@ const Footer = ({ siteSettings, footerSettings }: FooterProps) => {
           <div>
             <h3 className="font-heading text-xl font-medium text-secondary-foreground mb-4">
               {therapistHeading}
-            </h4>
+            </h3>
             <p className="font-body text-base text-muted-foreground">
               {therapistName}
             </p>
