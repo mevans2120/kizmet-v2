@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import Cal, { getCalApi } from "@calcom/embed-react";
+import { CalEmbed } from "@/components/CalEmbed";
 import { toast } from "sonner";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -79,16 +79,6 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
     }
   };
 
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi();
-      cal("ui", {
-        theme: "light",
-        styles: { branding: { brandColor: "#5a725c" } },
-        hideEventTypeDetails: false,
-      });
-    })();
-  }, []);
 
   // Header content with fallbacks
   const eyebrow = data?.eyebrow || "Schedule Your Visit";
@@ -204,14 +194,9 @@ const Book = ({ data, services, siteSettings, footerSettings }: BookProps) => {
               {/* Cal.com Embed */}
               <div className="p-6">
                 {selectedService?.bookingUrl && (
-                  <Cal
+                  <CalEmbed
                     key={selectedService.bookingUrl}
                     calLink={getCalLink(selectedService.bookingUrl)}
-                    style={{ width: "100%", height: "100%", overflow: "scroll" }}
-                    config={{
-                      layout: "month_view",
-                      theme: "light",
-                    }}
                   />
                 )}
               </div>
